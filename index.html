@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Transforme seu aniversário em solidariedade. Crie sua campanha de arrecadação de cestas básicas com a Dona Antônia.">
+    <meta name="theme-color" content="#FF6B6B">
+    <title>Presente Social - Transforme sua festa em doação</title>
+
+    <!-- Fontes (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS Reset & Variáveis --- */
+        :root {
+            --primary-color: #FF6B6B;
+            --primary-dark: #e55a5a;
+            --text-dark: #1A1A1A;
+            --text-gray: #666666;
+            --bg-light: #F8F9FA;
+            --white: #FFFFFF;
+            --border-radius: 16px;
+            --container-width: 1000px;
+            --modal-overlay: rgba(0, 0, 0, 0.6);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-dark); 
+            line-height: 1.6; 
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+        .container { 
+            width: 100%; 
+            max-width: var(--container-width); 
+            margin: 0 auto; 
+            padding: 0 24px; 
+        }
+
+        /* --- Header --- */
+        .site-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 24px 0;
+        }
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            color: var(--primary-color); 
+            letter-spacing: -1px; 
+        }
+        .logo span { color: var(--text-dark); }
+        
+        .btn-outline {
+            border: 2px solid var(--text-dark);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .btn-outline:hover { background: var(--text-dark); color: var(--white); }
+
+        /* --- Hero Section --- */
+        .hero { 
+            text-align: center; 
+            padding: 60px 0 60px; 
+        }
+        .hero h1 { 
+            font-size: 2.5rem; 
+            line-height: 1.1; 
+            font-weight: 800; 
+            margin-bottom: 24px; 
+            color: var(--text-dark);
+        }
+        .hero h1 span { color: var(--primary-color); }
+        .hero p { 
+            font-size: 1.125rem; 
+            color: var(--text-gray); 
+            max-width: 600px; 
+            margin: 0 auto 40px; 
+        }
+
+        .btn-primary { 
+            display: inline-block;
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            padding: 18px 40px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            box-shadow: 0 10px 25px -5px rgba(255, 107, 107, 0.4);
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary-dark); 
+            transform: translateY(-2px); 
+        }
+
+        /* --- Video Mockup Section (Reels Format) --- */
+        .mockup-container {
+            background: var(--bg-light);
+            border-radius: 24px;
+            padding: 40px 20px; /* Mais espaço vertical */
+            overflow: hidden;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+        
+        /* Ajuste para simular um celular e não ficar gigante */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 320px; /* Largura típica de um celular */
+            margin: 0 auto; /* Centraliza o vídeo */
+            border-radius: 24px; /* Bordas arredondadas estilo iPhone */
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); /* Sombra elegante */
+            border: 4px solid #fff; /* Moldura fina branca */
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block; /* Remove espaçamento inferior indesejado */
+            aspect-ratio: 9 / 16; /* Força proporção vertical se o vídeo demorar a carregar */
+            object-fit: cover;
+        }
+
+        /* --- Steps Section --- */
+        .steps { padding: 80px 0; }
+        .section-title { 
+            text-align: center; 
+            font-size: 2rem; 
+            font-weight: 700; 
+            margin-bottom: 60px; 
+        }
+
+        .steps-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 40px; 
+        }
+        .step-card { 
+            padding: 32px; 
+            border-radius: 24px; 
+            background: var(--bg-light); 
+            transition: transform 0.2s;
+        }
+        .step-card:hover { transform: translateY(-5px); }
+        .step-number { 
+            font-size: 4rem; 
+            font-weight: 800; 
+            color: rgba(255, 107, 107, 0.15); 
+            line-height: 1; 
+            margin-bottom: 16px; 
+        }
+        .step-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+        .step-card p { color: var(--text-gray); }
+
+        /* --- Features/Benefits --- */
+        .features { padding: 80px 0; background: var(--text-dark); color: var(--white); border-radius: 32px; margin-bottom: 80px; }
+        .features .section-title { color: var(--white); }
+        
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 40px; 
+            text-align: center;
+        }
+        .feature-item svg { 
+            width: 48px; 
+            height: 48px; 
+            fill: var(--primary-color); 
+            margin-bottom: 20px; 
+        }
+        .feature-item h3 { margin-bottom: 10px; font-size: 1.2rem; }
+        .feature-item p { color: #aaa; font-size: 0.95rem; }
+
+        /* --- Event Grid Styles --- */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .event-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .event-card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .event-card.expired { opacity: 0.8; filter: grayscale(100%); }
+        
+        .event-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; border: 3px solid var(--bg-light); }
+        .event-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; color: var(--text-dark); }
+        .event-date { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 8px; }
+        .event-meta { font-size: 0.85rem; color: var(--primary-color); font-weight: 600; margin-bottom: 12px; }
+        
+        .btn-event {
+            display: block; width: 100%; padding: 8px; background: var(--primary-color); color: #fff; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+        }
+        .btn-event:hover { background: var(--primary-dark); }
+        .btn-event.disabled { background: #666; cursor: not-allowed; color: #fff; }
+
+        .btn-load-more {
+            display: block; margin: 0 auto; padding: 10px 24px; border: 1px solid #ddd; border-radius: 50px; color: var(--text-gray); font-weight: 600; transition: all 0.2s;
+        }
+        .btn-load-more:hover { border-color: var(--text-dark); color: var(--text-dark); }
+
+        /* --- Modal Styles --- */
+        .modal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--modal-overlay); z-index: 1000; 
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-content { 
+            background: #fff; width: 90%; max-width: 800px; 
+            border-radius: 24px; padding: 32px; 
+            transform: translateY(20px); transition: transform 0.3s;
+            max-height: 85vh; overflow-y: auto;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .modal-title { font-size: 1.5rem; font-weight: 800; }
+        .btn-close { font-size: 2rem; color: #999; line-height: 0.5; padding: 10px; }
+
+        /* --- Footer --- */
+        footer { padding: 60px 0; text-align: center; color: var(--text-gray); font-size: 0.9rem; }
+        footer strong { color: var(--text-dark); }
+
+        /* --- Mobile Tweaks --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 1.75rem; }
+            .container { padding: 0 20px; }
+            .features { border-radius: 0; }
+            .modal-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="container site-header">
+        <div class="logo">presente<span>.social</span>❤</div>
+        <button onclick="openModal()" class="btn-outline">Já tenho evento</button>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="container hero">
+            <h1>Seu aniversário pode <br><span>alimentar famílias.</span></h1>
+            <p>Troque presentes físicos por impacto social. Crie sua página personalizada, compartilhe com convidados e a Dona Antônia entrega as cestas básicas por você.</p>
+            
+            <a href="https://wa.me/5565998150975?text=Ola,%20quero%20criar%20meu%20evento%20solidario" target="_blank" class="btn-primary">
+                Criar meu Evento Solidário
+            </a>
+        </section>
+
+        <!-- Video Mockup (Reels Format) -->
+        <section class="container">
+            <div class="mockup-container">
+                <div class="video-wrapper">
+                    <!-- Vídeo nativo vertical -->
+                    <video controls playsinline poster="https://placehold.co/320x568/black/white?text=Capa+do+Video">
+                        <source src="video/videosite.MP4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Funciona -->
+        <section class="container steps">
+            <h2 class="section-title">Como funciona?</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Você personaliza</h3>
+                    <p>Criamos uma página exclusiva para o seu evento com sua foto, sua história e a instituição que você escolheu ajudar.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Convidados doam</h3>
+                    <p>Você envia o link no convite. Seus amigos compram as cestas básicas online de forma segura e deixam mensagens para você.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Nós entregamos</h3>
+                    <p>A Dona Antônia consolida todas as doações e faz uma entrega única e emocionante na instituição após a festa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mural de Eventos (Rodapé da página) -->
+        <section class="container" style="padding-bottom: 80px;">
+            <h2 class="section-title" style="margin-bottom: 40px;">Eventos da Comunidade</h2>
+            
+            <!-- Container onde os eventos serão renderizados via JS -->
+            <div id="page-events-container" class="event-grid">
+                <!-- Items inseridos via JS -->
+            </div>
+            
+            <button id="btn-load-more" class="btn-load-more" onclick="loadMoreEvents()">
+                Ver mais eventos
+            </button>
+        </section>
+
+        <!-- Benefícios -->
+        <section class="container">
+            <div class="features">
+                <div class="container">
+                    <h2 class="section-title">Por que escolher o Presente Social?</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
+                            <h3>Transparência Total</h3>
+                            <p>Enviamos fotos e prestação de contas da entrega para todos os convidados que doaram.</p>
+                        </div>
+                        <div class="feature-item">
+                            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                            <h3>Logística Dona Antônia</h3>
+                            <p>Qualidade e confiança de quem já entende de cestas básicas. Produtos selecionados e entrega garantida.</p>
+                        </div>
+                        <div class="feature-item">
+                            <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                            <h3>Custo Zero para Você</h3>
+                            <p>O serviço é gratuito para o aniversariante. O valor operacional já está incluso no preço da cesta.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section class="container" style="text-align: center; margin-bottom: 80px;">
+            <h2 style="font-size: 2rem; margin-bottom: 24px; font-weight: 800;">Pronto para fazer a diferença?</h2>
+            <p style="margin-bottom: 40px; color: var(--text-gray);">Fale com nossa equipe e monte sua página em minutos.</p>
+            <a href="https://wa.me/5565998150975" target="_blank" class="btn-primary">
+                Falar no WhatsApp
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Modal de Eventos -->
+    <div id="modal-events" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Encontre um Aniversário</h3>
+                <button class="btn-close" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <!-- Lista dentro do modal -->
+            <div id="modal-events-container" class="event-grid">
+                <!-- Items inseridos via JS -->
+            </div>
+            <p style="text-align: center; color: #999; font-size: 0.9rem;">Mostrando eventos ativos e recentes.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Operado por <strong>Super Cestas Dona Antônia</strong></p>
+            <p style="margin-top: 8px; font-size: 0.8rem; color: #ccc;">CNPJ XX.XXX.XXX/0001-XX • Cuiabá - MT</p>
+        </div>
+    </footer>
+
+    <!-- Scripts de Lógica -->
+    <script>
+        // --- Dados Reais da Comunidade ---
+        const allEvents = [
+            { 
+                name: "Elisabet Aguirre", 
+                date: "2025-12-13", 
+                goal: 30, 
+                photo: "https://placehold.co/100x100/FF6B6B/ffffff?text=Elisabet", 
+                link: "#" 
+            },
+            { 
+                name: "Noemi", 
+                date: "2025-11-28", 
+                goal: 20,
+                achieved: 26, 
+                photo: "https://placehold.co/100x100/4ECDC4/ffffff?text=Noemi", 
+                link: "#" 
+            }
+        ];
+
+        // Configuração de Paginação
+        let displayedCount = 0;
+        const itemsPerPage = 5;
+
+        // --- Funções Auxiliares ---
+
+        // Verifica se o evento está ativo (Data atual <= Data Evento + 3 dias)
+        function checkStatus(eventDateString) {
+            const eventDate = new Date(eventDateString);
+            const today = new Date();
+            
+            // Adiciona 3 dias à data do evento (prazo de tolerância)
+            const toleranceDate = new Date(eventDate);
+            toleranceDate.setDate(eventDate.getDate() + 3);
+
+            // Zera as horas para comparar apenas os dias
+            today.setHours(0,0,0,0);
+            toleranceDate.setHours(0,0,0,0);
+
+            return today <= toleranceDate ? 'active' : 'expired';
+        }
+
+        // Formata data para BR
+        function formatDate(dateString) {
+            const [year, month, day] = dateString.split('-');
+            return `${day}/${month}/${year}`;
+        }
+
+        // Gera o HTML do Card
+        function createEventCard(event) {
+            const status = checkStatus(event.date);
+            const isExpired = status === 'expired';
+            
+            const btnText = isExpired ? 'Encerrado' : 'Doar Agora';
+            const btnClass = isExpired ? 'btn-event disabled' : 'btn-event';
+            const cardClass = isExpired ? 'event-card expired' : 'event-card';
+            const link = isExpired ? 'javascript:void(0)' : event.link;
+            
+            // Lógica para mostrar meta ou resultado alcançado
+            let metaText = `Meta: ${event.goal} Cestas`;
+            if (isExpired && event.achieved) {
+                metaText = `Arrecadou: <strong>${event.achieved}</strong> de ${event.goal}! 🎉`;
+            }
+
+            return `
+                <div class="${cardClass}">
+                    <img src="${event.photo}" alt="${event.name}" class="event-photo">
+                    <h4 class="event-name">${event.name}</h4>
+                    <p class="event-date">Aniversário: ${formatDate(event.date)}</p>
+                    <p class="event-meta">${metaText}</p>
+                    <a href="${link}" class="${btnClass}">${btnText}</a>
+                </div>
+            `;
+        }
+
+        // --- Lógica do Modal ---
+        function openModal() {
+            const container = document.getElementById('modal-events-container');
+            container.innerHTML = ''; // Limpa
+
+            // No modal mostramos tudo
+            const sortedEvents = [...allEvents].sort((a, b) => {
+                const statusA = checkStatus(a.date);
+                const statusB = checkStatus(b.date);
+                if (statusA === statusB) return 0;
+                return statusA === 'active' ? -1 : 1;
+            });
+
+            sortedEvents.forEach(event => {
+                container.innerHTML += createEventCard(event);
+            });
+
+            document.getElementById('modal-events').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-events').classList.remove('active');
+        }
+
+        // Fechar ao clicar fora
+        window.onclick = (e) => {
+            const modal = document.getElementById('modal-events');
+            if (e.target === modal) closeModal();
+        }
+
+        // --- Lógica da Lista da Página (Paginação) ---
+        function loadMoreEvents() {
+            const container = document.getElementById('page-events-container');
+            const btn = document.getElementById('btn-load-more');
+            
+            // Pega o próximo lote
+            const nextBatch = allEvents.slice(displayedCount, displayedCount + itemsPerPage);
+            
+            if (nextBatch.length === 0) {
+                btn.style.display = 'none'; // Não tem mais nada
+                if (displayedCount === 0) {
+                    container.innerHTML = '<p style="text-align:center; width:100%; color:#999;">Nenhum evento encontrado por enquanto.</p>';
+                }
+                return;
+            }
+
+            nextBatch.forEach(event => {
+                container.innerHTML += createEventCard(event);
+            });
+
+            displayedCount += nextBatch.length;
+
+            // Se acabou a lista, esconde o botão
+            if (displayedCount >= allEvents.length) {
+                btn.style.display = 'none';
+            }
+        }
+
+        // Inicialização
+        document.addEventListener("DOMContentLoaded", () => {
+            loadMoreEvents(); // Carrega os primeiros 5 na lista da página
+        });
+
+    </script>
+
+</body>
+</html>
