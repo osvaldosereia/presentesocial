@@ -170,7 +170,7 @@
             position: relative;
             max-width: 300px;
             margin: 0 auto;
-            border-radius: 160px 160px 0 0;
+            border-radius: var(--radius-md); /* Formato consistente e arredondado */
             overflow: hidden;
             box-shadow: var(--shadow-hover);
             border: 8px solid #fff;
@@ -328,7 +328,13 @@
             .hero { padding-top: 60px; } 
             .event-card { flex-direction: column; text-align: center; padding: 32px 24px; }
             .step-item { padding: 32px 24px; }
-            .video-frame { border-radius: 40px; border-width: 4px; width: 100%; }
+            
+            /* Frame do vídeo no mobile mantendo o estilo */
+            .video-frame { 
+                border-radius: var(--radius-md); 
+                border-width: 4px; 
+                width: 100%; 
+            }
         }
     </style>
 </head>
