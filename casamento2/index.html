@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Participe deste aniversário solidário e doe uma cesta básica.">
+    <meta name="theme-color" content="#722F37"> <!-- Atualizado para Bordeaux -->
+    <title>Casamento Solidário - Presente Social</title>
+
+    <!-- Fontes (Cinzel & Lato) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. Design System (Visual Bordeaux & Champagne) --- */
+        :root {
+            /* Paleta: Bordeaux & Champagne */
+            --primary: #722F37;        /* Vinho Bordeaux Profundo */
+            --primary-dark: #4A121A;   /* Vinho Tinto Escuro */
+            --accent: #F5E1A4;         /* Champanhe Claro */
+            --accent-highlight: #C5A059; /* Ouro Envelhecido */
+            
+            --bg-body: #FFFCFA;        /* Branco Quente / Casca de Ovo */
+            --bg-card: #FFFFFF;
+            
+            --text-display: #722F37;   /* Vinho para Títulos */
+            --text-body: #5D4037;      /* Marrom Café Suave */
+            --text-muted: #8D6E63;     /* Marrom Rosado */
+            
+            --border-light: #E6D0CE;   /* Rosa Pálido Acinzentado */
+            
+            --container-width: 520px;
+            --container-padding: 24px;
+            
+            /* Bordas e Formas */
+            --radius-md: 16px; 
+            --radius-sm: 8px;
+            
+            --shadow-soft: 0 10px 30px rgba(114, 47, 55, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- 2. Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Lato', sans-serif; 
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+            /* Textura sutil quente */
+            background-image: radial-gradient(circle at 50% 0%, #FFF5F5 0%, #FFFCFA 100%);
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Cinzel', serif;
+            color: var(--text-display);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            line-height: 1.3;
+        }
+
+        img { max-width: 100%; display: block; }
+        button { border: none; background: none; cursor: pointer; font-family: inherit; }
+        input, textarea { font-family: inherit; }
+
+        .container { 
+            width: 100%; max-width: var(--container-width); 
+            margin: 0 auto; padding: 0 var(--container-padding); 
+        }
+
+        /* --- Componentes UI --- */
+        .card { 
+            background: var(--bg-card); 
+            padding: 40px 32px; 
+            border-radius: var(--radius-md); 
+            box-shadow: var(--shadow-soft); 
+            margin-bottom: 32px; 
+            border: 1px solid rgba(114, 47, 55, 0.08);
+            position: relative;
+        }
+        
+        /* Detalhe elegante (linha dupla) */
+        .card::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 3px; background-color: var(--primary); margin-bottom: -1px; border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 16px;
+            border-radius: 50px; /* Botões arredondados românticos */
+            font-weight: 600; font-size: 1rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            transition: var(--transition);
+            font-family: 'Lato', sans-serif;
+        }
+        
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(114, 47, 55, 0.25);
+        }
+        .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px rgba(114, 47, 55, 0.35);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background: rgba(114, 47, 55, 0.05);
+        }
+
+        .btn-tonal {
+            background: #FFF5F6; /* Rosa muito pálido */
+            color: var(--primary);
+            border: 1px solid #F5D0D4;
+        }
+        .btn-tonal:hover { background: #FFEBEF; }
+
+        /* --- Header --- */
+        .site-header { text-align: center; padding: 48px 0 32px; }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        .logo span { color: var(--accent-highlight); }
+
+        /* --- Hero --- */
+        .hero-section { text-align: center; border: none; background: transparent; box-shadow: none; padding-bottom: 0; }
+        .hero-section::after { display: none; }
+        
+        .host-photo-container { 
+            width: 160px; height: 160px; margin: 0 auto 24px; 
+            position: relative;
+        }
+        .host-photo { 
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover; 
+            border: 4px solid #fff;
+            box-shadow: 0 8px 24px rgba(114, 47, 55, 0.15);
+        }
+        /* Moldura floral */
+        .host-photo-container::after {
+            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px solid var(--accent); border-radius: 50%; opacity: 0.6; z-index: -1;
+        }
+        
+        .event-title { font-size: 2.4rem; margin-bottom: 8px; color: var(--primary); font-weight: 400; }
+        .event-subtitle { 
+            color: var(--text-muted); font-size: 1.15rem; max-width: 360px; margin: 0 auto; 
+            font-style: italic; font-weight: 300; font-family: 'Lato', sans-serif;
+        }
+
+        /* --- Story --- */
+        .story-title { 
+            font-size: 1.6rem; margin-bottom: 24px; color: var(--primary);
+            text-align: center; position: relative; padding-bottom: 16px;
+        }
+        .story-title::after {
+            content: '♥'; display: block; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+            font-size: 1rem; color: var(--accent-highlight);
+        }
+        .story-text { color: var(--text-body); margin-bottom: 32px; white-space: pre-line; font-size: 1.05rem; text-align: justify; }
+
+        .beneficiary-card { 
+            display: flex; align-items: center; 
+            background: #FFF9F9; padding: 20px; 
+            border-radius: var(--radius-sm); 
+            border: 1px solid rgba(114, 47, 55, 0.1);
+        }
+        .beneficiary-thumb { 
+            width: 64px; height: 64px; border-radius: 50%; 
+            object-fit: cover; margin-right: 20px; 
+            border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .beneficiary-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary-dark); margin-bottom: 4px; }
+        .beneficiary-name { font-size: 1.1rem; font-weight: 600; color: var(--primary); font-family: 'Cinzel', serif; }
+
+        /* --- Progress Bar --- */
+        .progress-stats { 
+            display: flex; justify-content: space-between; margin-bottom: 12px; 
+            font-size: 0.95rem; font-weight: 400; color: var(--primary); font-family: 'Cinzel', serif;
+        }
+        .progress-bar-bg { 
+            width: 100%; height: 8px; background: #EEE0E0; 
+            border-radius: 4px; overflow: hidden; 
+        }
+        .progress-bar-fill { 
+            height: 100%; background: linear-gradient(90deg, var(--primary), #9B3E49); 
+            width: 0%; transition: width 1.5s ease; border-radius: 4px;
+        }
+        .progress-subtext { 
+            text-align: center; font-size: 0.9rem; margin-top: 16px; 
+            color: var(--text-muted); font-style: italic; font-weight: 300;
+        }
+
+        /* --- Product --- */
+        .product-card { padding-top: 48px; text-align: center; }
+        .product-card::after { display: none; }
+        
+        .product-img-wrapper {
+            position: relative; height: 260px; margin: 0 auto 32px; width: 85%;
+            box-shadow: 0 15px 35px rgba(114, 47, 55, 0.1); border-radius: var(--radius-sm);
+            overflow: hidden; border: 1px solid var(--border-light);
+        }
+        .product-img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .price-tag { 
+            margin-bottom: 16px; display: inline-block;
+            color: var(--primary); font-size: 1.6rem; font-weight: 700; 
+            font-family: 'Cinzel', serif; padding: 6px 20px; 
+            background: #FFF5F6; border-radius: 50px;
+        }
+        
+        .product-title { font-size: 1.6rem; margin-bottom: 12px; font-weight: 600; }
+        .product-desc { color: var(--text-body); font-size: 1rem; margin-bottom: 32px; font-weight: 300; }
+
+        /* --- Mural --- */
+        .wall-title { text-align: center; margin-bottom: 32px; font-size: 1.6rem; color: var(--primary); font-weight: 400; }
+        .message-list { display: grid; gap: 20px; }
+        .message-item { 
+            background: #fff; padding: 24px; border-radius: 12px; 
+            border: 1px solid rgba(114, 47, 55, 0.05); box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            text-align: center;
+        }
+        .msg-author { font-weight: 600; font-size: 0.95rem; color: var(--primary); display: block; margin-bottom: 8px; font-family: 'Cinzel', serif; letter-spacing: 0.05em; }
+        .msg-text { font-size: 0.95rem; color: var(--text-body); font-style: italic; }
+
+        /* --- Modals --- */
+        .modal-overlay { 
+            position: fixed; inset: 0;
+            background: rgba(74, 18, 26, 0.85); backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: 0.4s ease;
+            padding: 20px;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-content { 
+            background: #fff; width: 100%; max-width: 500px; 
+            border-top: 4px solid var(--primary); padding: 40px; 
+            box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 90vh; overflow-y: auto;
+            border-radius: var(--radius-sm);
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; text-align: center; }
+        .modal-title { font-size: 1.5rem; color: var(--primary); width: 100%; }
+        .btn-close { position: absolute; right: 24px; top: 24px; font-size: 1.5rem; color: var(--text-muted); transition: 0.2s; }
+        .btn-close:hover { color: var(--primary); }
+
+        /* Form Formal */
+        .form-group { margin-bottom: 24px; }
+        .form-label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
+        .form-input { 
+            width: 100%; padding: 16px; border: 1px solid var(--border-light); 
+            border-radius: 4px; font-size: 1rem; outline: none; transition: 0.3s;
+            background: #FFFCFA; color: var(--text-display); font-family: 'Lato', sans-serif;
+            text-align: center;
+        }
+        .form-input:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 3px rgba(114, 47, 55, 0.1); }
+        .form-input::placeholder { color: #C4B0AE; }
+        
+        .qty-selector { display: flex; gap: 12px; justify-content: center; margin-bottom: 32px; }
+        .qty-option {
+            width: 48px; height: 48px; border: 1px solid var(--border-light); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 400; cursor: pointer; transition: all 0.3s; background: #fff;
+            font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--text-muted);
+        }
+        .qty-option.selected { 
+            border-color: var(--primary); background: var(--primary); color: #fff; 
+            transform: scale(1.1); box-shadow: 0 4px 10px rgba(114, 47, 55, 0.3);
+        }
+
+        .video-container { 
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; 
+            border-radius: var(--radius-sm); background: #000; border: 4px solid #fff;
+            box-shadow: var(--shadow-soft);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* Footer */
+        .site-footer { 
+            text-align: center; margin-top: 60px; padding-top: 40px; 
+            border-top: 1px solid rgba(114, 47, 55, 0.1); color: var(--text-muted); font-size: 0.85rem; 
+            background: transparent; padding-bottom: 40px;
+        }
+        .footer-logo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; border: 1px solid rgba(114, 47, 55, 0.2); padding: 4px; background: #fff; }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="logo">presente<span>.social</span></div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="host-photo-container">
+                <img id="host-photo" src="" alt="Casal" class="host-photo">
+            </div>
+            <h1 id="event-title" class="event-title">...</h1>
+            <p id="event-subtitle" class="event-subtitle">...</p>
+        </section>
+
+        <!-- Story Section -->
+        <section class="card story-section">
+            <h2 id="story-title" class="story-title">...</h2>
+            <p id="story-text" class="story-text">...</p>
+            
+            <button id="btn-open-video" class="btn btn-tonal" style="margin-bottom: 24px;">
+                <span>Ver Mensagem dos Noivos</span>
+            </button>
+
+            <div class="beneficiary-card">
+                <img id="beneficiary-thumb" src="" alt="Instituição" class="beneficiary-thumb">
+                <div class="beneficiary-info">
+                    <p class="beneficiary-label">Causa Escolhida</p>
+                    <h4 id="beneficiary-name" class="beneficiary-name">...</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section class="card progress-section">
+            <div class="progress-stats">
+                <span>Doadas: <strong id="cestas-current" style="color:var(--primary)">0</strong></span>
+                <span>Meta de Amor: <strong id="cestas-goal">0</strong></span>
+            </div>
+            <div class="progress-bar-bg">
+                <div id="progress-fill" class="progress-bar-fill"></div>
+            </div>
+            <p id="progress-subtext" class="progress-subtext">...</p>
+        </section>
+
+        <!-- Product & Checkout -->
+        <section class="card product-card">
+            <div class="product-img-wrapper">
+                <img id="product-img" src="" alt="Cesta Básica" class="product-img">
+            </div>
+            
+            <div class="price-tag">
+                <span id="product-price">...</span>
+            </div>
+            
+            <div class="product-info">
+                <h3 id="product-name" class="product-title">...</h3>
+                <p id="product-desc" class="product-desc">...</p>
+            </div>
+
+            <button id="btn-open-checkout" class="btn btn-primary">
+                <span>❤ Presentear o Casal</span>
+            </button>
+            
+            <div style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 24px; font-style: italic;">
+                 Logística e carinho na entrega por Super Cestas Dona Antônia
+            </div>
+        </section>
+
+        <!-- Mural -->
+        <section class="mural-section" style="margin-bottom: 40px;">
+            <h2 class="wall-title">Votos de Felicidade</h2>
+            <div id="message-list" class="message-list">
+                <!-- JS -->
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <img src="img/logo-cesta-basica-dona-antonia.png" alt="Dona Antônia" class="footer-logo">
+            <p>Operado por <strong>Super Cestas Dona Antônia</strong></p>
+            <p style="opacity: 0.6; font-size: 0.75rem; margin-top: 4px;">CNPJ XX.XXX.XXX/0001-XX</p>
+        </footer>
+
+    </main>
+
+    <!-- Modal Vídeo -->
+    <div id="modal-video" class="modal-overlay">
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal('modal-video')">&times;</button>
+            <div class="modal-header">
+                <h3 class="modal-title">Mensagem de Ana & Pedro</h3>
+            </div>
+            <div class="video-container">
+                <iframe id="video-frame" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Checkout -->
+    <div id="modal-checkout" class="modal-overlay">
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal('modal-checkout')">&times;</button>
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmar Presente</h3>
+            </div>
+            
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label class="form-label">Escolha a quantidade de cestas</label>
+                    <div class="qty-selector" id="qty-selector">
+                        <div class="qty-option selected" data-value="1">1</div>
+                        <div class="qty-option" data-value="2">2</div>
+                        <div class="qty-option" data-value="3">3</div>
+                        <div class="qty-option" data-value="4">4</div>
+                        <div class="qty-option" data-value="5">5</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Seu Nome</label>
+                    <input type="text" id="input-name" class="form-input" placeholder="Ex: Tio João e Tia Maria" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Deixe uma mensagem aos noivos</label>
+                    <textarea id="input-message" class="form-input" placeholder="Deseje felicidades ao casal..." rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label style="display:flex; align-items:center; justify-content:center; gap:12px; font-size:0.85rem; color:var(--text-body); cursor:pointer;">
+                        <input type="checkbox" required style="accent-color: var(--primary);">
+                        <span>Ciente que a doação vai direto para a instituição.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span>Ir para WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Dados do Evento
+        const data = {
+            evento: {
+                titulo: "Casamento de Ana & Pedro",
+                subtitulo: "O amor só é real quando compartilhado.",
+                historia_titulo: "Nossa Lista de Presentes",
+                historia_texto: "Ao iniciarmos nossa vida juntos, percebemos que já temos o maior presente de todos: o amor e a saúde.\n\nPor isso, decidimos transformar nossa lista de presentes em solidariedade. Em vez de utensílios, pedimos cestas básicas para alimentar famílias que precisam.",
+                foto_url: "https://placehold.co/400x400/722F37/F5E1A4?text=Ana+%26+Pedro", 
+                video_url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            beneficiario: {
+                nome: "Creche Lar do Amor",
+                foto_url: "https://placehold.co/100x100/FFF9F9/722F37?text=Lar"
+            },
+            meta: { atual: 35, objetivo: 100 }, 
+            produto: {
+                nome: "Cesta Amor & Alimento",
+                descricao: "Uma seleção completa de alimentos para levar dignidade e esperança.",
+                valor: 89.90,
+                foto_url: "https://placehold.co/600x400/FFFFFF/722F37?text=Cesta+Basica"
+            },
+            mural: [
+                { nome: "Madrinha Carla", msg: "Que gesto lindo! Vocês são luz. Felicidades!" },
+                { nome: "Família Oliveira", msg: "Deus abençoe essa união e essa iniciativa." },
+                { nome: "Lucas e Bia", msg: "Parabéns pelo casamento e pela atitude!" }
+            ],
+            whatsapp: "5565998150975"
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderData();
+            setupInteractions();
+        });
+
+        function renderData() {
+            document.getElementById('event-title').textContent = data.evento.titulo;
+            document.getElementById('event-subtitle').textContent = data.evento.subtitulo;
+            document.getElementById('host-photo').src = data.evento.foto_url;
+            document.getElementById('story-title').textContent = data.evento.historia_titulo;
+            document.getElementById('story-text').textContent = data.evento.historia_texto;
+            document.getElementById('video-frame').src = data.evento.video_url;
+
+            document.getElementById('beneficiary-name').textContent = data.beneficiario.nome;
+            document.getElementById('beneficiary-thumb').src = data.beneficiario.foto_url;
+
+            document.getElementById('product-name').textContent = data.produto.nome;
+            document.getElementById('product-desc').textContent = data.produto.descricao;
+            document.getElementById('product-img').src = data.produto.foto_url;
+            document.getElementById('product-price').textContent = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(data.produto.valor);
+
+            const percent = (data.meta.atual / data.meta.objetivo) * 100;
+            document.getElementById('cestas-current').textContent = data.meta.atual;
+            document.getElementById('cestas-goal').textContent = data.meta.objetivo;
+            document.getElementById('progress-fill').style.width = Math.min(percent, 100) + "%";
+            document.getElementById('progress-subtext').textContent = `Juntos já garantimos ${data.meta.atual} cestas de amor!`;
+
+            const muralContainer = document.getElementById('message-list');
+            data.mural.forEach(recado => {
+                muralContainer.innerHTML += `
+                    <div class="message-item">
+                        <span class="msg-author">${recado.nome}</span>
+                        <span class="msg-text">"${recado.msg}"</span>
+                    </div>
+                `;
+            });
+        }
+
+        function setupInteractions() {
+            const btnVideo = document.getElementById('btn-open-video');
+            const btnCheckout = document.getElementById('btn-open-checkout');
+            
+            btnVideo.onclick = () => openModal('modal-video');
+            btnCheckout.onclick = () => openModal('modal-checkout');
+
+            window.onclick = (e) => {
+                if (e.target.classList.contains('modal-overlay')) {
+                    e.target.classList.remove('active');
+                    if(e.target.id === 'modal-video') {
+                        const iframe = document.getElementById('video-frame');
+                        const src = iframe.src;
+                        iframe.src = src; 
+                    }
+                }
+            }
+
+            const opts = document.querySelectorAll('.qty-option');
+            let selectedQty = 1;
+
+            opts.forEach(opt => {
+                opt.addEventListener('click', function() {
+                    opts.forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedQty = this.dataset.value;
+                });
+            });
+
+            document.getElementById('checkout-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('input-name').value;
+                const message = document.getElementById('input-message').value;
+                
+                let text = `Olá! Quero presentear os noivos *${data.evento.titulo}* com solidariedade!%0A%0A`;
+                text += `*Convidado:* ${name}%0A`;
+                text += `*Quantidade:* ${selectedQty} Cesta(s)%0A`;
+                text += `*Valor:* R$ ${(selectedQty * data.produto.valor).toFixed(2)}%0A`;
+                
+                if (message) text += `*Mensagem aos Noivos:* "${message}"`;
+                
+                const url = `https://wa.me/${data.whatsapp}?text=${text}`;
+                window.open(url, '_blank');
+            });
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        window.closeModal = function(id) {
+            document.getElementById(id).classList.remove('active');
+            if(id === 'modal-video') {
+                const iframe = document.getElementById('video-frame');
+                const src = iframe.src;
+                iframe.src = src; 
+            }
+        }
+    </script>
+</body>
+</html>
