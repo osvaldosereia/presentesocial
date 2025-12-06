@@ -174,6 +174,12 @@
             text-align: center; font-weight: 600; margin-top: 20px; border: 1px solid #ddd;
         }
 
+        /* Mensagens de Doadores Styles */
+        .messages-grid { display: grid; gap: 16px; margin-top: 16px; }
+        .message-card { background: #F8F5F2; padding: 16px; border-radius: 12px; font-size: 0.9rem; border-left: 3px solid var(--primary); }
+        .msg-author { font-weight: 700; color: var(--text-display); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .msg-text { font-style: italic; color: #555; line-height: 1.4; }
+
         /* MODAL GERAL (Checkout, Video, Contato) */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
@@ -386,7 +392,10 @@
                             <i class="ph-fill ph-phone" style="margin-right:8px; color:var(--primary)"></i> (65) 99815-0975
                         </p>
                         <p style="margin-bottom:8px;">
-                            <i class="ph-fill ph-map-pin" style="margin-right:8px; color:var(--primary)"></i> Rua das Flores, 123 - Centro<br>Cuiabá - MT
+                            <i class="ph-fill ph-briefcase" style="margin-right:8px; color:var(--primary)"></i> <strong>Escritório:</strong> Edifício Work Tower, Sala 310, Cuiabá-MT
+                        </p>
+                        <p style="margin-bottom:8px;">
+                            <i class="ph-fill ph-factory" style="margin-right:8px; color:var(--primary)"></i> <strong>Produção:</strong> Rua Trinta, 200, Bairro Nossa Senhora Aparecida, Cuiabá-MT
                         </p>
                         <p style="font-size:0.8rem; color:#999; margin-top:20px;">
                             CNPJ: 51.385.335/0001-06<br>
@@ -444,12 +453,20 @@
                         <p id="pg-progress-text" style="text-align:center; font-size:0.85rem; margin-top:12px; color:#888;">Ajude a bater a meta!</p>
                     </div>
 
+                    <!-- MENSAGENS DE DOADORES (NOVO) -->
+                    <div id="messages-container" style="margin-bottom: 32px; display: none;">
+                        <h3 class="serif" style="margin-bottom: 16px; text-align: center;">Mensagens de Carinho</h3>
+                        <div id="messages-list" class="messages-grid">
+                            <!-- Injetado via JS -->
+                        </div>
+                    </div>
+
                     <!-- Botão Presentear (Abre o Modal) -->
                     <div id="donation-section" style="text-align:center;">
                         <p style="text-transform:uppercase; font-size:0.8rem; font-weight:700; color:#999; margin-bottom:12px;">Cesta Básica Completa</p>
                         
                         <!-- Imagem da cesta -->
-                        <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" alt="Cesta Básica Dona Antônia" class="cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica'">
+                        <img src="img/cesta-basica-economica.png" alt="Cesta Básica Dona Antônia" class="cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica'">
 
                         <!-- ADICIONADO: Mini botão para ver itens -->
                         <button onclick="openItemsModal()" class="btn-link-sm">
@@ -706,6 +723,27 @@
                 btnVideo.onclick = () => openVideo(ev.video_id);
             } else {
                 btnVideo.style.display = 'none';
+            }
+
+            // Renderizar Mensagens de Doadores
+            const msgList = document.getElementById('messages-list');
+            msgList.innerHTML = '';
+            
+            if(ev.messages && ev.messages.length > 0) {
+                document.getElementById('messages-container').style.display = 'block';
+                ev.messages.forEach(m => {
+                    msgList.innerHTML += `
+                        <div class="message-card">
+                            <div class="msg-author">
+                                <i class="ph-fill ph-heart" style="color:var(--primary); font-size:0.8rem;"></i>
+                                ${m.name}
+                            </div>
+                            <div class="msg-text">"${m.message}"</div>
+                        </div>
+                    `;
+                });
+            } else {
+                document.getElementById('messages-container').style.display = 'none';
             }
 
             // Lógica de Evento Encerrado
