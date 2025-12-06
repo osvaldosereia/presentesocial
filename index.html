@@ -15,7 +15,7 @@
 
     <style>
         /* =========================================
-           DESIGN SYSTEM (Mantido para consistência)
+           DESIGN SYSTEM
            ========================================= */
         :root {
             --primary: #A98467;
@@ -25,9 +25,9 @@
             --text-body: #5E5854;
             --success: #708D81;
             
-            --container-width: 1000px; /* Reduzi um pouco para leitura mais foca */
+            --container-width: 1000px;
             --container-padding: clamp(20px, 5vw, 40px); 
-            --section-gap: clamp(50px, 6vw, 80px); /* Menor espaçamento */
+            --section-gap: clamp(50px, 6vw, 80px);
             
             --radius-md: 16px;
             --transition: all 0.3s ease;
@@ -44,7 +44,10 @@
         .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Botões Compactos */
+        /* Utilitários */
+        .hidden { display: none !important; }
+
+        /* Botões */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             padding: 14px 28px; border-radius: 50px; font-weight: 600; font-size: 0.95rem;
@@ -52,8 +55,16 @@
         }
         .btn-primary { background-color: var(--text-display); color: #fff; }
         .btn-primary:hover { background-color: var(--primary); transform: translateY(-2px); }
+        
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-weight: 600; color: var(--text-muted); margin-bottom: 24px;
+            padding: 8px 16px; background: #fff; border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: var(--transition);
+        }
+        .btn-back:hover { color: var(--primary); transform: translateX(-5px); }
 
-        /* Header Compacto */
+        /* Header */
         .site-header {
             padding: 12px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
             background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(5px); border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -61,33 +72,27 @@
         .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-display); }
         .btn-whatsapp-header { width: 40px; height: 40px; background: #25D366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
 
-        /* Hero */
+        /* Home View Styles */
         .hero { padding: 60px 0 40px; text-align: center; }
         .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 16px; }
         .hero p { font-size: 1.1rem; max-width: 500px; margin: 0 auto 32px; color: var(--text-body); }
-        
         .trust-tag { 
             display: inline-block; background: #fff; padding: 6px 14px; border-radius: 20px; 
             font-size: 0.8rem; font-weight: 700; color: var(--success); text-transform: uppercase; margin-bottom: 24px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-
-        /* Seções */
         .section-py { padding: var(--section-gap) 0; }
         
-        /* Grid de Autoridade Simplificado */
         .auth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
         .stat-item { display: inline-block; margin-right: 30px; }
         .stat-val { font-size: 2.5rem; font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1; display: block; }
         .stat-lbl { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: #999; }
 
-        /* Steps Cards */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
         .step-card { background: #fff; padding: 30px; border-radius: var(--radius-md); border: 1px solid #f0f0f0; transition: var(--transition); }
         .step-card:hover { border-color: var(--primary); transform: translateY(-3px); }
         .step-icon { font-size: 2rem; color: var(--primary); margin-bottom: 16px; }
 
-        /* Event Cards Compactos */
         .event-card { 
             background: #fff; padding: 20px; border-radius: var(--radius-md); 
             display: flex; align-items: center; gap: 16px; border: 1px solid transparent; cursor: pointer;
@@ -96,25 +101,29 @@
         .event-card:hover { border-color: var(--success); transform: translateY(-3px); }
         .event-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
 
-        /* Footer CTA */
         .cta-footer { background: var(--text-display); color: #fff; padding: 50px 20px; border-radius: 24px; text-align: center; }
 
-        /* Modal Full Screen */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
-            z-index: 1000; display: flex; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s;
+        /* Event Page View Styles */
+        #event-view {
+            padding-top: 20px;
+            min-height: 100vh;
         }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        
-        .modal-body {
-            width: 100%; max-width: 450px; background: #FAFCFB; height: 100%; 
-            position: relative; overflow-y: auto; padding: 20px;
+        .event-detail-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 0 auto;
         }
+        .event-header { text-align: center; margin-bottom: 32px; }
+        .event-img-lg { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; border: 4px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .ben-tag { display: inline-flex; align-items: center; gap: 8px; background: #F8F5F2; padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; color: var(--text-display); font-weight: 600; margin-top: 8px; }
 
-        /* Responsividade */
         @media (max-width: 768px) {
             .auth-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .hero h1 { font-size: 2.2rem; }
+            .event-detail-card { padding: 24px; border-radius: 0; box-shadow: none; background: transparent; }
         }
     </style>
 </head>
@@ -130,166 +139,157 @@
     </header>
 
     <main>
-        <!-- Hero: Direto e Objetivo -->
-        <section class="hero reveal active">
-            <div class="container">
-                <span class="trust-tag"><i class="ph-fill ph-map-pin"></i> Cuiabá & Várzea Grande</span>
-                <h1>Seu aniversário <br><span style="color:var(--primary); font-style:italic;">alimenta famílias.</span></h1>
-                <p>Troque presentes por cestas básicas. <br>A <strong>Dona Antônia</strong> cuida de toda a logística para você.</p>
-                
-                <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-                    <a href="https://wa.me/5565998150975?text=Quero criar minha campanha." class="btn btn-primary">
-                        Criar Minha Campanha
+        <!-- VIEW 1: HOME (Landing Page) -->
+        <div id="home-view">
+            <!-- Hero -->
+            <section class="hero reveal active">
+                <div class="container">
+                    <span class="trust-tag"><i class="ph-fill ph-map-pin"></i> Cuiabá & Várzea Grande</span>
+                    <h1>Seu aniversário <br><span style="color:var(--primary); font-style:italic;">alimenta famílias.</span></h1>
+                    <p>Troque presentes por cestas básicas. <br>A <strong>Dona Antônia</strong> cuida de toda a logística para você.</p>
+                    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                        <a href="https://wa.me/5565998150975?text=Quero criar minha campanha." class="btn btn-primary">Criar Minha Campanha</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Autoridade -->
+            <section class="section-py" style="background:#fff;">
+                <div class="container">
+                    <div class="auth-grid reveal">
+                        <div>
+                            <h2>Solidez e Confiança</h2>
+                            <p style="margin: 16px 0; color:#666;">Há <strong>8 anos</strong> no mercado, a Dona Antônia é referência em qualidade.</p>
+                            <div style="margin-top:20px;">
+                                <div class="stat-item"><span class="stat-val">8</span><span class="stat-lbl">Anos de Mercado</span></div>
+                                <div class="stat-item"><span class="stat-val">+2.5k</span><span class="stat-lbl">Cestas Entregues</span></div>
+                            </div>
+                        </div>
+                        <div style="text-align:center; padding:20px; background:#F8F5F2; border-radius:16px;">
+                            <h4 style="margin-bottom:10px;">Garantia Total</h4>
+                            <p style="font-size:0.9rem; color:#777;">Doações auditadas e entregues a parceiros sérios.</p>
+                            <div style="font-size:2rem; color:#ccc; margin-top:10px; display:flex; justify-content:center; gap:15px;">
+                                <i class="ph-fill ph-church"></i><i class="ph-fill ph-house-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Passos -->
+            <section class="section-py container">
+                <div class="text-center reveal">
+                    <span style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem;">Simples Assim</span>
+                    <h2>Zero Burocracia</h2>
+                </div>
+                <div class="grid-3 reveal">
+                    <div class="step-card">
+                        <i class="ph-duotone ph-link step-icon"></i>
+                        <h3>1. Link Exclusivo</h3>
+                        <p style="font-size:0.9rem; color:#666;">Página personalizada em 24h.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="ph-duotone ph-currency-circle-dollar step-icon"></i>
+                        <h3>2. Doação Fácil</h3>
+                        <p style="font-size:0.9rem; color:#666;">Pagamento via PIX ou Cartão.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="ph-duotone ph-truck step-icon"></i>
+                        <h3>3. Nós Entregamos</h3>
+                        <p style="font-size:0.9rem; color:#666;">Logística completa e fotos da entrega.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Eventos -->
+            <section class="section-py" style="background:#F8F5F2;">
+                <div class="container">
+                    <div class="text-center reveal" style="margin-bottom:30px;">
+                        <h2>Campanhas Ativas</h2>
+                        <p style="font-size:0.9rem;">Clique para ver a página completa.</p>
+                    </div>
+                    <div id="events-container" class="grid-3 reveal"></div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <section class="container reveal" style="padding-bottom:60px; margin-top:40px;">
+                <div class="cta-footer">
+                    <h2 style="color:#fff; margin-bottom:10px;">Vai fazer aniversário?</h2>
+                    <a href="https://wa.me/5565998150975" target="_blank" class="btn" style="background:#fff; color:var(--text-display);">
+                        <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
                     </a>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <!-- Autoridade: Resumo de Credibilidade -->
-        <section class="section-py" style="background:#fff;">
+        <!-- VIEW 2: EVENT PAGE (New View) -->
+        <div id="event-view" class="hidden">
             <div class="container">
-                <div class="auth-grid reveal">
-                    <div>
-                        <h2>Solidez e Confiança</h2>
-                        <p style="margin: 16px 0; color:#666;">
-                            Há <strong>8 anos</strong> no mercado, a Dona Antônia é referência em qualidade. O <strong>Presente Social</strong> resolve sua vontade de ajudar sem te dar trabalho.
-                        </p>
-                        <div style="margin-top:20px;">
-                            <div class="stat-item">
-                                <span class="stat-val">8</span>
-                                <span class="stat-lbl">Anos de Mercado</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-val">+2.5k</span>
-                                <span class="stat-lbl">Cestas Entregues</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="text-align:center; padding:20px; background:#F8F5F2; border-radius:16px;">
-                        <h4 style="margin-bottom:10px;">Garantia Total</h4>
-                        <p style="font-size:0.9rem; color:#777;">Doações auditadas e entregues a parceiros sérios.</p>
-                        <div style="font-size:2rem; color:#ccc; margin-top:10px; display:flex; justify-content:center; gap:15px;">
-                            <i class="ph-fill ph-church"></i>
-                            <i class="ph-fill ph-house-heart"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Como Funciona: 3 Passos Rápidos -->
-        <section class="section-py container">
-            <div class="text-center reveal">
-                <span style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem;">Simples Assim</span>
-                <h2>Zero Burocracia</h2>
-            </div>
-            <div class="grid-3 reveal">
-                <div class="step-card">
-                    <i class="ph-duotone ph-link step-icon"></i>
-                    <h3>1. Link Exclusivo</h3>
-                    <p style="font-size:0.9rem; color:#666;">Criamos sua página personalizada em 24h para enviar no convite.</p>
-                </div>
-                <div class="step-card">
-                    <i class="ph-duotone ph-currency-circle-dollar step-icon"></i>
-                    <h3>2. Doação Fácil</h3>
-                    <p style="font-size:0.9rem; color:#666;">Seus convidados doam cestas via PIX ou Cartão em ambiente seguro.</p>
-                </div>
-                <div class="step-card">
-                    <i class="ph-duotone ph-truck step-icon"></i>
-                    <h3>3. Nós Entregamos</h3>
-                    <p style="font-size:0.9rem; color:#666;">Levamos as cestas à instituição e enviamos fotos da entrega.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prova Social: Eventos Reais -->
-        <section class="section-py" style="background:#F8F5F2;">
-            <div class="container">
-                <div class="text-center reveal" style="margin-bottom:30px;">
-                    <h2>Campanhas Ativas</h2>
-                    <p style="font-size:0.9rem;">Veja exemplos reais de quem já está ajudando.</p>
-                </div>
-                
-                <div id="events-container" class="grid-3 reveal">
-                    <!-- Cards injetados via JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer CTA -->
-        <section class="container reveal" style="padding-bottom:60px; margin-top:40px;">
-            <div class="cta-footer">
-                <h2 style="color:#fff; margin-bottom:10px;">Vai fazer aniversário?</h2>
-                <p style="margin-bottom:24px; opacity:0.9;">Inicie seu legado de solidariedade hoje.</p>
-                <a href="https://wa.me/5565998150975" target="_blank" class="btn" style="background:#fff; color:var(--text-display);">
-                    <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- MODAL FULL SCREEN (Simplificado) -->
-    <div id="modal-event" class="modal-overlay">
-        <div class="modal-body theme-event">
-            <button onclick="closeModal()" style="position:absolute; top:15px; right:15px; font-size:1.5rem; z-index:10; background:#fff; width:32px; height:32px; border-radius:50%; box-shadow:0 2px 5px rgba(0,0,0,0.1);">&times;</button>
-            
-            <div style="text-align:center; margin-top:20px;">
-                <img id="ev-photo" src="" style="width:100px; height:100px; border-radius:50%; margin:0 auto 10px; border:3px solid #fff; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
-                <h2 id="ev-title" style="font-size:1.4rem;">...</h2>
-                <p id="ev-subtitle" style="font-size:0.9rem; color:#777;">...</p>
-            </div>
-
-            <div style="background:#fff; padding:20px; border-radius:16px; margin-top:20px; box-shadow:0 2px 10px rgba(0,0,0,0.03);">
-                <h3 class="serif" style="font-size:1.1rem; margin-bottom:10px;">Minha Causa</h3>
-                <p id="ev-story" style="font-size:0.9rem; color:#555; white-space:pre-line;">...</p>
-                
-                <div style="margin-top:15px; padding-top:15px; border-top:1px solid #eee; display:flex; align-items:center; gap:10px;">
-                    <img id="ev-ben-img" src="" style="width:40px; height:40px; border-radius:50%;">
-                    <div>
-                        <span style="font-size:0.7rem; font-weight:700; color:#aaa; text-transform:uppercase;">Destino</span>
-                        <div id="ev-ben-name" style="font-weight:600; font-size:0.9rem;">...</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Progresso -->
-            <div style="margin-top:20px; background:#fff; padding:20px; border-radius:16px;">
-                <div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.9rem; color:#555;">
-                    <span style="color:var(--success);"><span id="ev-current">0</span> doadas</span>
-                    <span>Meta: <span id="ev-goal">0</span></span>
-                </div>
-                <div style="height:8px; background:#eee; border-radius:10px; margin:8px 0; overflow:hidden;">
-                    <div id="ev-bar" style="height:100%; background:var(--success); width:0%;"></div>
-                </div>
-            </div>
-
-            <!-- Preço e Botão -->
-            <div style="text-align:center; margin-top:30px; padding-bottom:20px;">
-                <p style="text-transform:uppercase; font-size:0.75rem; font-weight:700; color:#999;">Cesta Dona Antônia</p>
-                <h2 style="color:var(--success); margin:5px 0;">R$ 89,90</h2>
-                
-                <button onclick="checkout()" style="width:100%; background:var(--success); color:#fff; padding:16px; border-radius:50px; font-weight:700; font-size:1rem; margin-top:10px; box-shadow:0 5px 20px rgba(112, 141, 129, 0.4);">
-                    Doar Cesta Agora
+                <button onclick="goBack()" class="btn-back">
+                    <i class="ph-bold ph-arrow-left"></i> Voltar
                 </button>
+
+                <div class="event-detail-card reveal active">
+                    <!-- Header Evento -->
+                    <div class="event-header">
+                        <img id="pg-photo" src="" class="event-img-lg">
+                        <h1 id="pg-title" style="font-size:1.8rem; margin-bottom:8px;">...</h1>
+                        <p id="pg-subtitle" style="color:#777;">...</p>
+                        
+                        <div class="ben-tag">
+                            <img id="pg-ben-img" src="" style="width:24px; height:24px; border-radius:50%;">
+                            <span id="pg-ben-name">...</span>
+                        </div>
+                    </div>
+
+                    <!-- História -->
+                    <div style="border-top:1px solid #eee; border-bottom:1px solid #eee; padding:24px 0; margin-bottom:24px;">
+                        <h3 class="serif" style="margin-bottom:16px;">Minha Missão</h3>
+                        <p id="pg-story" style="font-size:1rem; color:#555; white-space:pre-line; line-height:1.7;">...</p>
+                    </div>
+
+                    <!-- Progresso -->
+                    <div style="background:#F8F5F2; padding:20px; border-radius:16px; margin-bottom:32px;">
+                        <div style="display:flex; justify-content:space-between; font-weight:700; color:#555; margin-bottom:8px;">
+                            <span style="color:var(--success);"><span id="pg-current">0</span> cestas doadas</span>
+                            <span>Meta: <span id="pg-goal">0</span></span>
+                        </div>
+                        <div style="height:10px; background:#e0e0e0; border-radius:10px; overflow:hidden;">
+                            <div id="pg-bar" style="height:100%; background:var(--success); width:0%;"></div>
+                        </div>
+                        <p style="text-align:center; font-size:0.85rem; margin-top:12px; color:#888;">Ajude a bater a meta!</p>
+                    </div>
+
+                    <!-- CTA Checkout -->
+                    <div style="text-align:center;">
+                        <p style="text-transform:uppercase; font-size:0.8rem; font-weight:700; color:#999; margin-bottom:4px;">Cesta Básica Completa</p>
+                        <h2 style="color:var(--success); font-size:2.5rem; margin-bottom:16px;">R$ 89,90</h2>
+                        
+                        <button onclick="checkout()" class="btn" style="background:var(--success); color:#fff; width:100%; padding:18px; font-size:1.1rem; box-shadow:0 8px 24px rgba(112, 141, 129, 0.3);">
+                            Presentear Agora
+                        </button>
+                        <p style="margin-top:16px; font-size:0.85rem; color:#aaa;">Pagamento seguro via PIX</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script>
-        // Dados Mockup (Elizaber e Jumar)
         const events = [
             {
                 id: 1, name: "Elizaber", title: "30 Anos da Elizaber", 
                 photo: "https://placehold.co/150x150/A98467/ffffff?text=EL",
                 subtitle: "Aniversário Solidário",
-                story: "Não quero presentes, quero impacto. Ajude-me a doar cestas para o Lar São Vicente.",
+                story: "Não quero presentes materiais este ano. Quero causar impacto real.\n\nEscolhi o Lar São Vicente porque conheço o trabalho sério que realizam. Minha meta é garantir alimentação para 30 famílias.",
                 goal: 30, current: 12, ben_name: "Lar São Vicente", ben_img: "https://placehold.co/50x50/708D81/fff?text=LSV"
             },
             {
                 id: 2, name: "Jumar", title: "Jumar Faz 45", 
                 photo: "https://placehold.co/150x150/2C2825/ffffff?text=JU",
                 subtitle: "Comemorando a Vida",
-                story: "Minha festa é ajudar quem precisa. Confio na Dona Antônia há anos e convido você a participar.",
+                story: "A melhor forma de agradecer por mais um ano é ajudando quem precisa.\n\nConfio na Dona Antônia há 8 anos e sei da qualidade das cestas. Convido todos os amigos a participarem dessa corrente.",
                 goal: 20, current: 18, ben_name: "Instituto Esperança", ben_img: "https://placehold.co/50x50/E8D4C5/2C2825?text=IE"
             }
         ];
@@ -301,7 +301,7 @@
             events.forEach(ev => {
                 const pct = Math.round((ev.current / ev.goal) * 100);
                 container.innerHTML += `
-                    <div class="event-card" onclick="openModal(${ev.id})">
+                    <div class="event-card" onclick="openPage(${ev.id})">
                         <img src="${ev.photo}" class="event-photo">
                         <div style="flex:1;">
                             <h4 style="font-size:1rem; margin-bottom:4px;">${ev.title}</h4>
@@ -322,32 +322,36 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
-        function openModal(id) {
+        function openPage(id) {
             const ev = events.find(e => e.id === id);
-            document.getElementById('ev-photo').src = ev.photo;
-            document.getElementById('ev-title').innerText = ev.title;
-            document.getElementById('ev-subtitle').innerText = ev.subtitle;
-            document.getElementById('ev-story').innerText = ev.story;
-            document.getElementById('ev-ben-name').innerText = ev.ben_name;
-            document.getElementById('ev-ben-img').src = ev.ben_img;
-            document.getElementById('ev-current').innerText = ev.current;
-            document.getElementById('ev-goal').innerText = ev.goal;
-            document.getElementById('ev-bar').style.width = ((ev.current/ev.goal)*100) + '%';
             
-            document.getElementById('modal-event').classList.add('active');
-            document.body.style.overflow = 'hidden';
+            // Popula dados na View 2
+            document.getElementById('pg-photo').src = ev.photo;
+            document.getElementById('pg-title').innerText = ev.title;
+            document.getElementById('pg-subtitle').innerText = ev.subtitle;
+            document.getElementById('pg-story').innerText = ev.story;
+            document.getElementById('pg-ben-name').innerText = ev.ben_name;
+            document.getElementById('pg-ben-img').src = ev.ben_img;
+            document.getElementById('pg-current').innerText = ev.current;
+            document.getElementById('pg-goal').innerText = ev.goal;
+            document.getElementById('pg-bar').style.width = ((ev.current/ev.goal)*100) + '%';
+
+            // Troca de View (SPA effect)
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('event-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
         }
 
-        function closeModal() {
-            document.getElementById('modal-event').classList.remove('active');
-            document.body.style.overflow = 'auto';
+        function goBack() {
+            document.getElementById('event-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
         }
 
         function checkout() {
             window.open("https://wa.me/5565998150975?text=Quero doar uma cesta!", "_blank");
         }
 
-        window.onclick = e => { if(e.target.id === 'modal-event') closeModal(); }
         window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
