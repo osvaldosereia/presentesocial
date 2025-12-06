@@ -19,6 +19,7 @@
            ========================================= */
         :root {
             --primary: #A98467;
+            --primary-dark: #8C6A54;
             --bg-body: #FDFBF7;
             --bg-card: #FFFFFF;
             --text-display: #2C2825;
@@ -35,9 +36,10 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'DM Sans', sans-serif; background-color: var(--bg-body); color: var(--text-body); line-height: 1.5; padding-top: 70px; }
-        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; color: var(--text-display); font-weight: 700; line-height: 1.2; }
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; color: var(--text-display); font-weight: 700; line-height: 1.2; }
         a, button { text-decoration: none; color: inherit; cursor: pointer; border: none; background: none; }
         img { max-width: 100%; display: block; }
+        input, textarea, select { font-family: inherit; }
 
         .container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 var(--container-padding); }
         .text-center { text-align: center; }
@@ -70,7 +72,13 @@
             background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(5px); border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-display); }
-        .btn-whatsapp-header { width: 40px; height: 40px; background: #25D366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        
+        .btn-contact-header { 
+            padding: 8px 20px; background: var(--text-display); color: #fff; 
+            border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 8px;
+            transition: var(--transition);
+        }
+        .btn-contact-header:hover { background: var(--primary); }
 
         /* Home View Styles */
         .hero { padding: 60px 0 40px; text-align: center; }
@@ -83,7 +91,15 @@
         }
         .section-py { padding: var(--section-gap) 0; }
         
-        .auth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        /* Auth Grid com Logo Redonda */
+        .auth-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+        .logo-da-wrapper { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .logo-da-round { 
+            width: 80px; height: 80px; border-radius: 50%; background: #fff; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 5px; object-fit: contain; 
+            border: 1px solid #eee;
+        }
+
         .stat-item { display: inline-block; margin-right: 30px; }
         .stat-val { font-size: 2.5rem; font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1; display: block; }
         .stat-lbl { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: #999; }
@@ -101,29 +117,90 @@
         .event-card:hover { border-color: var(--success); transform: translateY(-3px); }
         .event-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
 
-        .cta-footer { background: var(--text-display); color: #fff; padding: 50px 20px; border-radius: 24px; text-align: center; }
+        .cta-footer-section { background: var(--text-display); color: #fff; padding: 60px 0; margin-top: 40px; border-radius: 24px 24px 0 0; }
+        
+        /* Footer Info */
+        .site-footer { background: #fff; padding: 60px 0 30px; border-top: 1px solid #eee; font-size: 0.9rem; color: #666; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .footer-logo { width: 50px; height: 50px; border-radius: 50%; margin-bottom: 16px; object-fit: contain; border: 1px solid #eee; }
+        .social-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text-display); font-weight: 600; margin-top: 10px; }
 
         /* Event Page View Styles */
-        #event-view {
-            padding-top: 20px;
-            min-height: 100vh;
-        }
+        #event-view { padding-top: 20px; min-height: 100vh; padding-bottom: 60px; }
         .event-detail-card {
-            background: #fff;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
-            max-width: 600px;
-            margin: 0 auto;
+            background: #fff; border-radius: 24px; padding: 40px;
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto;
         }
         .event-header { text-align: center; margin-bottom: 32px; }
         .event-img-lg { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; border: 4px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
         .ben-tag { display: inline-flex; align-items: center; gap: 8px; background: #F8F5F2; padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; color: var(--text-display); font-weight: 600; margin-top: 8px; }
+        
+        .cesta-img { 
+            width: 100%; max-width: 280px; margin: 0 auto 20px; border-radius: 16px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+        }
+
+        /* MODAL GERAL (Checkout e Contato) */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-box {
+            width: 100%; max-width: 400px; background: #fff;
+            border-radius: 24px; padding: 32px;
+            max-height: 90vh; overflow-y: auto;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        /* Checkout Specifics */
+        .qty-selector { display: flex; gap: 10px; justify-content: center; margin: 24px 0; flex-wrap: wrap; }
+        .qty-btn {
+            width: 48px; height: 48px; border-radius: 12px;
+            border: 2px solid #eee; background: #fff;
+            font-weight: 700; font-size: 1.1rem; color: #555;
+            transition: 0.2s;
+        }
+        .qty-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .qty-btn.selected { background: var(--success); border-color: var(--success); color: #fff; transform: scale(1.1); box-shadow: 0 5px 15px rgba(112, 141, 129, 0.4); }
+
+        .price-display { text-align: center; margin-bottom: 30px; background: #F8F5F2; padding: 16px; border-radius: 16px; }
+        .price-total { font-size: 2rem; font-weight: 700; color: var(--text-display); line-height: 1; }
+        .price-installments { font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; font-weight: 500; }
+
+        .form-group { margin-bottom: 16px; text-align: left; }
+        .form-label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: #555; }
+        .form-input { 
+            width: 100%; padding: 14px; border: 1px solid #eee; border-radius: 12px; 
+            font-size: 0.95rem; outline: none; transition: 0.3s; background: #fcfcfc;
+        }
+        .form-input:focus { border-color: var(--primary); background: #fff; }
+
+        /* Contact Modal Buttons */
+        .btn-contact-opt {
+            width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px;
+            font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: 0.2s; border: 1px solid transparent;
+        }
+        .btn-whatsapp-lg { background: #25D366; color: #fff; }
+        .btn-whatsapp-lg:hover { background: #1ebc57; }
+        .btn-call-lg { background: #fff; border-color: #eee; color: var(--text-display); }
+        .btn-call-lg:hover { border-color: var(--text-display); }
+        .btn-insta-lg { 
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+            color: #fff; 
+        }
+        .btn-insta-lg:hover { opacity: 0.9; }
 
         @media (max-width: 768px) {
-            .auth-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .auth-grid, .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .hero h1 { font-size: 2.2rem; }
             .event-detail-card { padding: 24px; border-radius: 0; box-shadow: none; background: transparent; }
+            .modal-box { border-radius: 24px 24px 0 0; position: absolute; bottom: 0; width: 100%; max-height: 85vh; padding-bottom: 40px;}
+            .logo-da-wrapper { justify-content: center; flex-direction: column; }
         }
     </style>
 </head>
@@ -132,9 +209,9 @@
     <header class="site-header">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
             <div class="logo">Presente<span>.Social</span></div>
-            <a href="https://wa.me/5565998150975" target="_blank" class="btn-whatsapp-header">
-                <i class="ph-bold ph-whatsapp-logo"></i>
-            </a>
+            <button onclick="openContactModal()" class="btn-contact-header">
+                <i class="ph-bold ph-chat-circle-dots"></i> Contato
+            </button>
         </div>
     </header>
 
@@ -153,16 +230,20 @@
                 </div>
             </section>
 
-            <!-- Autoridade -->
+            <!-- Autoridade (Quem Somos) -->
             <section class="section-py" style="background:#fff;">
                 <div class="container">
                     <div class="auth-grid reveal">
                         <div>
-                            <h2>Solidez e Confiança</h2>
-                            <p style="margin: 16px 0; color:#666;">Há <strong>8 anos</strong> no mercado, a Dona Antônia é referência em qualidade.</p>
+                            <div class="logo-da-wrapper">
+                                <!-- Logo Redonda da Dona Antônia -->
+                                <img src="https://placehold.co/100x100/A98467/fff?text=DA" alt="Logo Dona Antônia" class="logo-da-round">
+                                <h2>Solidez e Confiança</h2>
+                            </div>
+                            <p style="margin: 16px 0; color:#666;">Há <strong>8 anos</strong> no mercado, a Dona Antônia é referência em qualidade e compromisso social.</p>
                             <div style="margin-top:20px;">
                                 <div class="stat-item"><span class="stat-val">8</span><span class="stat-lbl">Anos de Mercado</span></div>
-                                <div class="stat-item"><span class="stat-val">+2.5k</span><span class="stat-lbl">Cestas Entregues</span></div>
+                                <div class="stat-item"><span class="stat-val">+30 mil</span><span class="stat-lbl">Cestas Entregues</span></div>
                             </div>
                         </div>
                         <div style="text-align:center; padding:20px; background:#F8F5F2; border-radius:16px;">
@@ -212,18 +293,46 @@
                 </div>
             </section>
 
-            <!-- Footer -->
-            <section class="container reveal" style="padding-bottom:60px; margin-top:40px;">
-                <div class="cta-footer">
+            <!-- Footer CTA -->
+            <section class="container reveal" style="margin-top:40px;">
+                <div class="cta-footer-section text-center">
                     <h2 style="color:#fff; margin-bottom:10px;">Vai fazer aniversário?</h2>
                     <a href="https://wa.me/5565998150975" target="_blank" class="btn" style="background:#fff; color:var(--text-display);">
                         <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
                     </a>
                 </div>
             </section>
+
+            <!-- Rodapé Institucional -->
+            <footer class="site-footer">
+                <div class="container footer-grid">
+                    <div>
+                        <img src="https://placehold.co/80x80/A98467/fff?text=DA" alt="Logo Pequena" class="footer-logo">
+                        <h4 style="color:var(--text-display); margin-bottom:10px;">Cestas Básicas Dona Antônia</h4>
+                        <p>Levando alimentos de qualidade para a mesa de quem precisa em Cuiabá e Várzea Grande.</p>
+                        
+                        <a href="https://instagram.com/cestabasicadonaantonia" target="_blank" class="social-link">
+                            <i class="ph-bold ph-instagram-logo"></i> @cestabasicadonaantonia
+                        </a>
+                    </div>
+                    <div>
+                        <h4 style="color:var(--text-display); margin-bottom:16px;">Contato & Endereço</h4>
+                        <p style="margin-bottom:8px;">
+                            <i class="ph-fill ph-phone" style="margin-right:8px; color:var(--primary)"></i> (65) 99815-0975
+                        </p>
+                        <p style="margin-bottom:8px;">
+                            <i class="ph-fill ph-map-pin" style="margin-right:8px; color:var(--primary)"></i> Rua das Flores, 123 - Centro<br>Cuiabá - MT
+                        </p>
+                        <p style="font-size:0.8rem; color:#999; margin-top:20px;">
+                            CNPJ: 12.345.678/0001-90<br>
+                            Todos os direitos reservados.
+                        </p>
+                    </div>
+                </div>
+            </footer>
         </div>
 
-        <!-- VIEW 2: EVENT PAGE (New View) -->
+        <!-- VIEW 2: EVENT PAGE (Detalhes) -->
         <div id="event-view" class="hidden">
             <div class="container">
                 <button onclick="goBack()" class="btn-back">
@@ -233,12 +342,12 @@
                 <div class="event-detail-card reveal active">
                     <!-- Header Evento -->
                     <div class="event-header">
-                        <img id="pg-photo" src="" class="event-img-lg">
+                        <img id="pg-photo" src="" class="event-img-lg" onerror="this.src='https://placehold.co/150x150?text=Foto'">
                         <h1 id="pg-title" style="font-size:1.8rem; margin-bottom:8px;">...</h1>
                         <p id="pg-subtitle" style="color:#777;">...</p>
                         
                         <div class="ben-tag">
-                            <img id="pg-ben-img" src="" style="width:24px; height:24px; border-radius:50%;">
+                            <img id="pg-ben-img" src="" style="width:24px; height:24px; border-radius:50%;" onerror="this.src='https://placehold.co/50x50?text=Ong'">
                             <span id="pg-ben-name">...</span>
                         </div>
                     </div>
@@ -261,47 +370,137 @@
                         <p style="text-align:center; font-size:0.85rem; margin-top:12px; color:#888;">Ajude a bater a meta!</p>
                     </div>
 
-                    <!-- CTA Checkout -->
+                    <!-- Botão Presentear (Abre o Modal) -->
                     <div style="text-align:center;">
-                        <p style="text-transform:uppercase; font-size:0.8rem; font-weight:700; color:#999; margin-bottom:4px;">Cesta Básica Completa</p>
+                        <p style="text-transform:uppercase; font-size:0.8rem; font-weight:700; color:#999; margin-bottom:12px;">Cesta Básica Completa</p>
+                        
+                        <!-- FOTO DA CESTA AQUI -->
+                        <img src="https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica" alt="Cesta Básica Dona Antônia" class="cesta-img">
+
                         <h2 style="color:var(--success); font-size:2.5rem; margin-bottom:16px;">R$ 89,90</h2>
                         
-                        <button onclick="checkout()" class="btn" style="background:var(--success); color:#fff; width:100%; padding:18px; font-size:1.1rem; box-shadow:0 8px 24px rgba(112, 141, 129, 0.3);">
+                        <button onclick="openCheckout()" class="btn" style="background:var(--success); color:#fff; width:100%; padding:18px; font-size:1.1rem; box-shadow:0 8px 24px rgba(112, 141, 129, 0.3);">
                             Presentear Agora
                         </button>
-                        <p style="margin-top:16px; font-size:0.85rem; color:#aaa;">Pagamento seguro via PIX</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- CHECKOUT MODAL -->
+    <div id="checkout-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="closeModal('checkout-modal')" style="position:absolute; top:20px; right:20px; font-size:1.5rem; color:#999;">&times;</button>
+            
+            <h3 class="serif">Escolha seu Presente</h3>
+            <p style="font-size:0.9rem; color:#666;">Quantas cestas você quer doar?</p>
+
+            <div class="qty-selector">
+                <button class="qty-btn selected" onclick="setQty(1)">1</button>
+                <button class="qty-btn" onclick="setQty(2)">2</button>
+                <button class="qty-btn" onclick="setQty(3)">3</button>
+                <button class="qty-btn" onclick="setQty(4)">4</button>
+                <button class="qty-btn" onclick="setQty(5)">5</button>
+            </div>
+
+            <div class="price-display">
+                <div id="chk-total" class="price-total">R$ 89,90</div>
+                <div id="chk-installment" class="price-installments">1x de R$ 89,90</div>
+            </div>
+
+            <form id="donation-form" onsubmit="submitDonation(event)">
+                <div class="form-group">
+                    <label class="form-label">Seu Nome</label>
+                    <input type="text" class="form-input" required placeholder="Ex: Maria Silva">
+                </div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+                    <div class="form-group">
+                        <label class="form-label">WhatsApp</label>
+                        <input type="tel" class="form-input" required placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" required placeholder="Seu melhor email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mensagem (Opcional)</label>
+                    <textarea class="form-input" rows="2" placeholder="Deixe um recado..."></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top:10px;">
+                    Ir para Pagamento Seguro <i class="ph-bold ph-lock-key"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CONTATO MODAL -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="closeModal('contact-modal')" style="position:absolute; top:20px; right:20px; font-size:1.5rem; color:#999;">&times;</button>
+            
+            <h3 class="serif" style="margin-bottom:8px;">Fale Conosco</h3>
+            <p style="margin-bottom:24px; color:#666;">Estamos prontos para te atender.</p>
+
+            <a href="https://wa.me/5565998150975" target="_blank" class="btn-contact-opt btn-whatsapp-lg">
+                <i class="ph-bold ph-whatsapp-logo"></i> Chamar no WhatsApp
+            </a>
+            
+            <a href="tel:5565998150975" class="btn-contact-opt btn-call-lg">
+                <i class="ph-bold ph-phone"></i> Ligar Agora
+            </a>
+
+            <div style="margin-top:20px; padding-top:20px; border-top:1px solid #eee;">
+                <p style="font-size:0.9rem; margin-bottom:12px;">Siga nosso Instagram</p>
+                <a href="https://instagram.com/cestabasicadonaantonia" target="_blank" class="btn-contact-opt btn-insta-lg">
+                    <i class="ph-bold ph-instagram-logo"></i> @cestabasicadonaantonia
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const events = [
-            {
-                id: 1, name: "Elizaber", title: "30 Anos da Elizaber", 
-                photo: "https://placehold.co/150x150/A98467/ffffff?text=EL",
-                subtitle: "Aniversário Solidário",
-                story: "Não quero presentes materiais este ano. Quero causar impacto real.\n\nEscolhi o Lar São Vicente porque conheço o trabalho sério que realizam. Minha meta é garantir alimentação para 30 famílias.",
-                goal: 30, current: 12, ben_name: "Lar São Vicente", ben_img: "https://placehold.co/50x50/708D81/fff?text=LSV"
+        // MOCKUP DATABASE
+        const DB_SIMULADO = {
+            "elizaber": {
+                "slug": "elizaber",
+                "title": "30 Anos da Elizaber",
+                "subtitle": "Aniversário Solidário",
+                "photo": "https://placehold.co/150x150/A98467/ffffff?text=EL", 
+                "story": "Não quero presentes materiais este ano. Quero causar impacto real.\n\nEscolhi o Lar São Vicente porque conheço o trabalho sério que realizam. Minha meta é garantir alimentação para 30 famílias.",
+                "goal": 30,
+                "current": 12,
+                "beneficiary": { "name": "Lar São Vicente", "img": "https://placehold.co/50x50/708D81/fff?text=LSV" },
+                "price_unit": 89.90,
+                "links": { "1": "#", "2": "#", "3": "#", "4": "#", "5": "#" }
             },
-            {
-                id: 2, name: "Jumar", title: "Jumar Faz 45", 
-                photo: "https://placehold.co/150x150/2C2825/ffffff?text=JU",
-                subtitle: "Comemorando a Vida",
-                story: "A melhor forma de agradecer por mais um ano é ajudando quem precisa.\n\nConfio na Dona Antônia há 8 anos e sei da qualidade das cestas. Convido todos os amigos a participarem dessa corrente.",
-                goal: 20, current: 18, ben_name: "Instituto Esperança", ben_img: "https://placehold.co/50x50/E8D4C5/2C2825?text=IE"
+            "jumar": {
+                "slug": "jumar",
+                "title": "Jumar Faz 45",
+                "subtitle": "Comemorando a Vida",
+                "photo": "https://placehold.co/150x150/2C2825/ffffff?text=JU",
+                "story": "A melhor forma de agradecer por mais um ano é ajudando quem precisa.\n\nConfio na Dona Antônia há 8 anos e sei da qualidade das cestas. Convido todos os amigos a participarem dessa corrente.",
+                "goal": 20,
+                "current": 18,
+                "beneficiary": { "name": "Instituto Esperança", "img": "https://placehold.co/50x50/E8D4C5/2C2825?text=IE" },
+                "price_unit": 89.90,
+                "links": { "1": "#", "2": "#", "3": "#", "4": "#", "5": "#" }
             }
-        ];
+        };
+
+        let currentEventSlug = null;
+        let selectedQty = 1;
 
         function init() {
             const container = document.getElementById('events-container');
             container.innerHTML = '';
             
-            events.forEach(ev => {
+            Object.values(DB_SIMULADO).forEach(ev => {
                 const pct = Math.round((ev.current / ev.goal) * 100);
                 container.innerHTML += `
-                    <div class="event-card" onclick="openPage(${ev.id})">
+                    <div class="event-card" onclick="openPage('${ev.slug}')">
                         <img src="${ev.photo}" class="event-photo">
                         <div style="flex:1;">
                             <h4 style="font-size:1rem; margin-bottom:4px;">${ev.title}</h4>
@@ -315,41 +514,105 @@
                 `;
             });
 
-            // Reveal Anim
+            handleRouting();
+
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
             });
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
-        function openPage(id) {
-            const ev = events.find(e => e.id === id);
+        // Roteamento
+        window.addEventListener('hashchange', handleRouting);
+        function handleRouting() {
+            const slug = window.location.hash.replace('#', '');
+            if (slug && DB_SIMULADO[slug]) {
+                renderEventView(slug);
+            } else {
+                renderHomeView();
+            }
+        }
+        function openPage(slug) { window.location.hash = slug; }
+        function goBack() { window.location.hash = ''; }
+
+        // Render Views
+        function renderHomeView() {
+            document.getElementById('event-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
+            currentEventSlug = null;
+        }
+
+        function renderEventView(slug) {
+            const ev = DB_SIMULADO[slug];
+            currentEventSlug = slug;
             
-            // Popula dados na View 2
             document.getElementById('pg-photo').src = ev.photo;
             document.getElementById('pg-title').innerText = ev.title;
             document.getElementById('pg-subtitle').innerText = ev.subtitle;
             document.getElementById('pg-story').innerText = ev.story;
-            document.getElementById('pg-ben-name').innerText = ev.ben_name;
-            document.getElementById('pg-ben-img').src = ev.ben_img;
+            document.getElementById('pg-ben-name').innerText = ev.beneficiary.name;
+            document.getElementById('pg-ben-img').src = ev.beneficiary.img;
             document.getElementById('pg-current').innerText = ev.current;
             document.getElementById('pg-goal').innerText = ev.goal;
             document.getElementById('pg-bar').style.width = ((ev.current/ev.goal)*100) + '%';
 
-            // Troca de View (SPA effect)
             document.getElementById('home-view').classList.add('hidden');
             document.getElementById('event-view').classList.remove('hidden');
             window.scrollTo(0, 0);
         }
 
-        function goBack() {
-            document.getElementById('event-view').classList.add('hidden');
-            document.getElementById('home-view').classList.remove('hidden');
-            window.scrollTo(0, 0);
+        // Modais
+        function openContactModal() {
+            document.getElementById('contact-modal').classList.add('active');
+        }
+        function openCheckout() {
+            selectedQty = 1;
+            updateCheckoutUI();
+            document.getElementById('checkout-modal').classList.add('active');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
         }
 
-        function checkout() {
-            window.open("https://wa.me/5565998150975?text=Quero doar uma cesta!", "_blank");
+        // Checkout Logic
+        function setQty(qty) {
+            selectedQty = qty;
+            updateCheckoutUI();
+        }
+
+        function updateCheckoutUI() {
+            document.querySelectorAll('.qty-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                if(parseInt(btn.innerText) === selectedQty) btn.classList.add('selected');
+            });
+
+            const ev = DB_SIMULADO[currentEventSlug];
+            const total = ev.price_unit * selectedQty;
+            
+            document.getElementById('chk-total').innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            if (total > 100) {
+                const parcVal = total / 3;
+                document.getElementById('chk-installment').innerText = `ou 3x de ${parcVal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} sem juros`;
+            } else {
+                 document.getElementById('chk-installment').innerText = `à vista`;
+            }
+        }
+
+        function submitDonation(e) {
+            e.preventDefault();
+            const ev = DB_SIMULADO[currentEventSlug];
+            const link = ev.links[selectedQty];
+            if(link) {
+                alert(`Redirecionando para: ${link}`);
+            } else {
+                alert('Erro ao buscar link de pagamento.');
+            }
+        }
+
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('active');
         }
 
         window.addEventListener('DOMContentLoaded', init);
