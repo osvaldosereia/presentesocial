@@ -91,16 +91,26 @@
         .btn-contact-header:hover { background: var(--primary); }
 
         /* Home View Styles */
-        .hero { padding: 60px 0 40px; text-align: center; }
+        .hero { padding: 50px 0 30px; text-align: center; }
         .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 16px; }
         .hero p { font-size: 1.1rem; max-width: 500px; margin: 0 auto 32px; color: var(--text-body); }
         .trust-tag { 
-            display: inline-block; background: #fff; padding: 6px 14px; border-radius: 20px; 
-            font-size: 0.8rem; font-weight: 700; color: var(--success); text-transform: uppercase; margin-bottom: 24px;
+            display: inline-block; background: #fff; padding: 4px 12px; border-radius: 20px; 
+            font-size: 0.75rem; font-weight: 700; color: var(--success); text-transform: uppercase; margin-bottom: 24px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .section-py { padding: var(--section-gap) 0; }
         
+        /* Service Tag (Dona Antonia Identifier) */
+        .service-tag {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            margin-bottom: 40px; background: #fff; padding: 10px 20px;
+            border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0; max-width: 90%;
+        }
+        .service-tag img { width: 30px; height: 30px; object-fit: contain; }
+        .service-tag span { font-size: 0.85rem; font-weight: 500; color: #666; text-align: left; line-height: 1.3; }
+
         /* Auth Grid com Logo Redonda */
         .auth-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
         .logo-da-wrapper { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
@@ -114,8 +124,10 @@
         .stat-val { font-size: 2.5rem; font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1; display: block; }
         .stat-lbl { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: #999; }
 
+        .grid-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 40px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
-        .step-card { background: #fff; padding: 30px; border-radius: var(--radius-md); border: 1px solid #f0f0f0; transition: var(--transition); }
+        
+        .step-card { background: #fff; padding: 30px; border-radius: var(--radius-md); border: 1px solid #f0f0f0; transition: var(--transition); height: 100%; display: flex; flex-direction: column;}
         .step-card:hover { border-color: var(--primary); transform: translateY(-3px); }
         .step-icon { font-size: 2rem; color: var(--primary); margin-bottom: 16px; }
 
@@ -309,16 +321,53 @@
             <section class="hero reveal active">
                 <div class="container">
                     <span class="trust-tag"><i class="ph-fill ph-map-pin"></i> Cuiabá & Várzea Grande</span>
-                    <h1>Seu aniversário <br><span style="color:var(--primary); font-style:italic;">alimenta famílias.</span></h1>
-                    <p>Troque presentes por cestas básicas. <br>A <strong>Dona Antônia</strong> cuida de toda a logística para você.</p>
+                    <h1>Transforme a sua festa <br><span style="color:var(--primary); font-style:italic;">em um ato de solidariedade.</span></h1>
+                    <p>Troque presentes por cestas básicas.</p>
                     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
                         <a href="https://wa.me/5565998150975?text=Quero criar minha campanha." class="btn btn-primary">Criar Minha Campanha</a>
                     </div>
                 </div>
             </section>
 
+            <!-- EXPLICAÇÃO (O que é / Como funciona) -->
+            <section class="container section-py" style="padding-top:0;">
+                <div class="text-center reveal">
+                    <!-- Tag de Serviço Dona Antonia -->
+                    <div class="service-tag">
+                        <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Dona Antonia" onerror="this.src='https://placehold.co/30x30/A98467/fff?text=DA'">
+                        <span>O <strong>Presente Social</strong> é um serviço da Super Cestas Básicas Dona Antônia.</span>
+                    </div>
+
+                    <h2>É Bem Simples</h2>
+                </div>
+                
+                <div class="grid-steps reveal">
+                    <div class="step-card">
+                        <i class="ph-duotone ph-desktop step-icon"></i>
+                        <h3>1. Criamos seu Site</h3>
+                        <p style="font-size:0.9rem; color:#666;">Criamos um mini site para você com as informações sobre a doação.</p>
+                        <a href="#" onclick="return false;" style="display:inline-block; margin-top:10px; color:var(--primary); font-weight:600; font-size:0.9rem; text-decoration:underline;">Ver modelo de site</a>
+                    </div>
+                    <div class="step-card">
+                        <i class="ph-duotone ph-paper-plane-tilt step-icon"></i>
+                        <h3>2. Você Envia</h3>
+                        <p style="font-size:0.9rem; color:#666;">Você envia o link exclusivo para seus convidados comprarem as cestas.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="ph-duotone ph-truck step-icon"></i>
+                        <h3>3. Nós Entregamos</h3>
+                        <p style="font-size:0.9rem; color:#666;">Montamos e entregamos na entidade, igreja ou aonde você escolher em Cuiabá ou Várzea Grande.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="ph-duotone ph-camera step-icon"></i>
+                        <h3>4. Transparência</h3>
+                        <p style="font-size:0.9rem; color:#666;">Registramos tudo com fotos e recibo. Você ou alguém de sua confiança pode nos acompanhar na entrega.</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- Autoridade (Quem Somos) -->
-            <section class="section-py" style="background:#fff;">
+            <section class="section-py" style="background:#fff; border-top:1px solid #f0f0f0;">
                 <div class="container">
                     <div class="auth-grid reveal">
                         <div>
@@ -339,31 +388,6 @@
                                 <i class="ph-fill ph-church"></i><i class="ph-fill ph-house-heart"></i>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Passos -->
-            <section class="section-py container">
-                <div class="text-center reveal">
-                    <span style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem;">Simples Assim</span>
-                    <h2>Zero Burocracia</h2>
-                </div>
-                <div class="grid-3 reveal">
-                    <div class="step-card">
-                        <i class="ph-duotone ph-link step-icon"></i>
-                        <h3>1. Link Exclusivo</h3>
-                        <p style="font-size:0.9rem; color:#666;">Nós criamos uma página personalizada do seu aniversário para que seus convidados possam comprar as cestas básicas.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="ph-duotone ph-currency-circle-dollar step-icon"></i>
-                        <h3>2. Doação Fácil</h3>
-                        <p style="font-size:0.9rem; color:#666;">Utilizamos a STONE PAGAMENTOS, simples e segura.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="ph-duotone ph-truck step-icon"></i>
-                        <h3>3. Nós Entregamos</h3>
-                        <p style="font-size:0.9rem; color:#666;">Você escolhe pra quem quer doar. Nós entregamos, documentamos (fotos e recibo de entrega) e enviamos pra você e para todos os doadores.</p>
                     </div>
                 </div>
             </section>
@@ -439,8 +463,6 @@
                             <span id="pg-date">...</span>
                         </div>
                         <p id="pg-subtitle" style="color:#777;">...</p>
-                        
-                        <!-- REMOVIDO: Tag de entidade beneficiária (img e nome) -->
                     </div>
 
                     <!-- História -->
