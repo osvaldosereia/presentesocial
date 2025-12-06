@@ -66,6 +66,16 @@
         }
         .btn-back:hover { color: var(--primary); transform: translateX(-5px); }
 
+        /* Mini Botão Link (Usado para ver itens da cesta) */
+        .btn-link-sm {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.85rem; color: var(--primary); font-weight: 600;
+            margin-top: 8px; margin-bottom: 16px; padding: 6px 12px;
+            border-radius: 50px; background: rgba(169, 132, 103, 0.1);
+            transition: var(--transition);
+        }
+        .btn-link-sm:hover { background: rgba(169, 132, 103, 0.2); }
+
         /* Header */
         .site-header {
             padding: 12px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
@@ -143,11 +153,10 @@
         }
         .event-header { text-align: center; margin-bottom: 32px; }
         .event-img-lg { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; border: 4px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-        .ben-tag { display: inline-flex; align-items: center; gap: 8px; background: #F8F5F2; padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; color: var(--text-display); font-weight: 600; margin-top: 8px; }
         
         .cesta-img { 
-            width: 100%; max-width: 280px; margin: 0 auto 20px; border-radius: 16px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+            width: 100%; max-width: 280px; margin: 0 auto 0; border-radius: 16px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: block;
         }
 
         .btn-video {
@@ -230,6 +239,27 @@
             color: #fff; 
         }
         .btn-insta-lg:hover { opacity: 0.9; }
+
+        /* Items List Modal Styles */
+        .items-list {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        .items-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .items-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .items-list li:last-child { border-bottom: none; }
+        .items-list li i { color: var(--success); font-size: 1.1rem; }
 
         @media (max-width: 768px) {
             .auth-grid, .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
@@ -386,10 +416,7 @@
                         </div>
                         <p id="pg-subtitle" style="color:#777;">...</p>
                         
-                        <div class="ben-tag">
-                            <img id="pg-ben-img" src="" style="width:24px; height:24px; border-radius:50%;" onerror="this.src='https://placehold.co/50x50?text=Ong'">
-                            <span id="pg-ben-name">...</span>
-                        </div>
+                        <!-- REMOVIDO: Tag de entidade beneficiária (img e nome) -->
                     </div>
 
                     <!-- História -->
@@ -421,8 +448,13 @@
                     <div id="donation-section" style="text-align:center;">
                         <p style="text-transform:uppercase; font-size:0.8rem; font-weight:700; color:#999; margin-bottom:12px;">Cesta Básica Completa</p>
                         
-                        <!-- ATUALIZADO: Imagem da cesta com caminho local e fallback -->
-                        <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" alt="Cesta Básica Dona Antônia" class="cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica'">
+                        <!-- Imagem da cesta -->
+                        <img src="img/cesta-basica-economica.png" alt="Cesta Básica Dona Antônia" class="cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica'">
+
+                        <!-- ADICIONADO: Mini botão para ver itens -->
+                        <button onclick="openItemsModal()" class="btn-link-sm">
+                            <i class="ph-bold ph-list-dashes"></i> Ver Itens da Cesta
+                        </button>
 
                         <h2 style="color:var(--success); font-size:2.5rem; margin-bottom:16px;">R$ 89,90</h2>
                         
@@ -488,6 +520,36 @@
                     Ir para Pagamento Seguro <i class="ph-bold ph-lock-key"></i>
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- ITEMS LIST MODAL (NOVO) -->
+    <div id="items-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="closeModal('items-modal')" style="position:absolute; top:20px; right:20px; font-size:1.5rem; color:#999;">&times;</button>
+            
+            <h3 class="serif" style="margin-bottom:8px;">Itens da Cesta</h3>
+            <p style="margin-bottom:24px; color:#666;">Produtos de qualidade Dona Antônia</p>
+
+            <div class="items-list">
+                <ul>
+                    <li><i class="ph-fill ph-check-circle"></i> 5kg Arroz Tipo 1</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 2kg Açúcar Cristal</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 1kg Feijão Carioca</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 1un Óleo de Soja 900ml</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 500g Café Torrado e Moído</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 500g Macarrão Espaguete</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 1kg Sal Refinado</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Trigo</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 1un Molho de Tomate</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 1un Sardinha em Conserva</li>
+                    <li><i class="ph-fill ph-check-circle"></i> 1un Biscoito Recheado</li>
+                </ul>
+            </div>
+
+            <button onclick="closeModal('items-modal')" class="btn" style="width:100%; background:var(--primary); color:#fff;">
+                Fechar
+            </button>
         </div>
     </div>
 
@@ -628,8 +690,11 @@
             document.getElementById('pg-subtitle').innerText = ev.subtitle;
             document.getElementById('pg-date').innerText = `Data do Evento: ${ev.event_date}`;
             document.getElementById('pg-story').innerText = ev.story;
-            document.getElementById('pg-ben-name').innerText = ev.beneficiary.name;
-            document.getElementById('pg-ben-img').src = ev.beneficiary.img;
+            
+            // REMOVIDO: Linhas que preenchiam o nome/foto do beneficiário
+            // document.getElementById('pg-ben-name').innerText = ev.beneficiary.name;
+            // document.getElementById('pg-ben-img').src = ev.beneficiary.img;
+            
             document.getElementById('pg-current').innerText = ev.current;
             document.getElementById('pg-goal').innerText = ev.goal;
             document.getElementById('pg-bar').style.width = ((ev.current/ev.goal)*100) + '%';
@@ -671,6 +736,10 @@
             selectedQty = 1;
             updateCheckoutUI();
             document.getElementById('checkout-modal').classList.add('active');
+        }
+        // NOVO: Função para abrir modal de itens
+        function openItemsModal() {
+            document.getElementById('items-modal').classList.add('active');
         }
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
