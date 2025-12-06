@@ -4,310 +4,359 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Aniversário Solidário em Cuiabá. Transforme presentes em cestas básicas com a Dona Antônia.">
-    <meta name="theme-color" content="#D4A373">
+    <meta name="theme-color" content="#A98467">
     <title>Presente Social - Dona Antônia</title>
 
     <!-- Fontes e Ícones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         /* =========================================
-           DESIGN SYSTEM
+           DESIGN SYSTEM - HIGH END
            ========================================= */
         :root {
+            /* Cores Refinadas */
             --primary: #A98467;
+            --primary-light: #C2A58D;
             --primary-dark: #8C6A54;
-            --bg-body: #FDFBF7;
-            --bg-card: #FFFFFF;
-            --text-display: #2C2825;
-            --text-body: #5E5854;
-            --success: #708D81;
             
-            --container-width: 1000px;
-            --container-padding: clamp(20px, 5vw, 40px); 
-            --section-gap: clamp(50px, 6vw, 80px);
+            --bg-body: #FAFAF9; /* Off-white mais quente e premium */
+            --bg-surface: #FFFFFF;
+            --bg-subtle: #F5F2EF;
             
+            --text-display: #24201D; /* Quase preto, mas suave */
+            --text-body: #595552;
+            --text-muted: #948F8C;
+            
+            --success: #6B8E7B;
+            --success-bg: #E6F0EB;
+            
+            /* Layout */
+            --container-width: 1080px; /* Um pouco mais largo para respiro */
+            --container-padding: clamp(24px, 6vw, 48px); 
+            --section-gap: clamp(64px, 8vw, 96px);
+            
+            /* UI Elements */
+            --radius-sm: 8px;
             --radius-md: 16px;
-            --transition: all 0.3s ease;
+            --radius-lg: 24px;
+            --radius-full: 9999px;
+            
+            /* Shadows (Modern & Clean) */
+            --shadow-sm: 0 2px 8px rgba(44, 40, 37, 0.04);
+            --shadow-md: 0 8px 24px rgba(44, 40, 37, 0.06);
+            --shadow-lg: 0 16px 48px rgba(44, 40, 37, 0.08);
+            --shadow-float: 0 20px 60px -10px rgba(169, 132, 103, 0.25);
+            
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Curva 'Apple-like' */
         }
 
+        /* Reset & Base */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'DM Sans', sans-serif; background-color: var(--bg-body); color: var(--text-body); line-height: 1.5; padding-top: 70px; }
-        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; color: var(--text-display); font-weight: 700; line-height: 1.2; }
-        a, button { text-decoration: none; color: inherit; cursor: pointer; border: none; background: none; }
+        
+        body { 
+            font-family: 'DM Sans', sans-serif; 
+            background-color: var(--bg-body); 
+            color: var(--text-body); 
+            line-height: 1.6; 
+            padding-top: 80px; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .serif { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--text-display); 
+            font-weight: 700; 
+            line-height: 1.15;
+            letter-spacing: -0.02em; /* Deixa títulos mais elegantes */
+        }
+
+        p { margin-bottom: 1rem; }
+        a, button { text-decoration: none; color: inherit; cursor: pointer; border: none; background: none; outline: none; }
         img { max-width: 100%; display: block; }
         input, textarea, select { font-family: inherit; }
 
         .container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 var(--container-padding); }
         .text-center { text-align: center; }
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+        
+        /* Animações de Entrada */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Utilitários */
         .hidden { display: none !important; }
 
-        /* Botões */
+        /* =========================================
+           COMPONENTES
+           ========================================= */
+
+        /* Botões Premium */
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 14px 28px; border-radius: 50px; font-weight: 600; font-size: 0.95rem;
-            transition: var(--transition); box-shadow: 0 4px 12px rgba(169, 132, 103, 0.15);
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 16px 32px; border-radius: var(--radius-full); 
+            font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+            transition: var(--transition);
         }
-        .btn-primary { background-color: var(--text-display); color: #fff; }
-        .btn-primary:hover { background-color: var(--primary); transform: translateY(-2px); }
+        .btn-primary { 
+            background-color: var(--text-display); 
+            color: #fff; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary); 
+            transform: translateY(-2px); 
+            box-shadow: var(--shadow-float);
+        }
         
         .btn-back {
             display: inline-flex; align-items: center; gap: 8px;
-            font-weight: 600; color: var(--text-muted); margin-bottom: 24px;
-            padding: 8px 16px; background: #fff; border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: var(--transition);
+            font-weight: 600; color: var(--text-muted); margin-bottom: 32px;
+            padding: 10px 20px; background: #fff; border-radius: var(--radius-full);
+            box-shadow: var(--shadow-sm); transition: var(--transition);
+            font-size: 0.9rem;
         }
-        .btn-back:hover { color: var(--primary); transform: translateX(-5px); }
+        .btn-back:hover { color: var(--primary); transform: translateX(-4px); box-shadow: var(--shadow-md); }
 
-        /* Mini Botão Link (Usado para ver itens da cesta) */
         .btn-link-sm {
             display: inline-flex; align-items: center; gap: 6px;
             font-size: 0.85rem; color: var(--primary); font-weight: 600;
-            margin-top: 8px; margin-bottom: 16px; padding: 6px 12px;
-            border-radius: 50px; background: rgba(169, 132, 103, 0.1);
+            margin: 12px 0 24px; padding: 8px 16px;
+            border-radius: var(--radius-full); background: rgba(169, 132, 103, 0.08);
             transition: var(--transition);
         }
-        .btn-link-sm:hover { background: rgba(169, 132, 103, 0.2); }
+        .btn-link-sm:hover { background: rgba(169, 132, 103, 0.15); color: var(--primary-dark); }
 
-        /* Header */
+        /* Header Minimalista */
         .site-header {
-            padding: 12px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-            background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(5px); border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 16px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            background: rgba(250, 250, 249, 0.85); backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition);
         }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-display); }
+        .logo { 
+            font-family: 'Playfair Display', serif; font-size: 1.5rem; 
+            font-weight: 700; color: var(--text-display); letter-spacing: -0.03em; 
+        }
+        .logo span { color: var(--primary); }
         
         .btn-contact-header { 
-            padding: 8px 20px; background: var(--text-display); color: #fff; 
-            border-radius: 50px; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 8px;
+            padding: 10px 24px; background: transparent; color: var(--text-display); 
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 600; 
+            display: flex; align-items: center; gap: 8px;
             transition: var(--transition);
         }
-        .btn-contact-header:hover { background: var(--primary); }
+        .btn-contact-header:hover { background: var(--text-display); color: #fff; border-color: var(--text-display); }
 
-        /* Home View Styles */
-        .hero { padding: 50px 0 30px; text-align: center; }
-        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 16px; }
-        .hero p { font-size: 1.1rem; max-width: 500px; margin: 0 auto 32px; color: var(--text-body); }
-        .trust-tag { 
-            display: inline-block; background: #fff; padding: 4px 12px; border-radius: 20px; 
-            font-size: 0.75rem; font-weight: 700; color: var(--success); text-transform: uppercase; margin-bottom: 24px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+        /* =========================================
+           SEÇÕES
+           ========================================= */
         .section-py { padding: var(--section-gap) 0; }
+
+        /* Hero Section */
+        .hero { padding: 80px 0 60px; text-align: center; }
+        .hero h1 { 
+            font-size: clamp(2.5rem, 6vw, 4.2rem); 
+            margin-bottom: 24px; 
+            color: var(--text-display);
+        }
+        .hero p { 
+            font-size: 1.2rem; max-width: 580px; margin: 0 auto 40px; 
+            color: var(--text-body); font-weight: 400;
+        }
         
-        /* Service Tag (Dona Antonia Identifier) */
-        .service-tag {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            margin-bottom: 24px; background: #fff; padding: 10px 20px;
-            border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border: 1px solid #f0f0f0; width: fit-content;
+        /* Tag de Localização (Estilo Pill) */
+        .location-badge { 
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #fff; padding: 8px 16px; border-radius: var(--radius-full); 
+            font-size: 0.75rem; font-weight: 700; color: var(--text-body); 
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 32px;
+            box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.02);
         }
-        .service-tag img { width: 30px; height: 30px; object-fit: contain; }
-        .service-tag span { font-size: 0.8rem; font-weight: 600; color: #555; text-align: left; line-height: 1.3; }
+        .location-badge i { color: var(--primary); font-size: 1rem; }
 
-        /* Auth Grid com Logo Redonda */
-        .auth-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
-        .logo-da-wrapper { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
-        .logo-da-round { 
-            width: 80px; height: 80px; border-radius: 50%; background: #fff; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 5px; object-fit: contain; 
-            border: 1px solid #eee;
-        }
-
-        .stat-item { display: inline-block; margin-right: 30px; }
-        .stat-val { font-size: 2.5rem; font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1; display: block; }
-        .stat-lbl { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: #999; }
-
-        /* AJUSTADO: Grid de Passos com max 2 colunas */
+        /* Grid de Passos (How It Works) */
         .grid-steps { 
             display: grid; 
-            grid-template-columns: 1fr 1fr; /* Força 2 colunas */
-            gap: 24px; 
-            margin-top: 40px; 
+            grid-template-columns: 1fr 1fr; /* 2 colunas no desktop */
+            gap: 32px; 
+            margin-top: 50px; 
+        }
+        
+        .step-card { 
+            background: var(--bg-surface); padding: 40px; 
+            border-radius: var(--radius-lg); 
+            border: 1px solid rgba(0,0,0,0.03); 
+            transition: var(--transition); 
+            height: 100%; display: flex; flex-direction: column; align-items: flex-start;
+            position: relative; overflow: hidden;
+        }
+        .step-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: var(--shadow-md); 
+            border-color: rgba(169, 132, 103, 0.2);
+        }
+        /* Detalhe estético no hover */
+        .step-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px;
+            background: var(--primary); transform: scaleX(0); transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .step-card:hover::after { transform: scaleX(1); }
+
+        .step-icon { 
+            font-size: 2.2rem; color: var(--primary); margin-bottom: 24px; 
+            background: var(--bg-subtle); padding: 12px; border-radius: 12px;
+        }
+        .step-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .step-card p { font-size: 0.95rem; color: var(--text-body); line-height: 1.7; margin-bottom: 0; }
+
+        /* Link "Ver modelo" estilizado */
+        .link-subtle {
+            display: inline-flex; align-items: center; gap: 4px;
+            margin-top: 16px; color: var(--primary); font-weight: 600; 
+            font-size: 0.9rem; border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .link-subtle:hover { gap: 8px; border-bottom-color: var(--primary); }
+
+        /* Autoridade & Confiança */
+        .auth-grid { 
+            display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; 
+        }
+        
+        /* Service Tag - Estilizada como "Selo" */
+        .service-tag {
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-bottom: 32px; background: #FFF8F3; padding: 12px 24px;
+            border-radius: var(--radius-full); border: 1px solid rgba(169, 132, 103, 0.15);
+            width: fit-content;
+        }
+        .service-tag img { width: 24px; height: 24px; object-fit: contain; }
+        .service-tag span { font-size: 0.85rem; font-weight: 600; color: var(--text-display); }
+
+        .logo-da-wrapper { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+        .logo-da-round { 
+            width: 80px; height: 80px; border-radius: 50%; background: #fff; 
+            box-shadow: var(--shadow-md); padding: 8px; object-fit: contain; 
         }
 
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
-        
-        .step-card { background: #fff; padding: 30px; border-radius: var(--radius-md); border: 1px solid #f0f0f0; transition: var(--transition); height: 100%; display: flex; flex-direction: column;}
-        .step-card:hover { border-color: var(--primary); transform: translateY(-3px); }
-        .step-icon { font-size: 2rem; color: var(--primary); margin-bottom: 16px; }
+        .stats-container { display: flex; gap: 40px; margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .stat-val { font-size: 2.8rem; font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1; display: block; margin-bottom: 4px; }
+        .stat-lbl { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; color: var(--text-muted); }
 
+        .guarantee-card {
+            text-align: center; padding: 40px; background: #fff; border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg); border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        /* Event Cards */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 48px; }
+        
         .event-card { 
-            background: #fff; padding: 20px; border-radius: var(--radius-md); 
-            display: flex; align-items: center; gap: 16px; border: 1px solid transparent; cursor: pointer;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.03); transition: var(--transition);
-            position: relative;
+            background: #fff; padding: 24px; border-radius: var(--radius-md); 
+            display: flex; align-items: center; gap: 20px; 
+            border: 1px solid rgba(0,0,0,0.04); cursor: pointer;
+            box-shadow: var(--shadow-sm); transition: var(--transition);
         }
-        .event-card:hover { border-color: var(--success); transform: translateY(-3px); }
-        .event-photo { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; }
+        .event-card:hover { 
+            border-color: var(--success); 
+            box-shadow: var(--shadow-md); 
+            transform: translateY(-4px); 
+        }
+        .event-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* Estilo para eventos encerrados no card */
-        .event-card.expired { opacity: 0.7; filter: grayscale(100%); pointer-events: auto; }
         .status-badge {
-            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-            padding: 4px 10px; border-radius: 4px;
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+            padding: 6px 12px; border-radius: var(--radius-full);
         }
-        .badge-active { color: var(--success); background: #eefdf5; }
+        .badge-active { color: var(--success); background: var(--success-bg); }
         .badge-closed { color: #888; background: #eee; }
+        .event-card.expired { opacity: 0.6; filter: grayscale(1); }
 
-        .cta-footer-section { background: var(--text-display); color: #fff; padding: 60px 0; margin-top: 40px; border-radius: 24px 24px 0 0; }
-        
-        /* Footer Info */
-        .site-footer { background: #fff; padding: 60px 0 30px; border-top: 1px solid #eee; font-size: 0.9rem; color: #666; }
-        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .footer-logo { width: 50px; height: 50px; border-radius: 50%; margin-bottom: 16px; object-fit: contain; border: 1px solid #eee; }
-        .social-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text-display); font-weight: 600; margin-top: 10px; }
+        /* Footer */
+        .cta-footer-section { 
+            background: var(--text-display); color: #fff; padding: 80px 0; margin-top: 60px; 
+            border-radius: 32px 32px 0 0; position: relative; overflow: hidden;
+        }
+        /* Efeito sutil no footer */
+        .cta-footer-section::before {
+            content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(169, 132, 103, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
 
-        /* Event Page View Styles */
-        #event-view { padding-top: 20px; min-height: 100vh; padding-bottom: 60px; }
+        .site-footer { background: #fff; padding: 80px 0 40px; border-top: 1px solid #eee; font-size: 0.95rem; color: var(--text-body); }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .footer-logo { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 24px; object-fit: contain; border: 1px solid #eee; }
+
+        /* =========================================
+           PÁGINA INTERNA (Evento)
+           ========================================= */
+        #event-view { padding-top: 40px; min-height: 100vh; padding-bottom: 80px; background: var(--bg-body); }
         .event-detail-card {
-            background: #fff; border-radius: 24px; padding: 40px;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto;
+            background: #fff; border-radius: 32px; padding: 60px;
+            box-shadow: var(--shadow-lg); max-width: 680px; margin: 0 auto;
         }
-        .event-header { text-align: center; margin-bottom: 32px; }
-        .event-img-lg { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; border: 4px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .event-img-lg { 
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover; 
+            margin: 0 auto 24px; border: 6px solid #fff; 
+            box-shadow: var(--shadow-float); 
+        }
         
-        .cesta-img { 
-            width: 100%; max-width: 280px; margin: 0 auto 0; border-radius: 16px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: block;
-        }
-
-        .btn-video {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 12px 24px; margin-top: 20px;
-            background: #fff; border: 1px solid #eee; color: #cc0000;
-            border-radius: 50px; font-weight: 600; transition: var(--transition);
-            cursor: pointer;
-        }
-        .btn-video:hover { background: #f9f9f9; border-color: #cc0000; transform: translateY(-2px); }
-
-        /* Aviso de Encerrado na página interna */
-        .closed-notice {
-            background: #f0f0f0; color: #666; padding: 20px; border-radius: 12px;
-            text-align: center; font-weight: 600; margin-top: 20px; border: 1px solid #ddd;
-        }
-
-        /* Mensagens de Doadores Styles */
-        .messages-grid { display: grid; gap: 16px; margin-top: 16px; }
-        .message-card { background: #F8F5F2; padding: 16px; border-radius: 12px; font-size: 0.9rem; border-left: 3px solid var(--primary); }
-        .msg-author { font-weight: 700; color: var(--text-display); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-        .msg-text { font-style: italic; color: #555; line-height: 1.4; }
-
-        /* MODAL GERAL (Checkout, Video, Contato) */
+        /* Modais refinados */
         .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            position: fixed; inset: 0; background: rgba(36, 32, 29, 0.6); backdrop-filter: blur(8px);
             z-index: 2000; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: 0.3s;
+            opacity: 0; pointer-events: none; transition: 0.4s ease;
         }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         
         .modal-box {
-            width: 100%; max-width: 400px; background: #fff;
-            border-radius: 24px; padding: 24px; /* Mais compacto (era 32px) */
+            width: 100%; max-width: 420px; background: #fff;
+            border-radius: 24px; padding: 32px;
             max-height: 90vh; overflow-y: auto;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            text-align: center;
+            position: relative; box-shadow: var(--shadow-float);
+            text-align: center; transform: scale(0.95); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .video-modal-box {
-            width: 100%; max-width: 800px; background: #000;
-            padding: 0; overflow: hidden; border-radius: 16px;
-        }
-        .video-container {
-            position: relative; padding-bottom: 56.25%; height: 0;
-        }
-        .video-container iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        }
+        .modal-overlay.active .modal-box { transform: scale(1); }
 
-        /* Checkout Specifics */
-        /* --- NOVO CSS PARA O CABEÇALHO DO MODAL --- */
+        /* Checkout Header */
         .modal-event-header {
-            display: flex; align-items: center; gap: 12px;
-            background: #F8F5F2; padding: 12px;
-            border-radius: 12px; margin-bottom: 20px;
-            text-align: left;
+            display: flex; align-items: center; gap: 16px;
+            background: var(--bg-subtle); padding: 16px;
+            border-radius: 16px; margin-bottom: 24px;
+            text-align: left; border: 1px solid rgba(0,0,0,0.03);
         }
-        .chk-photo-sm {
-            width: 50px; height: 50px; border-radius: 50%; object-fit: cover;
-            border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .chk-info h4 { font-size: 0.95rem; margin-bottom: 2px; color: var(--text-display); }
-        .chk-info p { font-size: 0.8rem; color: #777; margin: 0; }
-        /* ------------------------------------------ */
 
-        .qty-selector { display: flex; gap: 8px; justify-content: center; margin: 16px 0; flex-wrap: wrap; }
         .qty-btn {
-            width: 42px; height: 42px; border-radius: 10px; /* Levemente menor */
+            width: 48px; height: 48px; border-radius: 12px;
             border: 2px solid #eee; background: #fff;
-            font-weight: 700; font-size: 1rem; color: #555;
-            transition: 0.2s;
+            font-weight: 700; font-size: 1.1rem; color: #555;
+            transition: 0.2s; cursor: pointer;
         }
         .qty-btn:hover { border-color: var(--primary); color: var(--primary); }
-        .qty-btn.selected { background: var(--success); border-color: var(--success); color: #fff; transform: scale(1.05); box-shadow: 0 5px 15px rgba(112, 141, 129, 0.4); }
+        .qty-btn.selected { background: var(--success); border-color: var(--success); color: #fff; transform: scale(1.1); box-shadow: 0 4px 12px rgba(107, 142, 123, 0.4); }
 
-        .price-display { text-align: center; margin-bottom: 20px; background: #fcfcfc; padding: 12px; border-radius: 12px; border: 1px solid #f0f0f0; }
-        .price-total { font-size: 1.8rem; font-weight: 700; color: var(--text-display); line-height: 1; }
-        .price-installments { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
-
-        .form-group { margin-bottom: 12px; text-align: left; }
-        .form-label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; color: #555; }
         .form-input { 
-            width: 100%; padding: 12px; border: 1px solid #eee; border-radius: 10px; 
-            font-size: 0.9rem; outline: none; transition: 0.3s; background: #fcfcfc;
+            width: 100%; padding: 14px 16px; border: 1px solid #e0e0e0; border-radius: 12px; 
+            font-size: 0.95rem; outline: none; transition: 0.3s; background: #fff;
         }
-        .form-input:focus { border-color: var(--primary); background: #fff; }
+        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(169, 132, 103, 0.1); }
 
-        /* Contact Modal Buttons */
-        .btn-contact-opt {
-            width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px;
-            font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: 0.2s; border: 1px solid transparent;
-        }
-        .btn-whatsapp-lg { background: #25D366; color: #fff; }
-        .btn-whatsapp-lg:hover { background: #1ebc57; }
-        .btn-call-lg { background: #fff; border-color: #eee; color: var(--text-display); }
-        .btn-call-lg:hover { border-color: var(--text-display); }
-        .btn-insta-lg { 
-            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-            color: #fff; 
-        }
-        .btn-insta-lg:hover { opacity: 0.9; }
-
-        /* Items List Modal Styles */
-        .items-list {
-            text-align: left;
-            margin-bottom: 24px;
-        }
-        .items-list ul {
-            list-style: none;
-            padding: 0;
-        }
-        .items-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            color: #555;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .items-list li:last-child { border-bottom: none; }
-        .items-list li i { color: var(--success); font-size: 1.1rem; }
-
+        /* Responsividade */
         @media (max-width: 768px) {
-            .auth-grid, .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-            .grid-steps { grid-template-columns: 1fr; } /* 1 coluna no mobile */
-            .hero h1 { font-size: 2.2rem; }
-            .event-detail-card { padding: 24px; border-radius: 0; box-shadow: none; background: transparent; }
+            .grid-steps { grid-template-columns: 1fr; gap: 24px; } /* Stack no mobile */
+            .auth-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero h1 { font-size: 2.4rem; }
+            .event-detail-card { padding: 32px 24px; border-radius: 0; box-shadow: none; background: transparent; }
             .modal-box { border-radius: 24px 24px 0 0; position: absolute; bottom: 0; width: 100%; max-height: 85vh; padding-bottom: 40px;}
             .logo-da-wrapper { justify-content: center; flex-direction: column; }
+            .stats-container { justify-content: center; }
+            .service-tag { margin: 0 auto 32px; }
+            .modal-event-header { margin-top: 10px; }
         }
     </style>
 </head>
@@ -328,94 +377,105 @@
             <!-- Hero -->
             <section class="hero reveal active">
                 <div class="container">
-                    <span class="trust-tag"><i class="ph-fill ph-map-pin"></i> Cuiabá & Várzea Grande</span>
+                    <div class="location-badge">
+                        <i class="ph-fill ph-map-pin"></i> Cuiabá & Várzea Grande
+                    </div>
                     <h1>Transforme a sua festa <br><span style="color:var(--primary); font-style:italic;">em um ato de solidariedade.</span></h1>
-                    <p>Troque presentes por cestas básicas.</p>
+                    <p>Troque presentes físicos por cestas básicas e alimente famílias reais.</p>
                     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-                        <a href="https://wa.me/5565998150975?text=Quero criar minha campanha." class="btn btn-primary">Criar Minha Campanha</a>
+                        <a href="https://wa.me/5565998150975?text=Quero criar minha campanha." class="btn btn-primary">
+                            Criar Minha Campanha
+                        </a>
                     </div>
                 </div>
             </section>
 
-            <!-- EXPLICAÇÃO (O que é / Como funciona) -->
-            <section class="container section-py" style="padding-top:0;">
+            <!-- EXPLICAÇÃO (Clean & Organized) -->
+            <section class="container section-py" style="padding-top:20px;">
                 <div class="text-center reveal">
-                    <h2>É Bem Simples</h2>
+                    <h2 style="font-size: 2rem;">É Bem Simples</h2>
+                    <p style="color: var(--text-muted);">Veja como funciona a nossa plataforma.</p>
                 </div>
                 
                 <div class="grid-steps reveal">
+                    <!-- Step 1 -->
                     <div class="step-card">
-                        <i class="ph-duotone ph-desktop step-icon"></i>
+                        <div class="step-icon"><i class="ph-duotone ph-desktop"></i></div>
                         <h3>1. Criamos seu Site</h3>
-                        <p style="font-size:0.9rem; color:#666;">Criamos um mini site para você com as informações sobre a doação.</p>
-                        <a href="#" onclick="return false;" style="display:inline-block; margin-top:10px; color:var(--primary); font-weight:600; font-size:0.9rem; text-decoration:underline;">Ver modelo de site</a>
+                        <p>Nós desenvolvemos um mini site personalizado para o seu evento, contendo todas as informações sobre a causa e como doar.</p>
+                        <a href="#" onclick="return false;" class="link-subtle">
+                            Ver modelo de site <i class="ph-bold ph-arrow-right"></i>
+                        </a>
                     </div>
+                    <!-- Step 2 -->
                     <div class="step-card">
-                        <i class="ph-duotone ph-paper-plane-tilt step-icon"></i>
-                        <h3>2. Você Envia</h3>
-                        <p style="font-size:0.9rem; color:#666;">Você envia o link exclusivo para seus convidados comprarem as cestas.</p>
+                        <div class="step-icon"><i class="ph-duotone ph-paper-plane-tilt"></i></div>
+                        <h3>2. Você Compartilha</h3>
+                        <p>Você recebe um link exclusivo e envia para seus convidados. Eles acessam, escolhem a quantidade e fazem a doação em segundos.</p>
                     </div>
+                    <!-- Step 3 -->
                     <div class="step-card">
-                        <i class="ph-duotone ph-truck step-icon"></i>
+                        <div class="step-icon"><i class="ph-duotone ph-truck"></i></div>
                         <h3>3. Nós Entregamos</h3>
-                        <p style="font-size:0.9rem; color:#666;">Montamos e entregamos na entidade, igreja ou aonde você escolher em Cuiabá ou Várzea Grande.</p>
+                        <p>A Dona Antônia monta as cestas com produtos de qualidade e realiza a entrega na entidade ou local que você escolheu na região.</p>
                     </div>
+                    <!-- Step 4 -->
                     <div class="step-card">
-                        <i class="ph-duotone ph-camera step-icon"></i>
-                        <h3>4. Transparência</h3>
-                        <p style="font-size:0.9rem; color:#666;">Registramos tudo com fotos e recibo. Você ou alguém de sua confiança pode nos acompanhar na entrega.</p>
+                        <div class="step-icon"><i class="ph-duotone ph-camera"></i></div>
+                        <h3>4. Transparência Total</h3>
+                        <p>Registramos tudo com fotos e recibos oficiais. Você e seus convidados recebem a comprovação de que o amor chegou a quem precisa.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Autoridade (Quem Somos) -->
-            <section class="section-py" style="background:#fff; border-top:1px solid #f0f0f0;">
+            <!-- Autoridade (Visualmente Separada e Premium) -->
+            <section class="section-py" style="background:#fff; border-top:1px solid rgba(0,0,0,0.03);">
                 <div class="container">
                     <div class="auth-grid reveal">
                         <div>
-                            <!-- SERVICE TAG MOVIDA PARA CÁ -->
+                            <!-- SERVICE TAG (Highlight) -->
                             <div class="service-tag">
                                 <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Dona Antonia" onerror="this.src='https://placehold.co/30x30/A98467/fff?text=DA'">
-                                <span>O <strong>Presente Social</strong> é um serviço da Super Cestas Básicas Dona Antônia.</span>
+                                <span>Serviço oficial <strong>Dona Antônia</strong></span>
                             </div>
 
                             <div class="logo-da-wrapper">
                                 <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Dona Antônia" class="logo-da-round" onerror="this.src='https://placehold.co/100x100/A98467/fff?text=DA'">
-                                <h2>Solidez e Confiança</h2>
+                                <h2 style="margin:0;">Solidez e Confiança</h2>
                             </div>
-                            <p style="margin: 16px 0; color:#666;">Há <strong>8 anos</strong> no mercado, a Dona Antônia é referência em qualidade e compromisso social.</p>
-                            <div style="margin-top:20px;">
-                                <div class="stat-item"><span class="stat-val">8</span><span class="stat-lbl">Anos de Mercado</span></div>
-                                <div class="stat-item"><span class="stat-val">+30 mil</span><span class="stat-lbl">Cestas Entregues</span></div>
+                            <p style="font-size:1.1rem; color:var(--text-body); max-width: 480px;">Há <strong>8 anos</strong> no mercado, a Dona Antônia é referência em qualidade, logística eficiente e compromisso social em Mato Grosso.</p>
+                            
+                            <div class="stats-container">
+                                <div><span class="stat-val">8</span><span class="stat-lbl">Anos de História</span></div>
+                                <div><span class="stat-val">+30k</span><span class="stat-lbl">Cestas Entregues</span></div>
                             </div>
                         </div>
-                        <div style="text-align:center; padding:20px; background:#F8F5F2; border-radius:16px;">
-                            <h4 style="margin-bottom:10px;">Garantia Total</h4>
-                            <p style="font-size:0.9rem; color:#777;">Doações auditadas e entregues a parceiros sérios.</p>
-                            <div style="font-size:2rem; color:#ccc; margin-top:10px; display:flex; justify-content:center; gap:15px;">
-                                <i class="ph-fill ph-church"></i><i class="ph-fill ph-house-heart"></i>
-                            </div>
+                        
+                        <div class="guarantee-card">
+                            <i class="ph-duotone ph-shield-check" style="font-size: 3rem; color: var(--success); margin-bottom: 20px;"></i>
+                            <h4 style="margin-bottom:10px; font-size:1.4rem;">Garantia de Entrega</h4>
+                            <p style="font-size:0.95rem; color:var(--text-body);">Auditamos cada doação. Entregamos apenas para parceiros sérios e documentamos todo o processo.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Eventos -->
-            <section class="section-py" style="background:#F8F5F2;">
+            <section class="section-py" style="background: var(--bg-subtle);">
                 <div class="container">
-                    <div class="text-center reveal" style="margin-bottom:30px;">
+                    <div class="text-center reveal" style="margin-bottom:40px;">
                         <h2>Campanhas Ativas</h2>
-                        <p style="font-size:0.9rem;">Clique para ver a página completa.</p>
+                        <p style="font-size:0.95rem; color: var(--text-muted);">Veja quem está transformando aniversário em doação hoje.</p>
                     </div>
                     <div id="events-container" class="grid-3 reveal"></div>
                 </div>
             </section>
 
             <!-- Footer CTA -->
-            <section class="container reveal" style="margin-top:40px;">
+            <section class="container reveal" style="margin-top:80px;">
                 <div class="cta-footer-section text-center">
-                    <h2 style="color:#fff; margin-bottom:10px;">Vai fazer aniversário?</h2>
-                    <a href="https://wa.me/5565998150975" target="_blank" class="btn" style="background:#fff; color:var(--text-display);">
+                    <h2 style="color:#fff; margin-bottom:16px;">Vai fazer aniversário?</h2>
+                    <a href="https://wa.me/5565998150975" target="_blank" class="btn" style="background:#fff; color:var(--text-display); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                         <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
                     </a>
                 </div>
@@ -424,27 +484,27 @@
             <!-- Rodapé Institucional -->
             <footer class="site-footer">
                 <div class="container footer-grid">
-                    <div>
+                    <div style="text-align: left;">
                         <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Pequena" class="footer-logo" onerror="this.src='https://placehold.co/80x80/A98467/fff?text=DA'">
-                        <h4 style="color:var(--text-display); margin-bottom:10px;">Cestas Básicas Dona Antônia</h4>
-                        <p>Levando alimentos de qualidade para a mesa de quem precisa em Cuiabá e Várzea Grande.</p>
+                        <h4 style="color:var(--text-display); margin-bottom:16px;">Cestas Básicas Dona Antônia</h4>
+                        <p style="max-width: 300px;">Levando alimentos de qualidade para a mesa de quem precisa em Cuiabá e Várzea Grande.</p>
                         
-                        <a href="https://instagram.com/cestabasicadonaantonia" target="_blank" class="social-link">
+                        <a href="https://instagram.com/cestabasicadonaantonia" target="_blank" class="social-link" style="margin-top: 24px;">
                             <i class="ph-bold ph-instagram-logo"></i>@super.cestas.dona.antonia
                         </a>
                     </div>
-                    <div>
-                        <h4 style="color:var(--text-display); margin-bottom:16px;">Contato & Endereço</h4>
-                        <p style="margin-bottom:8px;">
+                    <div style="text-align: left;">
+                        <h4 style="color:var(--text-display); margin-bottom:24px;">Contato & Endereço</h4>
+                        <p style="margin-bottom:12px;">
                             <i class="ph-fill ph-phone" style="margin-right:8px; color:var(--primary)"></i> (65) 99815-0975
                         </p>
-                        <p style="margin-bottom:8px;">
+                        <p style="margin-bottom:12px;">
                             <i class="ph-fill ph-briefcase" style="margin-right:8px; color:var(--primary)"></i> <strong>Escritório:</strong> Edifício Work Tower, Sala 310, Cuiabá-MT
                         </p>
-                        <p style="margin-bottom:8px;">
+                        <p style="margin-bottom:12px;">
                             <i class="ph-fill ph-factory" style="margin-right:8px; color:var(--primary)"></i> <strong>Produção:</strong> Rua Trinta, 200, Bairro Nossa Senhora Aparecida, Cuiabá-MT
                         </p>
-                        <p style="font-size:0.8rem; color:#999; margin-top:20px;">
+                        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:32px; border-top: 1px solid #f0f0f0; padding-top: 24px;">
                             CNPJ: 51.385.335/0001-06<br>
                             Todos os direitos reservados.
                         </p>
@@ -464,72 +524,71 @@
                     <!-- Header Evento -->
                     <div class="event-header">
                         <img id="pg-photo" src="" class="event-img-lg" onerror="this.src='https://placehold.co/150x150?text=Foto'">
-                        <h1 id="pg-title" style="font-size:1.8rem; margin-bottom:8px;">...</h1>
+                        <h1 id="pg-title" style="font-size:2rem; margin-bottom:12px;">...</h1>
                         
                         <!-- Status e Data do Evento -->
-                        <div style="font-size: 0.9rem; color: #777; margin-bottom: 8px;">
+                        <div style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;">
                             <span id="pg-date">...</span>
                         </div>
-                        <p id="pg-subtitle" style="color:#777;">...</p>
+                        <p id="pg-subtitle" style="color:var(--text-body); font-style: italic;">...</p>
                     </div>
 
                     <!-- História -->
-                    <div style="border-top:1px solid #eee; border-bottom:1px solid #eee; padding:24px 0; margin-bottom:24px;">
-                        <h3 class="serif" style="margin-bottom:16px;">Minha Missão</h3>
-                        <p id="pg-story" style="font-size:1rem; color:#555; white-space:pre-line; line-height:1.7;">...</p>
+                    <div style="border-top:1px solid #f0f0f0; border-bottom:1px solid #f0f0f0; padding:32px 0; margin-bottom:32px;">
+                        <h3 class="serif" style="margin-bottom:20px; font-size: 1.5rem;">Minha Missão</h3>
+                        <p id="pg-story" style="font-size:1.05rem; color:var(--text-body); white-space:pre-line; line-height:1.8;">...</p>
                         
                         <!-- Botão Vídeo (Injetado via JS se tiver ID) -->
                         <div style="text-align:center;">
                             <button id="btn-video" class="btn-video" style="display:none;">
-                                <i class="ph-fill ph-play-circle" style="font-size:1.2rem;"></i> Ver Mensagem em Vídeo
+                                <i class="ph-fill ph-play-circle" style="font-size:1.4rem; color: #cc0000;"></i> Ver Mensagem em Vídeo
                             </button>
                         </div>
                     </div>
 
                     <!-- Progresso -->
-                    <div style="background:#F8F5F2; padding:20px; border-radius:16px; margin-bottom:32px;">
-                        <div style="display:flex; justify-content:space-between; font-weight:700; color:#555; margin-bottom:8px;">
+                    <div style="background:var(--bg-subtle); padding:24px; border-radius:16px; margin-bottom:40px;">
+                        <div style="display:flex; justify-content:space-between; font-weight:700; color:var(--text-body); margin-bottom:12px;">
                             <span style="color:var(--success);"><span id="pg-current">0</span> cestas doadas</span>
                             <span>Meta: <span id="pg-goal">0</span></span>
                         </div>
-                        <div style="height:10px; background:#e0e0e0; border-radius:10px; overflow:hidden;">
-                            <div id="pg-bar" style="height:100%; background:var(--success); width:0%;"></div>
+                        <div style="height:12px; background:#e0e0e0; border-radius:12px; overflow:hidden;">
+                            <div id="pg-bar" style="height:100%; background:var(--success); width:0%; transition: width 1s ease;"></div>
                         </div>
-                        <p id="pg-progress-text" style="text-align:center; font-size:0.85rem; margin-top:12px; color:#888;">Ajude a bater a meta!</p>
+                        <p id="pg-progress-text" style="text-align:center; font-size:0.9rem; margin-top:16px; color:var(--text-muted);">Cada cesta faz a diferença.</p>
                     </div>
 
-                    <!-- MENSAGENS DE DOADORES (NOVO) -->
-                    <div id="messages-container" style="margin-bottom: 32px; display: none;">
-                        <h3 class="serif" style="margin-bottom: 16px; text-align: center;">Mensagens de Carinho</h3>
+                    <!-- MENSAGENS DE DOADORES -->
+                    <div id="messages-container" style="margin-bottom: 40px; display: none;">
+                        <h3 class="serif" style="margin-bottom: 24px; text-align: center; font-size: 1.5rem;">Mensagens de Carinho</h3>
                         <div id="messages-list" class="messages-grid">
                             <!-- Injetado via JS -->
                         </div>
                     </div>
 
-                    <!-- Botão Presentear (Abre o Modal) -->
-                    <div id="donation-section" style="text-align:center;">
-                        <p style="text-transform:uppercase; font-size:0.8rem; font-weight:700; color:#999; margin-bottom:12px;">Cesta Básica Completa</p>
+                    <!-- Botão Presentear -->
+                    <div id="donation-section" style="text-align:center; background: #fff; padding-top: 20px;">
+                        <p style="text-transform:uppercase; font-size:0.75rem; font-weight:700; letter-spacing: 0.1em; color:var(--text-muted); margin-bottom:16px;">Cesta Básica Completa</p>
                         
                         <!-- Imagem da cesta -->
                         <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" alt="Cesta Básica Dona Antônia" class="cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica'">
 
-                        <!-- ADICIONADO: Mini botão para ver itens -->
                         <button onclick="openItemsModal()" class="btn-link-sm">
                             <i class="ph-bold ph-list-dashes"></i> Ver Itens da Cesta
                         </button>
 
-                        <h2 style="color:var(--success); font-size:2.5rem; margin-bottom:16px;">R$ 85,00</h2>
+                        <h2 style="color:var(--success); font-size:2.8rem; margin-bottom:24px;">R$ 85,00</h2>
                         
-                        <button onclick="openCheckout()" class="btn" style="background:var(--success); color:#fff; width:100%; padding:18px; font-size:1.1rem; box-shadow:0 8px 24px rgba(112, 141, 129, 0.3);">
+                        <button onclick="openCheckout()" class="btn" style="background:var(--success); color:#fff; width:100%; padding:20px; font-size:1.15rem; box-shadow: 0 10px 30px rgba(112, 141, 129, 0.25);">
                             Presentear Agora
                         </button>
                     </div>
 
                     <!-- Aviso de Encerrado -->
                     <div id="closed-section" class="closed-notice" style="display:none;">
-                        <i class="ph-fill ph-check-circle" style="font-size: 2rem; color: var(--success); margin-bottom: 10px; display: block;"></i>
-                        Campanha Encerrada!<br>
-                        <span style="font-weight: 400; font-size: 0.9rem;">Obrigado a todos que participaram.</span>
+                        <i class="ph-fill ph-check-circle" style="font-size: 2.5rem; color: var(--success); margin-bottom: 16px; display: block;"></i>
+                        <h3 style="margin-bottom: 8px;">Campanha Encerrada!</h3>
+                        <span style="font-weight: 400; font-size: 1rem;">Obrigado a todos que participaram deste gesto de amor.</span>
                     </div>
 
                 </div>
@@ -537,22 +596,21 @@
         </div>
     </main>
 
-    <!-- CHECKOUT MODAL ATUALIZADO (Compacto + Foto/Nome) -->
+    <!-- CHECKOUT MODAL -->
     <div id="checkout-modal" class="modal-overlay">
         <div class="modal-box">
-            <button onclick="closeModal('checkout-modal')" style="position:absolute; top:20px; right:20px; font-size:1.5rem; color:#999;">&times;</button>
+            <button onclick="closeModal('checkout-modal')" style="position:absolute; top:24px; right:24px; font-size:1.5rem; color:#999;">&times;</button>
             
-            <!-- NOVO: Header do Evento dentro do modal -->
             <div class="modal-event-header">
                 <img id="chk-photo" src="" class="chk-photo-sm" onerror="this.src='https://placehold.co/50x50?text=Foto'">
                 <div class="chk-info">
                     <h4 id="chk-title">Carregando...</h4>
-                    <p id="chk-date">...</p>
+                    <p id="chk-date" style="font-size: 0.75rem;">...</p>
                 </div>
             </div>
 
-            <h3 class="serif" style="font-size:1.3rem;">Quantas cestas?</h3>
-            <p style="font-size:0.85rem; color:#666; margin-bottom:10px;">Selecione a quantidade:</p>
+            <h3 class="serif" style="font-size:1.5rem; margin-bottom: 8px;">Quantas cestas?</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px;">Selecione a quantidade do seu presente:</p>
 
             <div class="qty-selector">
                 <button class="qty-btn selected" onclick="setQty(1)">1</button>
@@ -567,7 +625,6 @@
                 <div id="chk-installment" class="price-installments">1x de R$ 89,90</div>
             </div>
 
-            <!-- Formulário Compacto (Sem Email) -->
             <form id="donation-form" onsubmit="submitDonation(event)">
                 <div class="form-group">
                     <label class="form-label">Seu Nome</label>
@@ -581,40 +638,40 @@
                 
                 <div class="form-group">
                     <label class="form-label">Mensagem (Opcional)</label>
-                    <textarea id="donor-msg" class="form-input" rows="2" placeholder="Deixe um recado..."></textarea>
+                    <textarea id="donor-msg" class="form-input" rows="2" placeholder="Deixe um recado carinhoso..."></textarea>
                 </div>
 
-                <button type="submit" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top:10px;">
+                <button type="submit" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top:16px;">
                     Ir para Pagamento <i class="ph-bold ph-lock-key"></i>
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- ITEMS LIST MODAL (NOVO) -->
+    <!-- ITEMS LIST MODAL -->
     <div id="items-modal" class="modal-overlay">
         <div class="modal-box">
             <button onclick="closeModal('items-modal')" style="position:absolute; top:20px; right:20px; font-size:1.5rem; color:#999;">&times;</button>
             
             <h3 class="serif" style="margin-bottom:8px;">Itens da Cesta</h3>
-            <p style="margin-bottom:24px; color:#666;">Produtos de qualidade Dona Antônia</p>
+            <p style="margin-bottom:24px; color:var(--text-muted);">Produtos de qualidade Dona Antônia</p>
 
             <div class="items-list">
                 <ul>
                   <li><i class="ph-fill ph-check-circle"></i> 5kg Arroz</li>
-<li><i class="ph-fill ph-check-circle"></i> 2kg Açúcar Cristal</li>
-<li><i class="ph-fill ph-check-circle"></i> 1un Óleo de Soja 900ml</li>
-<li><i class="ph-fill ph-check-circle"></i> 1kg Feijão Dona Dê</li>
-<li><i class="ph-fill ph-check-circle"></i> 250g Café</li>
-<li><i class="ph-fill ph-check-circle"></i> 400g Macarrão Espaguete</li>
-<li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Trigo</li>
-<li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Mandioca</li>
-<li><i class="ph-fill ph-check-circle"></i> 1kg Sal</li>
-<li><i class="ph-fill ph-check-circle"></i> 1un Molho de Tomate 300g</li>
-<li><i class="ph-fill ph-check-circle"></i> 1un Milho (Lata ou Sachê) 250g</li>
-<li><i class="ph-fill ph-check-circle"></i> 1un Bolacha Recheada</li>
-<li><i class="ph-fill ph-check-circle"></i> 1un Miojo Apti</li>
-<li><i class="ph-fill ph-check-circle"></i> 1un Suco em Pó</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 2kg Açúcar Cristal</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Óleo de Soja 900ml</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1kg Feijão Dona Dê</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 250g Café</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 400g Macarrão Espaguete</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Trigo</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Mandioca</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1kg Sal</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Molho de Tomate 300g</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Milho (Lata ou Sachê) 250g</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Bolacha Recheada</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Miojo Apti</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Suco em Pó</li>
                 </ul>
             </div>
 
@@ -640,7 +697,7 @@
             <button onclick="closeModal('contact-modal')" style="position:absolute; top:20px; right:20px; font-size:1.5rem; color:#999;">&times;</button>
             
             <h3 class="serif" style="margin-bottom:8px;">Fale Conosco</h3>
-            <p style="margin-bottom:24px; color:#666;">Estamos prontos para te atender.</p>
+            <p style="margin-bottom:24px; color:var(--text-muted);">Estamos prontos para te atender.</p>
 
             <a href="https://wa.me/5565998150975" target="_blank" class="btn-contact-opt btn-whatsapp-lg">
                 <i class="ph-bold ph-whatsapp-logo"></i> Chamar no WhatsApp
@@ -666,7 +723,7 @@
 
         async function init() {
             try {
-                // Fetch com 'cache busting': adiciona um timestamp para forçar o navegador a pegar a versão nova
+                // Cache busting
                 const response = await fetch(`events.json?v=${new Date().getTime()}`);
                 if(!response.ok) throw new Error("Erro ao carregar JSON");
                 eventsData = await response.json();
@@ -674,14 +731,8 @@
                 const container = document.getElementById('events-container');
                 container.innerHTML = '';
                 
-                // Renderização dos cards da Home
                 eventsData.forEach(ev => {
                     const pct = Math.round((ev.current / ev.goal) * 100);
-                    
-                    // ============================================
-                    // ATUALIZAÇÃO: Checa campo manual do JSON (robusto)
-                    // ============================================
-                    // Converte para minúsculo e remove espaços para evitar erros
                     const statusStr = ev.status ? ev.status.toString().toLowerCase().trim() : '';
                     const expired = statusStr === 'closed';
                     
@@ -695,43 +746,41 @@
                         <div class="${cardClass}" onclick="openPage('${ev.slug}')">
                             <img src="${ev.photo}" class="event-photo" onerror="this.src='https://placehold.co/70x70?text=Foto'">
                             <div style="flex:1;">
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                                    <h4 style="font-size:1rem; margin:0;">${ev.title}</h4>
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                                    <h4 style="font-size:1.1rem; margin:0;">${ev.title}</h4>
                                     ${statusHtml}
                                 </div>
-                                <div style="font-size:0.8rem; color:#888;">${ev.current}/${ev.goal} cestas</div>
-                                <div style="height:4px; background:#f0f0f0; border-radius:4px; margin-top:6px; overflow:hidden;">
+                                <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 8px;">${ev.current} de ${ev.goal} cestas</div>
+                                <div style="height:6px; background:#f0f0f0; border-radius:6px; overflow:hidden;">
                                     <div style="width:${pct}%; height:100%; background:var(--success);"></div>
                                 </div>
                             </div>
-                            <i class="ph-bold ph-caret-right" style="color:#ccc;"></i>
+                            <i class="ph-bold ph-caret-right" style="color:#ccc; font-size: 1.2rem;"></i>
                         </div>
                     `;
                 });
 
-                // Inicializa roteamento apenas após carregar dados
                 handleRouting();
 
                 // Animações
                 const observer = new IntersectionObserver(entries => {
                     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-                });
+                }, { threshold: 0.1 });
                 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
             } catch (err) {
                 console.error("Falha na inicialização:", err);
-                document.getElementById('events-container').innerHTML = '<p class="text-center">Erro ao carregar eventos. Verifique a conexão.</p>';
+                document.getElementById('events-container').innerHTML = '<p class="text-center">Erro ao carregar eventos.</p>';
             }
         }
 
-        // Roteamento
         window.addEventListener('hashchange', handleRouting);
         function handleRouting() {
             const slug = window.location.hash.replace('#', '');
             if (slug && eventsData.length > 0) {
                 const ev = eventsData.find(e => e.slug === slug);
                 if(ev) renderEventView(ev);
-                else renderHomeView(); // Slug inválido volta pra home
+                else renderHomeView();
             } else {
                 renderHomeView();
             }
@@ -739,7 +788,6 @@
         function openPage(slug) { window.location.hash = slug; }
         function goBack() { window.location.hash = ''; }
 
-        // Render Views
         function renderHomeView() {
             document.getElementById('event-view').classList.add('hidden');
             document.getElementById('home-view').classList.remove('hidden');
@@ -763,7 +811,6 @@
             document.getElementById('pg-goal').innerText = ev.goal;
             document.getElementById('pg-bar').style.width = ((ev.current/ev.goal)*100) + '%';
 
-            // Configurar botão de vídeo
             const btnVideo = document.getElementById('btn-video');
             if(ev.video_id) {
                 btnVideo.style.display = 'inline-flex';
@@ -772,7 +819,6 @@
                 btnVideo.style.display = 'none';
             }
 
-            // Renderizar Mensagens de Doadores
             const msgList = document.getElementById('messages-list');
             msgList.innerHTML = '';
             
@@ -793,7 +839,6 @@
                 document.getElementById('messages-container').style.display = 'none';
             }
 
-            // Lógica de Evento Encerrado
             const donateSection = document.getElementById('donation-section');
             const closedSection = document.getElementById('closed-section');
             const progressText = document.getElementById('pg-progress-text');
@@ -805,7 +850,7 @@
             } else {
                 donateSection.style.display = 'block';
                 closedSection.style.display = 'none';
-                progressText.innerText = "Ajude a bater a meta!";
+                progressText.innerText = "Cada cesta faz a diferença.";
             }
 
             document.getElementById('home-view').classList.add('hidden');
@@ -813,25 +858,20 @@
             window.scrollTo(0, 0);
         }
 
-        // Modais
         function openContactModal() {
             document.getElementById('contact-modal').classList.add('active');
         }
         function openCheckout() {
             selectedQty = 1;
-            
-            // LÓGICA ATUALIZADA: Preencher dados do cabeçalho do modal
             const ev = eventsData.find(e => e.slug === currentEventSlug);
             if(ev) {
                 document.getElementById('chk-photo').src = ev.photo;
                 document.getElementById('chk-title').innerText = ev.title;
                 document.getElementById('chk-date').innerText = 'Data: ' + ev.event_date;
             }
-
             updateCheckoutUI();
             document.getElementById('checkout-modal').classList.add('active');
         }
-        // NOVO: Função para abrir modal de itens
         function openItemsModal() {
             document.getElementById('items-modal').classList.add('active');
         }
@@ -839,7 +879,6 @@
             document.getElementById(id).classList.remove('active');
         }
 
-        // Vídeo
         function openVideo(videoId) {
             const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
             document.getElementById('youtube-iframe').src = embedUrl;
@@ -850,7 +889,6 @@
             document.getElementById('youtube-iframe').src = "";
         }
 
-        // Checkout Logic
         function setQty(qty) {
             selectedQty = qty;
             updateCheckoutUI();
@@ -883,14 +921,12 @@
             
             const name = document.getElementById('donor-name').value;
             const phone = document.getElementById('donor-phone').value;
-            // REMOVIDO: const email = document.getElementById('donor-email').value;
             const msg = document.getElementById('donor-msg').value;
             const total = (ev.price_unit * selectedQty).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
             let text = `Olá! Quero participar do evento *${ev.title}*\n\n`;
             text += `*Nome:* ${name}\n`;
             text += `*Telefone:* ${phone}\n`;
-            // REMOVIDO EMAIL DO TEXTO
             text += `*Doação:* ${selectedQty} Cesta(s)\n`;
             text += `*Total:* ${total}\n`;
             if(msg) text += `*Mensagem:* ${msg}`;
