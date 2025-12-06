@@ -421,7 +421,8 @@
                     <div id="donation-section" style="text-align:center;">
                         <p style="text-transform:uppercase; font-size:0.8rem; font-weight:700; color:#999; margin-bottom:12px;">Cesta Básica Completa</p>
                         
-                        <img src="https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica" alt="Cesta Básica Dona Antônia" class="cesta-img">
+                        <!-- ATUALIZADO: Imagem da cesta com caminho local e fallback -->
+                        <img src="img/cesta-basica-economica.png" alt="Cesta Básica Dona Antônia" class="cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica'">
 
                         <h2 style="color:var(--success); font-size:2.5rem; margin-bottom:16px;">R$ 89,90</h2>
                         
@@ -532,8 +533,8 @@
 
         async function init() {
             try {
-                // Fetch real do arquivo JSON
-                const response = await fetch('events.json');
+                // Fetch com 'cache busting': adiciona um timestamp para forçar o navegador a pegar a versão nova
+                const response = await fetch(`events.json?v=${new Date().getTime()}`);
                 if(!response.ok) throw new Error("Erro ao carregar JSON");
                 eventsData = await response.json();
                 
@@ -543,7 +544,13 @@
                 // Renderização dos cards da Home
                 eventsData.forEach(ev => {
                     const pct = Math.round((ev.current / ev.goal) * 100);
-                    const expired = checkExpired(ev.end_date);
+                    
+                    // ============================================
+                    // ATUALIZAÇÃO: Checa campo manual do JSON (robusto)
+                    // ============================================
+                    // Converte para minúsculo e remove espaços para evitar erros
+                    const statusStr = ev.status ? ev.status.toString().toLowerCase().trim() : '';
+                    const expired = statusStr === 'closed';
                     
                     const statusHtml = expired 
                         ? `<span class="status-badge badge-closed">Encerrado</span>`
@@ -584,36 +591,6 @@
             }
         }
 
-        // ===============================================
-        // CORREÇÃO AQUI: Lógica de Data Robusta
-        // ===============================================
-        function checkExpired(endDateString) {
-            // Se não tiver data, não expirou
-            if(!endDateString) return false;
-
-            // Divide a string (esperado YYYY-MM-DD)
-            // Isso evita a conversão automática para UTC que o "new Date(string)" faz
-            const parts = endDateString.split('-'); 
-            
-            // Se a data não estiver no formato certo, retorna falso por segurança
-            if(parts.length !== 3) return false;
-
-            const year = parseInt(parts[0]);
-            const month = parseInt(parts[1]) - 1; // Meses em JS começam em 0 (Jan) até 11 (Dez)
-            const day = parseInt(parts[2]);
-
-            // Cria a data no fuso horário LOCAL do navegador do usuário
-            const endDate = new Date(year, month, day);
-
-            // Define o fim do dia (23:59:59.999)
-            endDate.setHours(23, 59, 59, 999);
-
-            const now = new Date();
-
-            // Retorna verdadeiro se AGORA for maior que o FIM do dia do evento
-            return now > endDate;
-        }
-
         // Roteamento
         window.addEventListener('hashchange', handleRouting);
         function handleRouting() {
@@ -639,7 +616,12 @@
 
         function renderEventView(ev) {
             currentEventSlug = ev.slug;
-            const expired = checkExpired(ev.end_date);
+            
+            // ============================================
+            // ATUALIZAÇÃO: Checa campo manual do JSON (robusto)
+            // ============================================
+            const statusStr = ev.status ? ev.status.toString().toLowerCase().trim() : '';
+            const expired = statusStr === 'closed';
             
             document.getElementById('pg-photo').src = ev.photo;
             document.getElementById('pg-title').innerText = ev.title;
