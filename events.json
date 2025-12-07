@@ -22,12 +22,16 @@
         "message": "Parabéns Bebete... Que Jesus esteja sempre com você."
       },
       {
-        "name": "João Pedro",
-        "message": "Muita saúde e felicidade! Ótima iniciativa."
+        "name": "Erair Maria Aguirre ",
+        "message": "Muitas bênçãos a vc pela maravilhosa atitude. Paz e luz sempre!!!!!"
+      },
+       {
+        "name": "Eliana Aguirre ",
+        "message": "Parabéns Bete....q Deus a abençoe  sempre por tudo q vc é  é faz....admirável!! Amo vc"
       },
       {
-        "name": "Ana Clara",
-        "message": "Feliz aniversário querida! Que Deus abençoe."
+        "name": "Vitoria Aguirre Barion",
+        "message": "Feliz aniversário tia! Parabéns pelo lindo gesto."
       }
     ]
   },
@@ -41,7 +45,7 @@
     "photo": "img/osvaldo.jpg",
     "story": "Chegar aos 47 anos é um marco de maturidade e reflexão. Olho para trás e vejo o quanto fui abençoado com saúde, amigos leais e uma família maravilhosa. A gratidão que sinto hoje é imensa e não caberia apenas em palavras.\n\nPor isso, neste aniversário, decidi fazer algo diferente. Em vez de presentes, gostaria de contar com o apoio de vocês para levar esperança e alimento para quem mais precisa. Escolhi a ONG Fome e Frio para receber todo o nosso carinho em forma de cestas básicas. Conto com vocês para celebrarmos a vida ajudando o próximo!",
     "goal": 50,
-    "current": 12,
+    "current": 16,
     "beneficiary": {
       "name": "ONG Fome e Frio",
       "img": "img/ong-fome-frio.png"
