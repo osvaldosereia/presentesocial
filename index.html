@@ -18,6 +18,1027 @@
            DESIGN SYSTEM - HIGH END
            ========================================= */
         :root {
+            /* Cores Refinadas (Padrão/Feminino/Neutro) */
+            --primary: #A98467;
+            --primary-light: #C2A58D;
+            --primary-dark: #8C6A54;
+            
+            --bg-body: #FAFAF9; /* Off-white quente */
+            --bg-surface: #FFFFFF;
+            --bg-subtle: #F5F2EF;
+            
+            --text-display: #24201D; /* Quase preto */
+            --text-body: #595552;
+            --text-muted: #948F8C;
+            
+            --success: #6B8E7B;
+            --success-bg: #E6F0EB;
+            
+            /* Layout */
+            --container-width: 1080px; 
+            --container-padding: clamp(24px, 6vw, 48px); 
+            --section-gap: clamp(64px, 8vw, 96px);
+            
+            /* UI Elements */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px; /* Usado nos cards principais */
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(44, 40, 37, 0.04);
+            --shadow-md: 0 8px 24px rgba(44, 40, 37, 0.06);
+            --shadow-lg: 0 16px 48px rgba(44, 40, 37, 0.08);
+            --shadow-float: 0 20px 60px -10px rgba(169, 132, 103, 0.25);
+            
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* TEMA MASCULINO / EXECUTIVO (Ativado via JS) */
+        body.theme-masculine {
+            /* Paleta mais sóbria (Tom Café/Couro) */
+            --primary: #6D4C41; 
+            --primary-light: #8D6E63;
+            --primary-dark: #3E2723;
+            
+            --bg-body: #F5F5F7; /* Cinza frio executivo */
+            --bg-subtle: #E0E0E0;
+
+            /* Sombras mais "duras" */
+            --shadow-float: 0 20px 50px -10px rgba(62, 39, 35, 0.2);
+
+            /* Bordas mais quadradas */
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 12px; /* Card principal mais quadrado */
+            --radius-full: 8px; /* Botões levemente arredondados, não pílulas */
+        }
+
+        /* Ajuste de fontes no tema masculino */
+        body.theme-masculine h1, 
+        body.theme-masculine h2, 
+        body.theme-masculine h3, 
+        body.theme-masculine .serif {
+            font-family: 'DM Sans', sans-serif !important; /* Visual Moderno/Tech */
+            letter-spacing: -0.03em;
+            font-weight: 700;
+        }
+        
+        body.theme-masculine .event-detail-card {
+            border: 1px solid rgba(0,0,0,0.05); /* Borda sutil para estrutura */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06); /* Sombra mais difusa */
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'DM Sans', sans-serif; 
+            background-color: var(--bg-body); 
+            color: var(--text-body); 
+            line-height: 1.6; 
+            padding-top: 80px; 
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.5s ease;
+        }
+
+        h1, h2, h3, h4, .serif { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--text-display); 
+            font-weight: 700; 
+            line-height: 1.15;
+            letter-spacing: -0.02em; 
+        }
+
+        p { margin-bottom: 1rem; }
+        a, button { text-decoration: none; color: inherit; cursor: pointer; border: none; background: none; outline: none; }
+        img { max-width: 100%; display: block; }
+        input, textarea, select { font-family: inherit; }
+
+        .container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 var(--container-padding); }
+        .text-center { text-align: center; }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .hidden { display: none !important; }
+
+        /* =========================================
+           COMPONENTES UI
+           ========================================= */
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 16px 32px; border-radius: var(--radius-full); 
+            font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+            transition: var(--transition);
+        }
+        .btn-primary { 
+            background-color: var(--text-display); 
+            color: #fff; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary); 
+            transform: translateY(-2px); 
+            box-shadow: var(--shadow-float);
+        }
+        
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-weight: 600; color: var(--text-muted); margin-bottom: 32px;
+            padding: 10px 20px; background: #fff; border-radius: var(--radius-full);
+            box-shadow: var(--shadow-sm); transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        .btn-back:hover { color: var(--primary); transform: translateX(-4px); box-shadow: var(--shadow-md); }
+
+        .btn-link-sm {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.85rem; color: var(--primary); font-weight: 600;
+            margin: 12px 0 24px; padding: 8px 16px;
+            border-radius: var(--radius-full); background: rgba(169, 132, 103, 0.08);
+            transition: var(--transition);
+        }
+        .btn-link-sm:hover { background: rgba(169, 132, 103, 0.15); color: var(--primary-dark); }
+        
+        /* Botão Salvar Contato (Rodapé) */
+        .btn-save-contact {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 28px; height: 28px;
+            background: rgba(0,0,0,0.05); border-radius: 6px;
+            color: var(--text-muted); transition: 0.2s;
+            margin-left: 8px; vertical-align: middle;
+        }
+        .btn-save-contact:hover { background: var(--success); color: #fff; transform: scale(1.1); }
+
+        /* Header */
+        .site-header {
+            padding: 16px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            background: rgba(250, 250, 249, 0.85); backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+        .logo { 
+            font-family: 'Playfair Display', serif; font-size: 1.5rem; 
+            font-weight: 700; color: var(--text-display); letter-spacing: -0.03em; 
+        }
+        .logo span { color: var(--primary); }
+        
+        .btn-contact-header { 
+            padding: 10px 24px; background: transparent; color: var(--text-display); 
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 600; 
+            display: flex; align-items: center; gap: 8px;
+            transition: var(--transition);
+        }
+        .btn-contact-header:hover { background: var(--text-display); color: #fff; border-color: var(--text-display); }
+
+        /* =========================================
+           SEÇÕES
+           ========================================= */
+        .section-py { padding: var(--section-gap) 0; }
+
+        .hero { padding: 80px 0 60px; text-align: center; }
+        .hero h1 { 
+            font-size: clamp(2.2rem, 5vw, 3.5rem); 
+            margin-bottom: 24px; 
+            color: var(--text-display);
+        }
+        .hero p { 
+            font-size: 1.2rem; max-width: 580px; margin: 0 auto 40px; 
+            color: var(--text-body); font-weight: 400;
+        }
+        
+        .location-badge { 
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #fff; padding: 8px 16px; border-radius: var(--radius-full); 
+            font-size: 0.75rem; font-weight: 700; color: var(--text-body); 
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 32px;
+            box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.02);
+        }
+        .location-badge i { color: var(--primary); font-size: 1rem; }
+
+        .grid-steps { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 32px; 
+            margin-top: 50px; 
+        }
+        
+        .step-card { 
+            background: var(--bg-surface); padding: 40px; 
+            border-radius: var(--radius-lg); 
+            border: 1px solid rgba(0,0,0,0.03); 
+            transition: var(--transition); 
+            height: 100%; display: flex; flex-direction: column; align-items: flex-start;
+            position: relative; overflow: hidden;
+        }
+        .step-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: var(--shadow-md); 
+            border-color: rgba(169, 132, 103, 0.2);
+        }
+        .step-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px;
+            background: var(--primary); transform: scaleX(0); transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .step-card:hover::after { transform: scaleX(1); }
+
+        .step-icon { 
+            font-size: 2.2rem; color: var(--primary); margin-bottom: 24px; 
+            background: var(--bg-subtle); padding: 12px; border-radius: 12px;
+        }
+        .step-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .step-card p { font-size: 0.95rem; color: var(--text-body); line-height: 1.7; margin-bottom: 0; }
+
+        .link-subtle {
+            display: inline-flex; align-items: center; gap: 4px;
+            margin-top: 16px; color: var(--primary); font-weight: 600; 
+            font-size: 0.9rem; border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .link-subtle:hover { gap: 8px; border-bottom-color: var(--primary); }
+
+        .auth-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+        
+        .service-tag {
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-bottom: 32px; background: #FFF8F3; padding: 12px 24px;
+            border-radius: var(--radius-full); border: 1px solid rgba(169, 132, 103, 0.15);
+            width: fit-content;
+        }
+        .service-tag img { width: 24px; height: 24px; object-fit: contain; }
+        .service-tag span { font-size: 0.85rem; font-weight: 600; color: var(--text-display); }
+
+        .logo-da-wrapper { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+        .logo-da-round { 
+            width: 80px; height: 80px; border-radius: 50%; background: #fff; 
+            box-shadow: var(--shadow-md); padding: 8px; object-fit: contain; 
+        }
+
+        .stats-container { display: flex; gap: 40px; margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .stat-val { font-size: 2.8rem; font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1; display: block; margin-bottom: 4px; }
+        .stat-lbl { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; color: var(--text-muted); }
+
+        .guarantee-card {
+            text-align: center; padding: 40px; background: #fff; border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg); border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 48px; }
+        
+        .event-card { 
+            background: #fff; padding: 24px; border-radius: var(--radius-md); 
+            display: flex; align-items: center; gap: 20px; 
+            border: 1px solid rgba(0,0,0,0.04); cursor: pointer;
+            box-shadow: var(--shadow-sm); transition: var(--transition);
+        }
+        .event-card:hover { 
+            border-color: var(--success); 
+            box-shadow: var(--shadow-md); 
+            transform: translateY(-4px); 
+        }
+        .event-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        .status-badge {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+            padding: 6px 12px; border-radius: var(--radius-full);
+        }
+        .badge-active { color: var(--success); background: var(--success-bg); }
+        .badge-closed { color: #888; background: #eee; }
+        .event-card.expired { opacity: 0.6; filter: grayscale(1); }
+
+        /* Footer */
+        .cta-footer-section { 
+            background: var(--text-display); color: #fff; padding: 80px 0; margin-top: 60px; 
+            border-radius: 32px 32px 0 0; position: relative; overflow: hidden;
+        }
+        .cta-footer-section::before {
+            content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(169, 132, 103, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .site-footer { background: #fff; padding: 80px 0 40px; border-top: 1px solid #eee; font-size: 0.95rem; color: var(--text-body); }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .footer-logo { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 24px; object-fit: contain; border: 1px solid #eee; }
+
+        /* =========================================
+           PÁGINA INTERNA (Evento)
+           ========================================= */
+        #event-view { padding-top: 40px; min-height: 100vh; padding-bottom: 80px; background: var(--bg-body); }
+        .event-detail-card {
+            background: #fff; border-radius: var(--radius-xl); padding: 60px;
+            box-shadow: var(--shadow-lg); max-width: 680px; margin: 0 auto;
+            transition: border-radius 0.4s ease, box-shadow 0.4s ease;
+        }
+        .event-img-lg { 
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover; 
+            margin: 0 auto 24px; border: 6px solid #fff; 
+            box-shadow: var(--shadow-float); 
+        }
+        
+        /* Modais */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(36, 32, 29, 0.6); backdrop-filter: blur(8px);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: 0.4s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-box {
+            width: 100%; max-width: 420px; background: #fff;
+            border-radius: 24px; padding: 32px;
+            max-height: 90vh; overflow-y: auto;
+            position: relative; box-shadow: var(--shadow-float);
+            text-align: center; transform: scale(0.95); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+
+        .modal-event-header {
+            display: flex; align-items: center; gap: 16px;
+            background: var(--bg-subtle); padding: 16px;
+            border-radius: 16px; margin-bottom: 24px;
+            text-align: left; border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .qty-btn {
+            width: 48px; height: 48px; border-radius: 12px;
+            border: 2px solid #eee; background: #fff;
+            font-weight: 700; font-size: 1.1rem; color: #555;
+            transition: 0.2s; cursor: pointer;
+        }
+        .qty-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .qty-btn.selected { background: var(--success); border-color: var(--success); color: #fff; transform: scale(1.1); box-shadow: 0 4px 12px rgba(107, 142, 123, 0.4); }
+
+        .form-input { 
+            width: 100%; padding: 14px 16px; border: 1px solid #e0e0e0; border-radius: 12px; 
+            font-size: 0.95rem; outline: none; transition: 0.3s; background: #fff;
+        }
+        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(169, 132, 103, 0.1); }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .grid-steps { grid-template-columns: 1fr; gap: 24px; } 
+            .auth-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero h1 { font-size: 2.4rem; }
+            .event-detail-card { padding: 32px 24px; border-radius: 0; box-shadow: none; background: transparent; }
+            .modal-box { border-radius: 24px 24px 0 0; position: absolute; bottom: 0; width: 100%; max-height: 85vh; padding-bottom: 40px;}
+            .logo-da-wrapper { justify-content: center; flex-direction: column; }
+            .stats-container { justify-content: center; }
+            .service-tag { margin: 0 auto 32px; }
+            .modal-event-header { margin-top: 10px; }
+            .event-img-lg { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="logo">Presente<span>.Social</span></div>
+            <button onclick="openContactModal()" class="btn-contact-header">
+                <i class="ph-bold ph-chat-circle-dots"></i> Contato
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- VIEW 1: HOME (Landing Page) -->
+        <div id="home-view">
+            <!-- Hero -->
+            <section class="hero reveal active">
+                <div class="container">
+                    <div class="location-badge">
+                        <i class="ph-fill ph-map-pin"></i> Cuiabá & Várzea Grande
+                    </div>
+                    <h1>Se você chegou até aqui <br><span style="color:var(--primary); font-style:italic;">é porque quer fazer a diferença na vida de alguém.</span></h1>
+                    <p>E a Dona Antônia vai cuidar de tudo pra você.</p>
+                    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                        <a href="https://wa.me/5565998150975?text=Quero criar minha campanha." class="btn btn-primary">
+                            Criar Minha Campanha
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPLICAÇÃO (Clean & Organized) -->
+            <section class="container section-py" style="padding-top:20px;">
+                <div class="text-center reveal">
+                    <h2 style="font-size: 2rem;">É Bem Simples</h2>
+                    <p style="color: var(--text-muted);">Veja como funciona a nossa plataforma.</p>
+                </div>
+                
+                <div class="grid-steps reveal">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-icon"><i class="ph-duotone ph-desktop"></i></div>
+                        <h3>1. Criamos seu Site</h3>
+                        <p>Nós desenvolvemos um mini site personalizado para o seu evento, contendo todas as informações sobre a causa e como doar.</p>
+                        <a href="#" onclick="return false;" class="link-subtle">
+                            Ver modelo de site <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-icon"><i class="ph-duotone ph-paper-plane-tilt"></i></div>
+                        <h3>2. Você Compartilha</h3>
+                        <p>Você recebe um link exclusivo e envia para seus convidados. Eles acessam, escolhem a quantidade e fazem a doação em segundos.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-icon"><i class="ph-duotone ph-truck"></i></div>
+                        <h3>3. Nós Entregamos</h3>
+                        <p>A Dona Antônia monta as cestas com produtos de qualidade e realiza a entrega na entidade ou local que você escolheu na região.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="step-card">
+                        <div class="step-icon"><i class="ph-duotone ph-camera"></i></div>
+                        <h3>4. Transparência Total</h3>
+                        <p>Registramos tudo com fotos e recibos oficiais. Você e seus convidados recebem a comprovação de que o amor chegou a quem precisa.</p>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="step-card">
+                        <div class="step-icon"><i class="ph-duotone ph-handshake"></i></div>
+                        <h3>5. Você acompanha tudo</h3>
+                        <p>Com a gente o contato é direto, você fala direto com os donos, pode visitar o escritório ou o barracão (ficam em locais diferentes).</p>
+                    </div>
+                    <!-- Step 6 -->
+                    <div class="step-card">
+                        <div class="step-icon"><i class="ph-duotone ph-heart-straight"></i></div>
+                        <h3>6. Você escolhe pra quem doar</h3>
+                        <p>As cestas básicas são suas, são os presentes de seus convidados, nós entregamos onde você indicar. Caso não tenha nós temos algumas sugestões.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Autoridade (Visualmente Separada e Premium) -->
+            <section class="section-py" style="background:#fff; border-top:1px solid rgba(0,0,0,0.03);">
+                <div class="container">
+                    <div class="auth-grid reveal">
+                        <div>
+                            <!-- SERVICE TAG (Highlight) -->
+                            <div class="service-tag">
+                                <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Dona Antonia" onerror="this.src='https://placehold.co/30x30/A98467/fff?text=DA'">
+                                <span>Serviço oficial <strong>Dona Antônia</strong></span>
+                            </div>
+
+                            <div class="logo-da-wrapper">
+                                <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Dona Antônia" class="logo-da-round" onerror="this.src='https://placehold.co/100x100/A98467/fff?text=DA'">
+                                <h2 style="margin:0;">Solidez e Confiança</h2>
+                            </div>
+                            <p style="font-size:1.1rem; color:var(--text-body); max-width: 480px;">Há <strong>8 anos</strong> no mercado, a Dona Antônia é referência em qualidade, logística eficiente e compromisso social em Mato Grosso.</p>
+                            
+                            <div class="stats-container">
+                                <div><span class="stat-val">8</span><span class="stat-lbl">Anos de História</span></div>
+                                <div><span class="stat-val">+30k</span><span class="stat-lbl">Cestas Entregues</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="guarantee-card">
+                            <i class="ph-duotone ph-shield-check" style="font-size: 3rem; color: var(--success); margin-bottom: 20px;"></i>
+                            <h4 style="margin-bottom:10px; font-size:1.4rem;">Garantia de Entrega</h4>
+                            <p style="font-size:0.95rem; color:var(--text-body);">Auditamos cada doação. Entregamos apenas para parceiros sérios e documentamos todo o processo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modelos de Sites -->
+            <section class="section-py" style="background: var(--bg-subtle);">
+                <div class="container">
+                    <div class="text-center reveal" style="margin-bottom:40px;">
+                        <!-- MUDANÇA DE TÍTULO -->
+                        <h2>Modelos de sites</h2>
+                        <p style="font-size:0.95rem; color: var(--text-muted);">Veja quem está transformando aniversário em doação hoje.</p>
+                    </div>
+                    <div id="events-container" class="grid-3 reveal"></div>
+                </div>
+            </section>
+
+            <!-- Footer CTA -->
+            <section class="container reveal" style="margin-top:80px;">
+                <div class="cta-footer-section text-center">
+                    <h2 style="color:#fff; margin-bottom:8px;">Me mande um oi</h2>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 24px;">Meu nome é Osvaldo e estou à disposição.</p>
+                    <a href="https://wa.me/5565998150975" target="_blank" class="btn" style="background:#fff; color:var(--text-display); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
+                    </a>
+                </div>
+            </section>
+
+            <!-- Rodapé Institucional -->
+            <footer class="site-footer">
+                <div class="container footer-grid">
+                    <div style="text-align: left;">
+                        <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Pequena" class="footer-logo" onerror="this.src='https://placehold.co/80x80/A98467/fff?text=DA'">
+                        <h4 style="color:var(--text-display); margin-bottom:16px;">Cestas Básicas Dona Antônia</h4>
+                        <p style="max-width: 300px;">Levando alimentos de qualidade para a mesa de quem precisa em Cuiabá e Várzea Grande.</p>
+                        
+                        <a href="https://instagram.com/cestabasicadonaantonia" target="_blank" class="social-link" style="margin-top: 24px;">
+                            <i class="ph-bold ph-instagram-logo"></i>@super.cestas.dona.antonia
+                        </a>
+                    </div>
+                    <div style="text-align: left;">
+                        <h4 style="color:var(--text-display); margin-bottom:24px;">Contato & Endereço</h4>
+                        <p style="margin-bottom:12px;">
+                            <i class="ph-fill ph-phone" style="margin-right:8px; color:var(--primary)"></i> (65) 99815-0975 
+                            <!-- BOTÃO SALVAR CONTATO -->
+                            <button onclick="saveContact()" class="btn-save-contact" title="Salvar Contato na Agenda">
+                                <i class="ph-bold ph-user-plus"></i>
+                            </button>
+                        </p>
+                        <p style="margin-bottom:12px;">
+                            <i class="ph-fill ph-briefcase" style="margin-right:8px; color:var(--primary)"></i> <strong>Escritório:</strong> Edifício The Point Smart Bussines, 6º Andar, Sala 605-A
+                        </p>
+                        <p style="margin-bottom:12px;">
+                            <i class="ph-fill ph-factory" style="margin-right:8px; color:var(--primary)"></i> <strong>Produção:</strong> Rua Trinta, 200, Bairro Nossa Senhora Aparecida, Cuiabá-MT
+                        </p>
+                        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:32px; border-top: 1px solid #f0f0f0; padding-top: 24px;">
+                            CNPJ: 51.385.335/0001-06<br>
+                            Todos os direitos reservados.
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- VIEW 2: EVENT PAGE (Detalhes) -->
+        <div id="event-view" class="hidden">
+            <div class="container">
+                <button onclick="goBack()" class="btn-back">
+                    <i class="ph-bold ph-arrow-left"></i> Voltar
+                </button>
+
+                <div class="event-detail-card reveal active">
+                    <!-- Header Evento -->
+                    <div class="event-header">
+                        <img id="pg-photo" src="" class="event-img-lg" onerror="this.src='https://placehold.co/150x150?text=Foto'">
+                        <h1 id="pg-title" style="font-size:2rem; margin-bottom:12px;">...</h1>
+                        
+                        <!-- Status e Data do Evento -->
+                        <div style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;">
+                            <span id="pg-date">...</span>
+                        </div>
+                        <p id="pg-subtitle" style="color:var(--text-body); font-style: italic;">...</p>
+                    </div>
+
+                    <!-- História -->
+                    <div style="border-top:1px solid rgba(0,0,0,0.05); border-bottom:1px solid rgba(0,0,0,0.05); padding:32px 0; margin-bottom:32px;">
+                        <h3 class="serif" style="margin-bottom:20px; font-size: 1.5rem;">Minha Missão</h3>
+                        <p id="pg-story" style="font-size:1.05rem; color:var(--text-body); white-space:pre-line; line-height:1.8;">...</p>
+                        
+                        <!-- Botão Vídeo (Injetado via JS se tiver ID) -->
+                        <div style="text-align:center;">
+                            <button id="btn-video" class="btn-video" style="display:none;">
+                                <i class="ph-fill ph-play-circle" style="font-size:1.4rem; color: #cc0000;"></i> Ver Mensagem em Vídeo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Progresso -->
+                    <div style="background:var(--bg-subtle); padding:24px; border-radius:16px; margin-bottom:40px;">
+                        <div style="display:flex; justify-content:space-between; font-weight:700; color:var(--text-body); margin-bottom:12px;">
+                            <span style="color:var(--success);"><span id="pg-current">0</span> cestas doadas</span>
+                            <span>Meta: <span id="pg-goal">0</span></span>
+                        </div>
+                        <div style="height:12px; background:#e0e0e0; border-radius:12px; overflow:hidden;">
+                            <div id="pg-bar" style="height:100%; background:var(--success); width:0%; transition: width 1s ease;"></div>
+                        </div>
+                        <p id="pg-progress-text" style="text-align:center; font-size:0.9rem; margin-top:16px; color:var(--text-muted);">Cada cesta faz a diferença.</p>
+                    </div>
+
+                    <!-- MENSAGENS DE DOADORES -->
+                    <div id="messages-container" style="margin-bottom: 40px; display: none;">
+                        <h3 class="serif" style="margin-bottom: 24px; text-align: center; font-size: 1.5rem;">Mensagens de Carinho</h3>
+                        <div id="messages-list" class="messages-grid">
+                            <!-- Injetado via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Botão Presentear -->
+                    <div id="donation-section" style="text-align:center; background: #fff; padding-top: 20px;">
+                        <p style="text-transform:uppercase; font-size:0.75rem; font-weight:700; letter-spacing: 0.1em; color:var(--text-muted); margin-bottom:16px;">Cesta Básica Completa</p>
+                        
+                        <!-- Imagem da cesta -->
+                        <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" alt="Cesta Básica Dona Antônia" class="cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica'">
+
+                        <button onclick="openItemsModal()" class="btn-link-sm">
+                            <i class="ph-bold ph-list-dashes"></i> Ver Itens da Cesta
+                        </button>
+
+                        <h2 style="color:var(--success); font-size:2.8rem; margin-bottom:24px;">R$ 85,00</h2>
+                        
+                        <button onclick="openCheckout()" class="btn" style="background:var(--success); color:#fff; width:100%; padding:20px; font-size:1.15rem; box-shadow: 0 10px 30px rgba(112, 141, 129, 0.25);">
+                            Presentear Agora
+                        </button>
+                    </div>
+
+                    <!-- Aviso de Encerrado -->
+                    <div id="closed-section" class="closed-notice" style="display:none;">
+                        <i class="ph-fill ph-check-circle" style="font-size: 2.5rem; color: var(--success); margin-bottom: 16px; display: block;"></i>
+                        <h3 style="margin-bottom: 8px;">Campanha Encerrada!</h3>
+                        <span style="font-weight: 400; font-size: 1rem;">Obrigado a todos que participaram deste gesto de amor.</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkout-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="closeModal('checkout-modal')" style="position:absolute; top:24px; right:24px; font-size:1.5rem; color:#999;">&times;</button>
+            
+            <div class="modal-event-header">
+                <img id="chk-photo" src="" class="chk-photo-sm" onerror="this.src='https://placehold.co/50x50?text=Foto'">
+                <div class="chk-info">
+                    <h4 id="chk-title">Carregando...</h4>
+                    <p id="chk-date" style="font-size: 0.75rem;">...</p>
+                </div>
+            </div>
+
+            <h3 class="serif" style="font-size:1.5rem; margin-bottom: 8px;">Quantas cestas?</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px;">Selecione a quantidade do seu presente:</p>
+
+            <div class="qty-selector">
+                <button class="qty-btn selected" onclick="setQty(1)">1</button>
+                <button class="qty-btn" onclick="setQty(2)">2</button>
+                <button class="qty-btn" onclick="setQty(3)">3</button>
+                <button class="qty-btn" onclick="setQty(4)">4</button>
+                <button class="qty-btn" onclick="setQty(5)">5</button>
+            </div>
+
+            <div class="price-display">
+                <div id="chk-total" class="price-total">R$ 89,90</div>
+                <div id="chk-installment" class="price-installments">1x de R$ 89,90</div>
+            </div>
+
+            <form id="donation-form" onsubmit="submitDonation(event)">
+                <div class="form-group">
+                    <label class="form-label">Seu Nome</label>
+                    <input type="text" id="donor-name" class="form-input" required placeholder="Ex: Maria Silva">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">WhatsApp</label>
+                    <input type="tel" id="donor-phone" class="form-input" required placeholder="(00) 00000-0000">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Mensagem (Opcional)</label>
+                    <textarea id="donor-msg" class="form-input" rows="2" placeholder="Deixe um recado carinhoso..."></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top:16px;">
+                    Ir para Pagamento <i class="ph-bold ph-lock-key"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ITEMS LIST MODAL -->
+    <div id="items-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="closeModal('items-modal')" style="position:absolute; top:20px; right:20px; font-size:1.5rem; color:#999;">&times;</button>
+            
+            <h3 class="serif" style="margin-bottom:8px;">Itens da Cesta</h3>
+            <p style="margin-bottom:24px; color:var(--text-muted);">Produtos de qualidade Dona Antônia</p>
+
+            <div class="items-list">
+                <ul>
+                  <li><i class="ph-fill ph-check-circle"></i> 5kg Arroz</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 2kg Açúcar Cristal</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Óleo de Soja 900ml</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1kg Feijão Dona Dê</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 250g Café</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 400g Macarrão Espaguete</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Trigo</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Mandioca</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1kg Sal</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Molho de Tomate 300g</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Milho (Lata ou Sachê) 250g</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Bolacha Recheada</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Miojo Apti</li>
+                  <li><i class="ph-fill ph-check-circle"></i> 1un Suco em Pó</li>
+                </ul>
+            </div>
+
+            <button onclick="closeModal('items-modal')" class="btn" style="width:100%; background:var(--primary); color:#fff;">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <!-- VIDEO MODAL -->
+    <div id="video-modal" class="modal-overlay">
+        <div class="modal-box video-modal-box">
+            <button onclick="closeVideo()" style="position:absolute; top:10px; right:10px; font-size:2rem; color:#fff; z-index:10; background:none; border:none; cursor:pointer;">&times;</button>
+            <div class="video-container">
+                <iframe id="youtube-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTATO MODAL -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="closeModal('contact-modal')" style="position:absolute; top:20px; right:20px; font-size:1.5rem; color:#999;">&times;</button>
+            
+            <h3 class="serif" style="margin-bottom:8px;">Fale Conosco</h3>
+            <p style="margin-bottom:24px; color:var(--text-muted);">Estamos prontos para te atender.</p>
+
+            <a href="https://wa.me/5565998150975" target="_blank" class="btn-contact-opt btn-whatsapp-lg">
+                <i class="ph-bold ph-whatsapp-logo"></i> Chamar no WhatsApp
+            </a>
+            
+            <a href="tel:5565998150975" class="btn-contact-opt btn-call-lg">
+                <i class="ph-bold ph-phone"></i> Ligar Agora
+            </a>
+
+            <div style="margin-top:20px; padding-top:20px; border-top:1px solid #eee;">
+                <p style="font-size:0.9rem; margin-bottom:12px;">Siga nosso Instagram</p>
+                <a href="https://instagram.com/cestabasicadonaantonia" target="_blank" class="btn-contact-opt btn-insta-lg">
+                    <i class="ph-bold ph-instagram-logo"></i> @cestabasicadonaantonia
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let eventsData = [];
+        let currentEventSlug = null;
+        let selectedQty = 1;
+
+        async function init() {
+            try {
+                // Cache busting
+                const response = await fetch(`events.json?v=${new Date().getTime()}`);
+                if(!response.ok) throw new Error("Erro ao carregar JSON");
+                eventsData = await response.json();
+                
+                const container = document.getElementById('events-container');
+                container.innerHTML = '';
+                
+                eventsData.forEach(ev => {
+                    const pct = Math.round((ev.current / ev.goal) * 100);
+                    const statusStr = ev.status ? ev.status.toString().toLowerCase().trim() : '';
+                    const expired = statusStr === 'closed';
+                    
+                    const statusHtml = expired 
+                        ? `<span class="status-badge badge-closed">Encerrado</span>`
+                        : `<span class="status-badge badge-active">Ativo</span>`;
+
+                    const cardClass = expired ? 'event-card expired' : 'event-card';
+
+                    container.innerHTML += `
+                        <div class="${cardClass}" onclick="openPage('${ev.slug}')">
+                            <img src="${ev.photo}" class="event-photo" onerror="this.src='https://placehold.co/70x70?text=Foto'">
+                            <div style="flex:1;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                                    <h4 style="font-size:1.1rem; margin:0;">${ev.title}</h4>
+                                    ${statusHtml}
+                                </div>
+                                <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom: 8px;">${ev.current} de ${ev.goal} cestas</div>
+                                <div style="height:6px; background:#f0f0f0; border-radius:6px; overflow:hidden;">
+                                    <div style="width:${pct}%; height:100%; background:var(--success);"></div>
+                                </div>
+                            </div>
+                            <i class="ph-bold ph-caret-right" style="color:#ccc; font-size: 1.2rem;"></i>
+                        </div>
+                    `;
+                });
+
+                handleRouting();
+
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+                }, { threshold: 0.1 });
+                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            } catch (err) {
+                console.error("Falha na inicialização:", err);
+                document.getElementById('events-container').innerHTML = '<p class="text-center">Erro ao carregar eventos.</p>';
+            }
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+        function handleRouting() {
+            const slug = window.location.hash.replace('#', '');
+            if (slug && eventsData.length > 0) {
+                const ev = eventsData.find(e => e.slug === slug);
+                if(ev) renderEventView(ev);
+                else renderHomeView();
+            } else {
+                renderHomeView();
+            }
+        }
+        function openPage(slug) { window.location.hash = slug; }
+        function goBack() { window.location.hash = ''; }
+
+        function renderHomeView() {
+            document.getElementById('event-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+            document.body.classList.remove('theme-masculine'); // Volta ao tema padrão
+            window.scrollTo(0, 0);
+            currentEventSlug = null;
+        }
+
+        function renderEventView(ev) {
+            currentEventSlug = ev.slug;
+            
+            // DETECÇÃO AUTOMÁTICA DE TEMA MASCULINO
+            // Se o título contiver "Osvaldo" ou o slug for "osvaldo...", muda o tema.
+            if(ev.title.toLowerCase().includes('osvaldo') || ev.slug.toLowerCase().includes('osvaldo')) {
+                document.body.classList.add('theme-masculine');
+            } else {
+                document.body.classList.remove('theme-masculine');
+            }
+
+            const statusStr = ev.status ? ev.status.toString().toLowerCase().trim() : '';
+            const expired = statusStr === 'closed';
+            
+            document.getElementById('pg-photo').src = ev.photo;
+            document.getElementById('pg-title').innerText = ev.title;
+            document.getElementById('pg-subtitle').innerText = ev.subtitle;
+            document.getElementById('pg-date').innerText = `Data do Evento: ${ev.event_date}`;
+            document.getElementById('pg-story').innerText = ev.story;
+            
+            document.getElementById('pg-current').innerText = ev.current;
+            document.getElementById('pg-goal').innerText = ev.goal;
+            document.getElementById('pg-bar').style.width = ((ev.current/ev.goal)*100) + '%';
+
+            const btnVideo = document.getElementById('btn-video');
+            if(ev.video_id) {
+                btnVideo.style.display = 'inline-flex';
+                btnVideo.onclick = () => openVideo(ev.video_id);
+            } else {
+                btnVideo.style.display = 'none';
+            }
+
+            const msgList = document.getElementById('messages-list');
+            msgList.innerHTML = '';
+            
+            if(ev.messages && ev.messages.length > 0) {
+                document.getElementById('messages-container').style.display = 'block';
+                ev.messages.forEach(m => {
+                    msgList.innerHTML += `
+                        <div class="message-card">
+                            <div class="msg-author">
+                                <i class="ph-fill ph-heart" style="color:var(--primary); font-size:0.8rem;"></i>
+                                ${m.name}
+                            </div>
+                            <div class="msg-text">"${m.message}"</div>
+                        </div>
+                    `;
+                });
+            } else {
+                document.getElementById('messages-container').style.display = 'none';
+            }
+
+            const donateSection = document.getElementById('donation-section');
+            const closedSection = document.getElementById('closed-section');
+            const progressText = document.getElementById('pg-progress-text');
+
+            if(expired) {
+                donateSection.style.display = 'none';
+                closedSection.style.display = 'block';
+                progressText.innerText = "Meta finalizada.";
+            } else {
+                donateSection.style.display = 'block';
+                closedSection.style.display = 'none';
+                progressText.innerText = "Cada cesta faz a diferença.";
+            }
+
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('event-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Gera e baixa um VCF para salvar na agenda
+        function saveContact() {
+            const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Dona Antônia\nTEL;TYPE=CELL:(65) 99815-0975\nEMAIL:contato@donaantonia.com.br\nEND:VCARD";
+            const blob = new Blob([vcard], { type: "text/vcard" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "contato-dona-antonia.vcf";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function openContactModal() {
+            document.getElementById('contact-modal').classList.add('active');
+        }
+        function openCheckout() {
+            selectedQty = 1;
+            const ev = eventsData.find(e => e.slug === currentEventSlug);
+            if(ev) {
+                document.getElementById('chk-photo').src = ev.photo;
+                document.getElementById('chk-title').innerText = ev.title;
+                document.getElementById('chk-date').innerText = 'Data: ' + ev.event_date;
+            }
+            updateCheckoutUI();
+            document.getElementById('checkout-modal').classList.add('active');
+        }
+        function openItemsModal() {
+            document.getElementById('items-modal').classList.add('active');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function openVideo(videoId) {
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            document.getElementById('youtube-iframe').src = embedUrl;
+            document.getElementById('video-modal').classList.add('active');
+        }
+        function closeVideo() {
+            document.getElementById('video-modal').classList.remove('active');
+            document.getElementById('youtube-iframe').src = "";
+        }
+
+        function setQty(qty) {
+            selectedQty = qty;
+            updateCheckoutUI();
+        }
+
+        function updateCheckoutUI() {
+            document.querySelectorAll('.qty-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                if(parseInt(btn.innerText) === selectedQty) btn.classList.add('selected');
+            });
+
+            const ev = eventsData.find(e => e.slug === currentEventSlug);
+            if(ev) {
+                const total = ev.price_unit * selectedQty;
+                
+                document.getElementById('chk-total').innerText = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                
+                if (total > 100) {
+                    const parcVal = total / 3;
+                    document.getElementById('chk-installment').innerText = `ou 3x de ${parcVal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} sem juros`;
+                } else {
+                     document.getElementById('chk-installment').innerText = `à vista`;
+                }
+            }
+        }
+
+        function submitDonation(e) {
+            e.preventDefault();
+            const ev = eventsData.find(e => e.slug === currentEventSlug);
+            
+            const name = document.getElementById('donor-name').value;
+            const phone = document.getElementById('donor-phone').value;
+            const msg = document.getElementById('donor-msg').value;
+            const total = (ev.price_unit * selectedQty).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+            let text = `Olá! Quero participar do evento *${ev.title}*\n\n`;
+            text += `*Nome:* ${name}\n`;
+            text += `*Telefone:* ${phone}\n`;
+            text += `*Doação:* ${selectedQty} Cesta(s)\n`;
+            text += `*Total:* ${total}\n`;
+            if(msg) text += `*Mensagem:* ${msg}`;
+
+            const url = `https://wa.me/5565998150975?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                e.target.classList.remove('active');
+                if(e.target.id === 'video-modal') {
+                    document.getElementById('youtube-iframe').src = "";
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Aniversário Solidário em Cuiabá. Transforme presentes em cestas básicas com a Dona Antônia.">
+    <meta name="theme-color" content="#A98467">
+    <title>Presente Social - Dona Antônia</title>
+
+    <!-- Fontes e Ícones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* =========================================
+           DESIGN SYSTEM - HIGH END
+           ========================================= */
+        :root {
             /* Cores Refinadas */
             --primary: #A98467;
             --primary-light: #C2A58D;
