@@ -1,5 +1,5 @@
 [
-{
+  {
     "slug": "elisabet",
     "status": "active",
     "title": "73 Anos da Elisabet",
@@ -18,25 +18,17 @@
     "video_id": "",
     "messages": [
       {
-        "name": "Osvaldo Sereia",
-        "message": "Parabéns Sogra! Muiiiita saúde e prosperidade."
+        "name": "Maria Silva",
+        "message": "Parabéns Elisabet! Que gesto lindo, conte comigo."
       },
-       {
-    "slug": "osvaldo",
-    "status": "active",
-    "title": "Osvaldo faz 47",
-    "subtitle": "Comemorando a Vida",
-    "event_date": "15/10/2025",
-    "end_date": "31/11/2025",
-    "photo": "img/osvaldo.png",
-    "story": "A melhor forma de agradecer por mais um ano é ajudando quem precisa.\n\nConfio na Dona Antônia há 8 anos e sei da qualidade das cestas. Convido todos os amigos a participarem dessa corrente.",
-    "goal": 20,
-    "current": 26,
-    "beneficiary": {
-      "name": "Instituto Esperança",
-      "img": "img/inst-esperanca.png"
-    },
-    "price_unit": 85.00,
-    "video_id": null
+      {
+        "name": "João Pedro",
+        "message": "Muita saúde e felicidade! Ótima iniciativa."
+      },
+      {
+        "name": "Ana Clara",
+        "message": "Feliz aniversário querida! Que Deus abençoe."
+      }
+    ]
   }
 ]
