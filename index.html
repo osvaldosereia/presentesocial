@@ -3,1175 +3,554 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Aniversário Solidário em Cuiabá. Transforme presentes em cestas básicas com a Dona Antônia.">
+    <meta name="description" content="Aniversário Solidário. Transforme presentes em cestas básicas.">
     <meta name="theme-color" content="#A98467">
     <title>Presente Social - Dona Antônia</title>
 
     <!-- Fontes e Ícones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         /* =========================================
-           DESIGN SYSTEM - MINIMAL & REFINED
+           ESTILO SIMPLIFICADO & NARRATIVO
            ========================================= */
         :root {
-            /* Cores Refinadas */
             --primary: #A98467;
-            --primary-light: #C2A58D;
             --primary-dark: #8C6A54;
-            
             --bg-body: #FAFAF9;
-            --bg-surface: #FFFFFF;
-            --bg-subtle: #F5F2EF;
-            
-            --text-display: #24201D;
+            --bg-white: #FFFFFF;
+            --text-main: #24201D;
             --text-body: #595552;
-            --text-muted: #948F8C;
-            
             --success: #6B8E7B;
-            --success-bg: #E6F0EB;
             
-            /* Layout - Mais compacto */
-            --container-width: 1024px; 
-            --container-padding: clamp(20px, 5vw, 32px); 
-            --section-gap: clamp(48px, 6vw, 64px); /* Reduzido */
-            
-            /* UI Elements - Menos "bolha" */
-            --radius-sm: 6px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --radius-full: 9999px;
-            
-            /* Shadows - Mais sutis */
-            --shadow-sm: 0 1px 4px rgba(44, 40, 37, 0.03);
-            --shadow-md: 0 4px 16px rgba(44, 40, 37, 0.05);
-            --shadow-lg: 0 12px 32px rgba(44, 40, 37, 0.06);
-            --shadow-float: 0 15px 40px -5px rgba(169, 132, 103, 0.15); /* Mais suave */
-            
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --container: 1024px;
+            --radius: 12px;
+            --shadow: 0 10px 30px -5px rgba(169, 132, 103, 0.15);
         }
 
-        /* TEMA MASCULINO / EXECUTIVO */
-        body.theme-masculine {
-            --primary: #6D4C41; 
-            --primary-light: #8D6E63;
-            --primary-dark: #3E2723;
-            --bg-body: #F5F5F7;
-            --bg-subtle: #E0E0E0;
-            --shadow-float: 0 15px 40px -5px rgba(62, 39, 35, 0.15);
-            --radius-md: 6px;
-            --radius-lg: 8px;
-            --radius-xl: 12px;
-            --radius-full: 6px;
-        }
-
-        body.theme-masculine h1, 
-        body.theme-masculine h2, 
-        body.theme-masculine h3, 
-        body.theme-masculine .serif {
-            font-family: 'DM Sans', sans-serif !important;
-            letter-spacing: -0.02em;
-            font-weight: 700;
-        }
-        
-        body.theme-masculine .event-detail-card {
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-        }
-
-        /* Reset & Base */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        /* ADICIONADO: Rolagem Suave para toda a página */
-        html {
-            scroll-behavior: smooth;
-        }
-
         body { 
             font-family: 'DM Sans', sans-serif; 
             background-color: var(--bg-body); 
             color: var(--text-body); 
-            line-height: 1.6; 
-            padding-top: 70px; /* Reduzido */
-            font-size: 0.95rem; /* Base levemente menor */
-            -webkit-font-smoothing: antialiased;
-            transition: background-color 0.5s ease;
+            line-height: 1.6;
+            padding-bottom: 40px;
         }
 
-        h1, h2, h3, h4, .serif { 
+        h1, h2, h3, .serif { 
             font-family: 'Playfair Display', serif; 
-            color: var(--text-display); 
+            color: var(--text-main); 
             font-weight: 700; 
-            line-height: 1.2;
-            letter-spacing: -0.01em; 
         }
 
-        p { margin-bottom: 1rem; }
-        a, button { text-decoration: none; color: inherit; cursor: pointer; border: none; background: none; outline: none; }
-        img { max-width: 100%; display: block; }
-        input, textarea, select { font-family: inherit; }
-
-        .container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 var(--container-padding); }
+        .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 20px; }
         .text-center { text-align: center; }
-        
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .hidden { display: none !important; }
+        img { max-width: 100%; display: block; }
+        button { cursor: pointer; border: none; outline: none; background: none; font-family: inherit; }
 
         /* =========================================
-           COMPONENTES UI
+           SEÇÃO 1: O GANCHO (IMAGEM 1)
            ========================================= */
-
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 12px 28px; /* Reduzido */
-            border-radius: var(--radius-full); 
-            font-weight: 600; font-size: 0.9rem; letter-spacing: 0.01em;
-            transition: var(--transition);
-        }
-        .btn-primary { 
-            background-color: var(--text-display); 
-            color: #fff; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-        .btn-primary:hover { 
-            background-color: var(--primary); 
-            transform: translateY(-2px); 
-            box-shadow: var(--shadow-float);
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(to bottom, #fff, var(--bg-body));
         }
         
-        .btn-back {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-weight: 500; color: var(--text-muted); margin-bottom: 24px;
-            padding: 8px 16px; background: #fff; border-radius: var(--radius-full);
-            box-shadow: var(--shadow-sm); transition: var(--transition);
-            font-size: 0.85rem;
-        }
-        .btn-back:hover { color: var(--primary); transform: translateX(-2px); box-shadow: var(--shadow-md); }
-
-        .btn-link-sm {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-size: 0.8rem; color: var(--primary); font-weight: 600;
-            margin: 8px 0 20px; padding: 6px 14px;
-            border-radius: var(--radius-full); background: rgba(169, 132, 103, 0.06);
-            transition: var(--transition);
-        }
-        .btn-link-sm:hover { background: rgba(169, 132, 103, 0.12); color: var(--primary-dark); }
-        
-        /* Botão Ligar (Rodapé) - Discreto */
-        .btn-save-contact {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 24px; height: 24px; font-size: 0.9rem;
-            background: rgba(0,0,0,0.05); border-radius: 6px;
-            color: var(--text-muted); transition: 0.2s;
-            margin-left: 6px; vertical-align: middle;
-        }
-        .btn-save-contact:hover { background: var(--success); color: #fff; transform: scale(1.1); }
-
-        .site-header {
-            padding: 12px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-            background: rgba(250, 250, 249, 0.9); backdrop-filter: blur(16px); 
-            border-bottom: 1px solid rgba(0,0,0,0.03);
-            transition: var(--transition);
-        }
-        .logo { 
-            font-family: 'Playfair Display', serif; font-size: 1.3rem; 
-            font-weight: 700; color: var(--text-display); letter-spacing: -0.03em; 
-        }
-        .logo span { color: var(--primary); }
-        
-        .btn-contact-header { 
-            padding: 8px 20px; background: transparent; color: var(--text-display); 
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 600; 
-            display: flex; align-items: center; gap: 6px;
-            transition: var(--transition);
-        }
-        .btn-contact-header:hover { background: var(--text-display); color: #fff; border-color: var(--text-display); }
-
-        /* =========================================
-           SEÇÕES
-           ========================================= */
-        .section-py { padding: var(--section-gap) 0; }
-
-        .hero { padding: 60px 0 40px; text-align: center; }
-        .hero h1 { 
-            font-size: clamp(1.8rem, 3.5vw, 2.6rem); 
-            margin-bottom: 20px; 
-            color: var(--text-display);
-            line-height: 1.15;
-        }
-        .hero p { 
-            font-size: 1.05rem; max-width: 520px; margin: 0 auto 32px; 
-            color: var(--text-body); font-weight: 400;
+        .hero-tag {
+            display: inline-block;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
         }
 
-        /* AJUSTES MOBILE ESPECÍFICOS PARA O TÍTULO */
-        @media (max-width: 580px) {
-            .hero h1 br { display: none; } 
-            .hero h1 span { 
-                display: block; 
-                margin-top: 8px; 
-                font-size: 0.9em; 
-            }
-        }
-        
-        .location-badge { 
-            display: inline-flex; align-items: center; gap: 6px;
-            background: #fff; padding: 6px 14px; border-radius: var(--radius-full); 
-            font-size: 0.7rem; font-weight: 700; color: var(--text-body); 
-            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px;
-            box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.02);
-        }
-        .location-badge i { color: var(--primary); font-size: 0.9rem; }
-
-        .grid-steps { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 24px; 
-            margin-top: 40px; 
-        }
-        
-        .step-card { 
-            background: var(--bg-surface); padding: 32px; 
-            border-radius: var(--radius-lg); 
-            border: 1px solid rgba(0,0,0,0.03); 
-            transition: var(--transition); 
-            height: 100%; display: flex; flex-direction: column; align-items: flex-start;
-            position: relative; overflow: hidden;
-        }
-        .step-card:hover { 
-            transform: translateY(-3px); 
-            box-shadow: var(--shadow-md); 
-            border-color: rgba(169, 132, 103, 0.15);
-        }
-        .step-card::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
-            background: var(--primary); transform: scaleX(0); transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        .step-card:hover::after { transform: scaleX(1); }
-
-        .step-icon { 
-            font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; 
-            background: var(--bg-subtle); padding: 10px; border-radius: 10px;
-        }
-        .step-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
-        .step-card p { font-size: 0.9rem; color: var(--text-body); line-height: 1.6; margin-bottom: 0; }
-
-        /* Estilos Específicos para o Passo 7 (Cesta) - MELHORADO */
-        .step-card.basket-preview { 
-            align-items: center; text-align: center; 
-            border: 1px solid rgba(169, 132, 103, 0.1); /* Destaque sutil */
-        }
-        .step-cesta-wrapper {
-            width: 100%; max-width: 180px; margin: 0 auto 16px;
-            position: relative; cursor: zoom-in;
-            border-radius: 12px; overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: transform 0.3s ease;
-        }
-        .step-cesta-wrapper:hover { transform: scale(1.03); }
-        .step-cesta-img { width: 100%; height: auto; display: block; }
-        
-        .step-price { 
-            font-family: 'DM Sans', sans-serif; /* Fonte mais moderna/discreta */
-            font-size: 1.4rem; /* Reduzido */
-            color: var(--text-display); 
-            font-weight: 700; 
-            margin-bottom: 12px; 
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 0 auto 30px;
         }
 
-        /* Estilos Específicos para o Passo 8 (Pagamento) */
-        .payment-icons { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
-        .payment-badge { 
-            background: var(--bg-subtle); padding: 6px 12px; border-radius: 6px; 
-            font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 6px;
-        }
-
-        .link-subtle {
-            display: inline-flex; align-items: center; gap: 4px;
-            margin-top: 12px; color: var(--primary); font-weight: 600; 
-            font-size: 0.85rem; border-bottom: 1px solid transparent;
-            transition: var(--transition);
-        }
-        .link-subtle:hover { gap: 6px; border-bottom-color: var(--primary); }
-
-        /* FAQ Styling */
-        .faq-section { background: #fff; border-top: 1px solid rgba(0,0,0,0.03); }
-        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; }
-        .faq-item h4 { 
-            font-family: 'Playfair Display', serif; font-size: 1.1rem; 
-            margin-bottom: 8px; color: var(--text-display); 
-        }
-        .faq-item p { font-size: 0.9rem; color: var(--text-body); line-height: 1.6; }
-
-        .auth-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
-        
-        .service-tag {
-            display: inline-flex; align-items: center; gap: 10px;
-            margin-bottom: 24px; background: #FFF8F3; padding: 8px 20px;
-            border-radius: var(--radius-full); border: 1px solid rgba(169, 132, 103, 0.15);
-            width: fit-content;
-        }
-        .service-tag img { width: 20px; height: 20px; object-fit: contain; }
-        .service-tag span { font-size: 0.8rem; font-weight: 600; color: var(--text-display); }
-
-        .logo-da-wrapper { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
-        .logo-da-round { 
-            width: 70px; height: 70px; border-radius: 50%; background: #fff; 
-            box-shadow: var(--shadow-md); padding: 6px; object-fit: contain; 
-        }
-
-        .stats-container { display: flex; gap: 32px; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.05); }
-        .stat-val { font-size: 2.2rem; font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1; display: block; margin-bottom: 4px; }
-        .stat-lbl { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; color: var(--text-muted); }
-
-        .guarantee-card {
-            text-align: center; padding: 32px; background: #fff; border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg); border: 1px solid rgba(0,0,0,0.02);
-        }
-
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
-        
-        .event-card { 
-            background: #fff; padding: 20px; border-radius: var(--radius-md); 
-            display: flex; align-items: center; gap: 16px; 
-            border: 1px solid rgba(0,0,0,0.04); cursor: pointer;
-            box-shadow: var(--shadow-sm); transition: var(--transition);
-        }
-        .event-card:hover { 
-            border-color: var(--success); 
-            box-shadow: var(--shadow-md); 
-            transform: translateY(-3px); 
-        }
-        .event-photo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
-
-        .status-badge {
-            font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-            padding: 4px 10px; border-radius: var(--radius-full);
-        }
-        .badge-active { color: var(--success); background: var(--success-bg); }
-        .badge-closed { color: #888; background: #eee; }
-        .event-card.expired { opacity: 0.6; filter: grayscale(1); }
-
-        /* NOVO: Estilos das Mensagens */
-        .messages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
-        }
-        .message-card {
-            background: #FAFAF9; /* Fundo sutil */
-            padding: 20px;
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(0,0,0,0.03);
-            box-shadow: var(--shadow-sm);
-        }
-        .msg-author {
+        .hero-btn {
+            background: var(--primary);
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 50px;
             font-weight: 700;
-            color: var(--text-display);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(169, 132, 103, 0.3);
+            transition: transform 0.2s;
+        }
+        .hero-btn:hover { transform: translateY(-3px); background: var(--primary-dark); }
+
+        /* =========================================
+           SEÇÃO 2: A SOLUÇÃO (IMAGEM 2)
+           ========================================= */
+        .solution-section {
+            padding: 60px 0;
+            background: #fff;
+        }
+        .solution-box {
+            background: var(--bg-body);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .solution-title { font-size: 2rem; color: var(--primary); margin-bottom: 16px; }
+
+        /* =========================================
+           SEÇÃO 3: O PRODUTO (IMAGEM 3)
+           ========================================= */
+        .product-card {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .product-img-wrapper {
+            position: relative;
+            background: #f4f4f4;
+            height: 250px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            overflow: hidden;
         }
-        .msg-text {
+        .product-img { height: 100%; width: auto; object-fit: cover; }
+        
+        .product-info { padding: 24px; text-align: center; }
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 10px 0;
+        }
+        .product-desc { font-size: 0.9rem; margin-bottom: 20px; }
+
+        .items-list-btn {
+            color: var(--success);
+            font-weight: 600;
             font-size: 0.9rem;
-            color: var(--text-body);
-            font-style: italic;
-            line-height: 1.5;
+            text-decoration: underline;
+            margin-bottom: 20px;
+            display: inline-block;
         }
-
-        /* Footer */
-        .cta-footer-section { 
-            background: var(--text-display); color: #fff; padding: 60px 0; margin-top: 40px; 
-            border-radius: 24px 24px 0 0; position: relative; overflow: hidden;
-        }
-        .cta-footer-section::before {
-            content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(169, 132, 103, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .cta-footer-section h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
-        .cta-footer-section p { font-size: 0.95rem; }
-
-        .site-footer { background: #fff; padding: 60px 0 32px; border-top: 1px solid #eee; font-size: 0.9rem; color: var(--text-body); }
-        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-        .footer-logo { width: 50px; height: 50px; border-radius: 50%; margin-bottom: 20px; object-fit: contain; border: 1px solid #eee; }
 
         /* =========================================
-           PÁGINA INTERNA (Evento)
+           SEÇÃO 4: AUTORIDADE (IMAGEM 4)
            ========================================= */
-        #event-view { padding-top: 32px; min-height: 100vh; padding-bottom: 60px; background: var(--bg-body); }
-        .event-detail-card {
-            background: #fff; border-radius: var(--radius-xl); padding: 48px;
-            box-shadow: var(--shadow-lg); max-width: 640px; margin: 0 auto;
-            transition: border-radius 0.4s ease, box-shadow 0.4s ease;
+        .trust-section {
+            padding: 60px 0;
+            text-align: center;
         }
-        .event-img-lg { 
-            width: 140px; height: 140px; border-radius: 50%; object-fit: cover; 
-            margin: 0 auto 20px; border: 5px solid #fff; 
-            box-shadow: var(--shadow-float); 
+        .logo-img { 
+            width: 120px; 
+            height: 120px; 
+            border-radius: 50%; 
+            object-fit: contain; /* Ajustado para logos redondos */
+            margin: 0 auto 20px;
+            border: 4px solid #fff;
+            box-shadow: var(--shadow);
+            background: #fff;
         }
+
+        /* =========================================
+           LISTAGEM DE EVENTOS (MANTIDA)
+           ========================================= */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .event-mini-card {
+            background: #fff;
+            padding: 16px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .event-mini-card:hover { border-color: var(--primary); transform: translateX(5px); }
+        .ev-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+
+        /* =========================================
+           VIEW DE DETALHES (SPA) - MANTIDA MAS LIMPA
+           ========================================= */
+        #event-view { padding-top: 20px; display: none; }
+        #event-view.active { display: block; }
+        #home-view.hidden { display: none; }
+
+        .back-btn { margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; color: var(--text-body); font-weight: 500; }
         
-        /* Modais */
+        .campaign-header { text-align: center; margin-bottom: 30px; }
+        .campaign-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #fff; box-shadow: var(--shadow); margin: 0 auto 16px; object-fit: cover;}
+        
+        .progress-box { background: #fff; padding: 20px; border-radius: var(--radius); margin-bottom: 30px; text-align: center; }
+        .progress-bar-bg { background: #eee; height: 10px; border-radius: 10px; margin: 10px 0; overflow: hidden; }
+        .progress-fill { background: var(--success); height: 100%; width: 0%; transition: width 1s; }
+
+        .donate-btn {
+            width: 100%;
+            background: var(--success);
+            color: #fff;
+            padding: 18px;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        /* MODAIS SIMPLIFICADOS */
         .modal-overlay {
-            position: fixed; inset: 0; background: rgba(36, 32, 29, 0.5); backdrop-filter: blur(6px);
-            z-index: 2000; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: 0.4s ease;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); 
+            display: none; align-items: center; justify-content: center; z-index: 999;
+            backdrop-filter: blur(4px);
         }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-overlay.active { display: flex; }
+        .modal-box { background: #fff; padding: 30px; border-radius: 16px; max-width: 400px; width: 90%; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; color: #999; }
         
-        .modal-box {
-            width: 100%; max-width: 400px; background: #fff;
-            border-radius: 20px; padding: 28px;
-            max-height: 90vh; overflow-y: auto;
-            position: relative; box-shadow: var(--shadow-float);
-            text-align: center; transform: scale(0.96); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .modal-overlay.active .modal-box { transform: scale(1); }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
+        .input-field { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
 
-        /* Modal de Imagem (Zoom) */
-        .modal-box.image-zoom-box {
-            max-width: 600px; background: transparent; box-shadow: none; padding: 0;
-        }
-        .zoom-img { width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow-lg); }
-
-        /* Ajustes Modal Checkout */
-        .modal-event-header {
-            display: flex; align-items: center; gap: 12px;
-            background: var(--bg-subtle); padding: 12px;
-            border-radius: 12px; margin-bottom: 20px;
-            text-align: left; border: 1px solid rgba(0,0,0,0.03);
-            overflow: hidden; 
-        }
-        .chk-photo-sm {
-            width: 50px; height: 50px; min-width: 50px; 
-            border-radius: 50%; object-fit: cover; 
-            border: 2px solid #fff; box-shadow: var(--shadow-sm);
-        }
-        .chk-info h4 {
-            font-size: 1rem; 
-            margin-bottom: 2px;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
-            max-width: 220px;
-        }
-
-        .qty-btn {
-            width: 42px; height: 42px; border-radius: 10px;
-            border: 1px solid #e5e5e5; background: #fff;
-            font-weight: 700; font-size: 1rem; color: #555;
-            transition: 0.2s; cursor: pointer;
-        }
-        .qty-btn:hover { border-color: var(--primary); color: var(--primary); }
-        .qty-btn.selected { background: var(--success); border-color: var(--success); color: #fff; transform: scale(1.05); box-shadow: 0 3px 10px rgba(107, 142, 123, 0.3); }
-
-        .price-total { font-size: 1.3rem; font-weight: 700; color: var(--text-display); }
-
-        .form-input { 
-            width: 100%; padding: 12px 14px; border: 1px solid #e0e0e0; border-radius: 10px; 
-            font-size: 0.9rem; outline: none; transition: 0.3s; background: #fff;
-        }
-        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(169, 132, 103, 0.1); }
-
-        /* Lista de Itens (Modal) - Clean & Organizado */
-        .items-list-container { text-align: left; padding: 0 8px; }
-        .items-list-ul { list-style: none; padding: 0; margin: 0; }
-        .items-list-ul li {
-            padding: 10px 0; border-bottom: 1px solid #f0f0f0;
-            font-size: 0.95rem; color: var(--text-body);
-            display: flex; align-items: center; gap: 10px;
-        }
-        .items-list-ul li:last-child { border-bottom: none; }
-        .items-list-ul li i { color: var(--success); font-size: 1.1rem; }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .grid-steps { grid-template-columns: 1fr; gap: 20px; } 
-            .auth-grid, .footer-grid, .faq-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
-            .hero h1 { font-size: 1.9rem; }
-            .event-detail-card { padding: 24px 20px; border-radius: 0; box-shadow: none; background: transparent; }
-            .modal-box { border-radius: 20px 20px 0 0; position: absolute; bottom: 0; width: 100%; max-height: 85vh; padding-bottom: 32px;}
-            .logo-da-wrapper { justify-content: center; flex-direction: column; }
-            .stats-container { justify-content: center; }
-            .service-tag { margin: 0 auto 24px; }
-            .modal-event-header { margin-top: 0; }
-            .event-img-lg { width: 110px; height: 110px; }
-            .chk-info h4 { max-width: 160px; font-size: 0.95rem; } 
-            .faq-grid { text-align: left; }
-        }
     </style>
 </head>
 <body>
 
-    <header class="site-header">
+    <!-- CABEÇALHO SIMPLES -->
+    <header style="padding: 20px 0; background: #fff; border-bottom: 1px solid #eee;">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-            <div class="logo">Presente<span>.Social</span></div>
-            <button onclick="openContactModal()" class="btn-contact-header">
-                <i class="ph-bold ph-chat-circle-dots"></i> Contato
-            </button>
+            <div class="serif" style="font-size: 1.2rem; font-weight:700;">Presente<span style="color:var(--primary)">.Social</span></div>
+            <a href="https://wa.me/5565998150975" class="hero-btn" style="padding: 8px 16px; font-size: 0.8rem;">
+                Contato
+            </a>
         </div>
     </header>
 
     <main>
-        <!-- VIEW 1: HOME (Landing Page) -->
+        <!-- ================= HOME VIEW ================= -->
         <div id="home-view">
-            <!-- Hero -->
-            <section class="hero reveal active">
+            
+            <!-- 1. HERO: O GANCHO -->
+            <section class="hero">
                 <div class="container">
-                    <div class="location-badge">
-                        <i class="ph-fill ph-map-pin"></i> Cuiabá & Várzea Grande
-                    </div>
-                    <h1>Se você chegou até aqui <br><span style="color:var(--primary); font-style:italic;">é porque quer fazer a diferença na vida de alguém.</span></h1>
-                    <p>E a Dona Antônia vai cuidar de tudo pra você.</p>
-                    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-                        <a href="https://wa.me/5565998150975?text=Quero criar minha campanha." class="btn btn-primary">
-                            Criar Minha Campanha
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- EXPLICAÇÃO (Clean & Organized) -->
-            <section class="container section-py" style="padding-top:10px;">
-                <div class="text-center reveal">
-                    <h2 style="font-size: 1.75rem;">É Bem Simples</h2>
-                </div>
-                
-                <div class="grid-steps reveal">
-                    <!-- Step 1 -->
-                    <!-- MODIFICADO: Atualizei o link para apontar para a seção de modelos -->
-                    <div class="step-card">
-                        <div class="step-icon"><i class="ph-duotone ph-desktop"></i></div>
-                        <h3>1. Por onde começar?</h3>
-                        <p>Entre em contato. Nós vamos criar uma página personalizada do seu evento aqui no nosso site.</p>
-                        <a href="#modelos-sites" class="link-subtle">
-                            Ver modelo de site <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                    </div>
-                    <!-- Step 2 -->
-                    <div class="step-card">
-                        <div class="step-icon"><i class="ph-duotone ph-paper-plane-tilt"></i></div>
-                        <h3>2. Você Compartilha a sua página</h3>
-                        <p>Você recebe um link exclusivo e envia para seus convidados. Eles acessam, e fazem a compra das cestas de forma rápida e segura.</p>
-                    </div>
-                    <!-- Step 3 -->
-                    <div class="step-card">
-                        <div class="step-icon"><i class="ph-duotone ph-truck"></i></div>
-                        <h3>3. Após o evento</h3>
-                        <p>Nós e você, de forma rápida fazemos o fechamento do total de cestas. Você escolhe pra quem doar e nós fazemos a entrega das cestas.</p>
-                    </div>
-                    <!-- Step 4 -->
-                    <div class="step-card">
-                        <div class="step-icon"><i class="ph-duotone ph-camera"></i></div>
-                        <h3>4. Transparência Total</h3>
-                        <p>Registramos toda a entrega com fotos e recibo assinado pelo responsável. Você e seus convidados recebem a comprovação da entrega por whatsapp.</p>
-                    </div>
-                    <!-- Step 5 -->
-                    <div class="step-card">
-                        <div class="step-icon"><i class="ph-duotone ph-handshake"></i></div>
-                        <h3>5. Você acompanha tudo</h3>
-                        <p>Com a gente o contato é direto, você fala direto com os donos, pode visitar o escritório ou o barracão (ficam em locais diferentes) e pode acompanhar a entrega das cestas se quiser.</p>
-                    </div>
-                    <!-- Step 6 -->
-                    <div class="step-card">
-                        <div class="step-icon"><i class="ph-duotone ph-heart-straight"></i></div>
-                        <h3>6. Você escolhe pra quem doar</h3>
-                        <p>As cestas básicas são suas, são os presentes de seus convidados, nós entregamos onde você indicar. Caso não tenha nós temos algumas sugestões.</p>
-                    </div>
-                    
-                    <!-- Step 7: Modelo da Cesta (Melhorado) -->
-                    <div class="step-card basket-preview">
-                        <div class="step-icon"><i class="ph-duotone ph-shopping-bag-open"></i></div>
-                        <h3>7. Modelo Sugerido</h3>
-                        
-                        <div class="step-cesta-wrapper" onclick="openImageZoom('img/cesta-basica-cuiaba-varzea-grande-economica.jpg')" title="Clique para ampliar">
-                            <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" alt="Foto Cesta" class="step-cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Ver+Foto'">
-                        </div>
-                        
-                        <div class="step-price">R$ 85,00</div>
-                        <button onclick="openItemsModal()" class="btn-link-sm" style="margin: 0; background: var(--success-bg); color: var(--success);">
-                            <i class="ph-bold ph-list-dashes"></i> Ver Itens da Cesta
-                        </button>
-                    </div>
-
-                    <!-- Step 8: Pagamento -->
-                    <div class="step-card">
-                        <div class="step-icon"><i class="ph-duotone ph-credit-card"></i></div>
-                        <h3>8. Formas de Pagamento</h3>
-                        <p>O pagamento é feito através da plataforma Stone. Seguro e rápido.</p>
-                        <div class="payment-icons">
-                            <span class="payment-badge"><i class="ph-bold ph-pix-logo"></i> Pix</span>
-                            <span class="payment-badge"><i class="ph-bold ph-barcode"></i> Boleto</span>
-                            <span class="payment-badge"><i class="ph-bold ph-credit-card"></i> Crédito até 4x</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section class="section-py faq-section">
-                <div class="container">
-                    <div class="text-center reveal" style="margin-bottom:40px;">
-                        <h2 style="font-size: 1.75rem;">Perguntas Frequentes</h2>
-                    </div>
-                    <div class="faq-grid reveal">
-                        <div class="faq-item">
-                            <h4>1 - Tem alguma taxa?</h4>
-                            <p>Não. Não cobramos nenhuma taxa pra nada.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>2 - E se nenhum convidado doar?</h4>
-                            <p>Não tem problema. Se ninguém doar, nós doamos uma cesta em seu nome, afinal é seu aniversário e você merece.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>3 - Quanto tempo leva para ficar pronto minha página?</h4>
-                            <p>É bem rápido. Temos modelos pré-definidos e utilizamos I.A. para agilizar. Fica pronto em menos de 24 horas.</p>
-                        </div>
-                        <div class="faq-item">
-                            <h4>4 - Posso eu mesmo recolher as cestas e doar?</h4>
-                            <p>Claro. As cestas são suas. Você pode retirar ou podemos entregar na sua casa.</p>
-                        </div>
-                          <div class="faq-item">
-                            <h4>5 - Como eu vou saber quem doou?</h4>
-                            <p>Enviamos os comprovantes de pagamento em seu email e orientamos todos os doadores a fazerem o mesmo.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Autoridade (Visualmente Separada e Premium) -->
-            <section class="section-py" style="background:#fff; border-top:1px solid rgba(0,0,0,0.03);">
-                <div class="container">
-                    <div class="auth-grid reveal">
-                        <div>
-                            <!-- SERVICE TAG (Highlight) -->
-                            <div class="service-tag">
-                                <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Dona Antonia" onerror="this.src='https://placehold.co/30x30/A98467/fff?text=DA'">
-                                <span>Serviço oficial <strong>Dona Antônia</strong></span>
-                            </div>
-
-                            <div class="logo-da-wrapper">
-                                <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Dona Antônia" class="logo-da-round" onerror="this.src='https://placehold.co/100x100/A98467/fff?text=DA'">
-                                <h2 style="margin:0;">Solidez e Confiança</h2>
-                            </div>
-                            <p style="font-size:1rem; color:var(--text-body); max-width: 480px;">Há <strong>8 anos</strong> no mercado, a Dona Antônia é referência em qualidade, logística eficiente e compromisso social em Mato Grosso.</p>
-                            
-                            <div class="stats-container">
-                                <div><span class="stat-val">8</span><span class="stat-lbl">Anos de História</span></div>
-                                <div><span class="stat-val">+30k</span><span class="stat-lbl">Cestas Entregues</span></div>
-                            </div>
-                        </div>
-                        
-                        <div class="guarantee-card">
-                            <i class="ph-duotone ph-shield-check" style="font-size: 2.5rem; color: var(--success); margin-bottom: 16px;"></i>
-                            <h4 style="margin-bottom:8px; font-size:1.2rem;">Garantia de Entrega</h4>
-                            <p style="font-size:0.9rem; color:var(--text-body);">Os nossos parceiros de igrejas e ongs são de confiança e possuem trabalhos sociais reconhecidos.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Modelos de Sites -->
-            <!-- MODIFICADO: Adicionei o ID 'modelos-sites' aqui -->
-            <section id="modelos-sites" class="section-py" style="background: var(--bg-subtle);">
-                <div class="container">
-                    <div class="text-center reveal" style="margin-bottom:32px;">
-                        <h2>Modelos de sites</h2>
-                    </div>
-                    <div id="events-container" class="grid-3 reveal"></div>
-                </div>
-            </section>
-
-            <!-- Footer CTA -->
-            <section class="container reveal" style="margin-top:60px;">
-                <div class="cta-footer-section text-center">
-                    <h2 style="color:#fff; margin-bottom:8px;">Me mande um oi</h2>
-                    <p style="color: rgba(255,255,255,0.9); font-size: 1rem; margin-bottom: 20px;">Meu nome é Osvaldo e estou à disposição.</p>
-                    <a href="https://wa.me/5565998150975?text=Ol%C3%A1%20Osvaldo,%20vi%20o%20site%20Presente%20Social%20e%20gostaria%20de%20conversar." target="_blank" class="btn" style="background:#fff; color:var(--text-display); box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
-                        <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
+                    <span class="hero-tag">Aniversariante</span>
+                    <h1>"E se, em vez de presentes, o seu aniversário alimentasse famílias?"</h1>
+                    <a href="https://wa.me/5565998150975?text=Quero%20criar%20minha%20campanha" class="hero-btn">
+                        Criar Minha Campanha
                     </a>
                 </div>
             </section>
 
-            <!-- Rodapé Institucional -->
-            <footer class="site-footer">
-                <div class="container footer-grid">
-                    <div style="text-align: left;">
-                        <img src="img/logo-cesta-basica-dona-antonia.png" alt="Logo Pequena" class="footer-logo" onerror="this.src='https://placehold.co/80x80/A98467/fff?text=DA'">
-                        <h4 style="color:var(--text-display); margin-bottom:12px;">Cestas Básicas Dona Antônia</h4>
-                        <p style="max-width: 300px; font-size: 0.9rem;">8 anos de dedicação, amor no que faz e muito trabalho.</p>
-                        
-                        <a href="https://instagram.com//super.cestas.dona.antonia" target="_blank" class="social-link" style="margin-top: 20px;">
-                            <i class="ph-bold ph-instagram-logo"></i>Siga no Instagram
-                        </a>
-                    </div>
-                    <div style="text-align: left;">
-                        <h4 style="color:var(--text-display); margin-bottom:20px;">Contato & Endereço</h4>
-                        <p style="margin-bottom:10px;">
-                            <i class="ph-fill ph-phone" style="margin-right:8px; color:var(--primary)"></i> (65) 99815-0975 
-                            <!-- BOTÃO LIGAR DIRETAMENTE -->
-                            <button onclick="window.location.href='tel:5565998150975'" class="btn-save-contact" title="Ligar Agora">
-                                <i class="ph-bold ph-phone-call"></i>
-                            </button>
-                        </p>
-                        <p style="margin-bottom:10px;">
-                            <i class="ph-fill ph-briefcase" style="margin-right:8px; color:var(--primary)"></i> <strong>Escritório:</strong> Edifício The Point Smart Bussines, 6º Andar, Sala 605-A
-                        </p>
-                        <p style="margin-bottom:10px;">
-                            <i class="ph-fill ph-factory" style="margin-right:8px; color:var(--primary)"></i> <strong>Produção:</strong> Rua Trinta, 200, Bairro Nossa Senhora Aparecida, Cuiabá-MT
-                        </p>
-                        <p style="font-size:0.75rem; color:var(--text-muted); margin-top:24px; border-top: 1px solid #f0f0f0; padding-top: 20px;">
-                            CNPJ: 51.385.335/0001-06<br>
-                            Todos os direitos reservados.
+            <!-- 2. SOLUÇÃO: NÓS CUIDAMOS -->
+            <section class="solution-section">
+                <div class="container">
+                    <div class="solution-box">
+                        <h2 class="solution-title serif">Gostou da ideia?</h2>
+                        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                            Nós cuidamos de tudo para você. Criamos sua página, recebemos as doações e fazemos a logística de entrega.
                         </p>
                     </div>
                 </div>
-            </footer>
+            </section>
+
+            <!-- 3. PRODUTO: A CESTA -->
+            <section class="container" style="padding-bottom: 60px;">
+                <div class="text-center" style="margin-bottom: 30px;">
+                    <h2 class="serif">Qualidade Garantida</h2>
+                    <p>Selecionamos a Cesta Econômica perfeita para doação.</p>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <!-- Imagem da Cesta -->
+                        <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" 
+                             class="product-img" 
+                             alt="Cesta Básica" 
+                             onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+da+Cesta'">
+                    </div>
+                    <div class="product-info">
+                        <h3>Cesta Econômica</h3>
+                        <div class="price-tag">R$ 85,00</div>
+                        <button onclick="openItemsModal()" class="items-list-btn">Ver itens da cesta</button>
+                        <p style="font-size: 0.8rem; color: #999;">Entrega inclusa em Cuiabá e VG</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. CAMPANHAS ATIVAS (ESSENCIAL) -->
+            <section class="container" style="padding-bottom: 60px;">
+                <h3 class="serif text-center" style="margin-bottom: 20px;">Campanhas Ativas</h3>
+                <div id="events-container" class="events-grid">
+                    <!-- Javascript vai preencher aqui -->
+                    <p class="text-center">Carregando campanhas...</p>
+                </div>
+            </section>
+
+            <!-- 5. AUTORIDADE / RODAPÉ -->
+            <section class="trust-section" style="background: #fff; border-top: 1px solid #eee;">
+                <div class="container">
+                    <img src="img/logo-cesta-basica-dona-antonia.png" 
+                         class="logo-img" 
+                         alt="Logo Dona Antonia"
+                         onerror="this.src='https://placehold.co/100x100?text=DA'">
+                    
+                    <h2 class="serif" style="font-size: 1.5rem; margin-bottom: 10px;">Super Cestas Dona Antônia</h2>
+                    <p style="max-width: 500px; margin: 0 auto 20px;">
+                        Estamos há 8 anos montando e entregando Cestas Básicas de qualidade. Temos a logística pronta para receber os pedidos e entregar onde você indicar.
+                    </p>
+                    <div style="font-weight: 700; color: var(--primary);">
+                        <i class="ph-fill ph-phone"></i> (65) 99815-0975
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <!-- VIEW 2: EVENT PAGE (Detalhes) -->
-        <div id="event-view" class="hidden">
+        <!-- ================= EVENT VIEW (DETALHES DA CAMPANHA) ================= -->
+        <div id="event-view">
             <div class="container">
-                <button onclick="goBack()" class="btn-back">
-                    <i class="ph-bold ph-arrow-left"></i> Voltar
+                <button onclick="goBack()" class="back-btn">
+                    <i class="ph-bold ph-arrow-left"></i> Voltar para Home
                 </button>
 
-                <div class="event-detail-card reveal active">
-                    <!-- Header Evento -->
-                    <div class="event-header">
-                        <img id="pg-photo" src="" class="event-img-lg" onerror="this.src='https://placehold.co/150x150?text=Foto'">
-                        <h1 id="pg-title" style="font-size:1.8rem; margin-bottom:8px;">...</h1>
-                        
-                        <!-- Status e Data do Evento -->
-                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;">
-                            <span id="pg-date">...</span>
-                        </div>
-                        <p id="pg-subtitle" style="color:var(--text-body); font-style: italic; font-size: 0.95rem;">...</p>
+                <div class="campaign-header">
+                    <img id="pg-photo" src="" class="campaign-img" onerror="this.src='https://placehold.co/150x150?text=Foto'">
+                    <h1 id="pg-title" class="serif" style="font-size:1.8rem; margin-bottom:5px;">...</h1>
+                    <p id="pg-subtitle" style="font-style: italic; color: #777;">...</p>
+                </div>
+
+                <div style="background: #fff; padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 30px;">
+                    <h3 class="serif" style="margin-bottom: 16px;">Minha História</h3>
+                    <p id="pg-story" style="white-space: pre-line;">...</p>
+                </div>
+
+                <div class="progress-box">
+                    <div style="display:flex; justify-content:space-between; font-weight:700;">
+                        <span style="color:var(--success);"><span id="pg-current">0</span> doadas</span>
+                        <span>Meta: <span id="pg-goal">0</span></span>
                     </div>
-
-                    <!-- História -->
-                    <div style="border-top:1px solid rgba(0,0,0,0.05); border-bottom:1px solid rgba(0,0,0,0.05); padding:24px 0; margin-bottom:24px;">
-                        <h3 class="serif" style="margin-bottom:16px; font-size: 1.35rem;">Minha Missão</h3>
-                        <p id="pg-story" style="font-size:1rem; color:var(--text-body); white-space:pre-line; line-height:1.7;">...</p>
-                        
-                        <!-- Botão Vídeo (Injetado via JS se tiver ID) -->
-                        <div style="text-align:center;">
-                            <button id="btn-video" class="btn-video" style="display:none;">
-                                <i class="ph-fill ph-play-circle" style="font-size:1.4rem; color: #cc0000;"></i> Ver Mensagem em Vídeo
-                            </button>
-                        </div>
+                    <div class="progress-bar-bg">
+                        <div id="pg-bar" class="progress-fill"></div>
                     </div>
-
-                    <!-- Progresso -->
-                    <div style="background:var(--bg-subtle); padding:20px; border-radius:12px; margin-bottom:32px;">
-                        <div style="display:flex; justify-content:space-between; font-weight:700; color:var(--text-body); margin-bottom:10px; font-size: 0.9rem;">
-                            <span style="color:var(--success);"><span id="pg-current">0</span> cestas doadas</span>
-                            <span>Meta: <span id="pg-goal">0</span></span>
-                        </div>
-                        <div style="height:8px; background:#e0e0e0; border-radius:8px; overflow:hidden;">
-                            <div id="pg-bar" style="height:100%; background:var(--success); width:0%; transition: width 1s ease;"></div>
-                        </div>
-                        <p id="pg-progress-text" style="text-align:center; font-size:0.85rem; margin-top:12px; color:var(--text-muted);">Cada cesta faz a diferença.</p>
-                    </div>
-
-                    <!-- Botão Presentear -->
-                    <div id="donation-section" style="text-align:center; background: #fff; padding-top: 10px;">
-                        <p style="text-transform:uppercase; font-size:0.7rem; font-weight:700; letter-spacing: 0.1em; color:var(--text-muted); margin-bottom:12px;">Cesta Básica Completa</p>
-                        
-                        <!-- Imagem da cesta -->
-                        <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" alt="Cesta Básica Dona Antônia" class="cesta-img" onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+Cesta+Basica'">
-
-                        <button onclick="openItemsModal()" class="btn-link-sm">
-                            <i class="ph-bold ph-list-dashes"></i> Ver Itens da Cesta
-                        </button>
-
-                        <h2 style="color:var(--success); font-size:1.8rem; margin-bottom:20px;">R$ 85,00</h2>
-                        
-                        <button onclick="openCheckout()" class="btn" style="background:var(--success); color:#fff; width:100%; padding:16px; font-size:1.05rem; box-shadow: 0 5px 20px rgba(112, 141, 129, 0.2);">
-                            Presentear Agora
+                    
+                    <!-- AREA DE AÇÃO -->
+                    <div id="donation-area">
+                        <p style="margin-top: 20px; font-size: 0.9rem;">Presenteie com uma Cesta Básica (R$ 85,00)</p>
+                        <button onclick="openCheckout()" class="donate-btn">
+                            <i class="ph-bold ph-gift"></i> Presentear Agora
                         </button>
                     </div>
-
-                    <!-- Aviso de Encerrado -->
-                    <div id="closed-section" class="closed-notice" style="display:none;">
-                        <i class="ph-fill ph-check-circle" style="font-size: 2.2rem; color: var(--success); margin-bottom: 12px; display: block;"></i>
-                        <h3 style="margin-bottom: 6px; font-size: 1.2rem;">Campanha Encerrada!</h3>
-                        <span style="font-weight: 400; font-size: 0.95rem;">Obrigado a todos que participaram deste gesto de amor.</span>
+                    
+                    <div id="closed-area" style="display:none; margin-top:20px; color: #888;">
+                        <strong>Campanha Encerrada!</strong>
                     </div>
+                </div>
 
-                    <!-- MENSAGENS DE DOADORES (MOVIDO PARA O FINAL) -->
-                    <div id="messages-container" style="margin-top: 48px; display: none; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.05);">
-                        <h3 class="serif" style="margin-bottom: 24px; text-align: center; font-size: 1.35rem;">Mensagens de Carinho</h3>
-                        <div id="messages-list" class="messages-grid">
-                            <!-- Injetado via JS -->
-                        </div>
-                    </div>
-
+                <!-- Mensagens (Simplificado) -->
+                <div id="messages-container" style="display:none; margin-bottom: 60px;">
+                    <h3 class="serif text-center" style="margin-bottom: 20px;">Mensagens de Carinho</h3>
+                    <div id="messages-list" style="display: grid; gap: 10px;"></div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- CHECKOUT MODAL MODIFICADO -->
-    <div id="checkout-modal" class="modal-overlay">
+    <!-- MODAL DE ITENS (Simples) -->
+    <div id="items-modal" class="modal-overlay" onclick="if(event.target === this) this.classList.remove('active')">
+        <div class="modal-box text-center">
+            <button class="close-modal" onclick="document.getElementById('items-modal').classList.remove('active')">&times;</button>
+            <h3 class="serif" style="margin-bottom: 15px;">Itens da Cesta</h3>
+            <ul style="text-align: left; list-style: none; font-size: 0.9rem; line-height: 2;">
+                <li>✓ 5kg Arroz Tipo 1</li>
+                <li>✓ 2kg Açúcar Cristal</li>
+                <li>✓ 1un Óleo de Soja 900ml</li>
+                <li>✓ 1kg Feijão Dona Dê</li>
+                <li>✓ 250g Café</li>
+                <li>✓ 400g Macarrão Espaguete</li>
+                <li>✓ 1kg Farinha de Trigo</li>
+                <li>✓ 1kg Sal Refinado</li>
+                <li>✓ 1un Molho de Tomate</li>
+                <li>✓ 1un Milho Verde</li>
+                <li>✓ 1un Bolacha Recheada</li>
+                <li>✓ 1un Suco em Pó</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MODAL DE CHECKOUT (Simples) -->
+    <div id="checkout-modal" class="modal-overlay" onclick="if(event.target === this) this.classList.remove('active')">
         <div class="modal-box">
-            <button onclick="closeModal('checkout-modal')" style="position:absolute; top:20px; right:20px; font-size:1.2rem; color:#999;">&times;</button>
+            <button class="close-modal" onclick="document.getElementById('checkout-modal').classList.remove('active')">&times;</button>
+            <h3 class="serif text-center">Confirmar Doação</h3>
+            <p class="text-center" style="font-size: 0.85rem; color: #777; margin-bottom: 20px;">Você finalizará o pagamento seguro via WhatsApp.</p>
             
-            <div class="modal-event-header">
-                <img id="chk-photo" src="" class="chk-photo-sm" onerror="this.src='https://placehold.co/50x50?text=Foto'">
-                <div class="chk-info">
-                    <h4 id="chk-title">Carregando...</h4>
-                    <p id="chk-date" style="font-size: 0.75rem;">...</p>
+            <form onsubmit="submitDonation(event)">
+                <div class="input-group">
+                    <label>Seu Nome</label>
+                    <input type="text" id="donor-name" class="input-field" required placeholder="Ex: Maria Silva">
                 </div>
-            </div>
-
-            <h3 class="serif" style="font-size:1.3rem; margin-bottom: 6px;">Confirmar Doação</h3>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;">
-                Você será redirecionado para o WhatsApp para receber o link de pagamento da sua doação.
-            </p>
-
-            <form id="donation-form" onsubmit="submitDonation(event)">
-                <div class="form-group">
-                    <label class="form-label">Seu Nome</label>
-                    <input type="text" id="donor-name" class="form-input" required placeholder="Ex: Maria Silva">
+                <div class="input-group">
+                    <label>Seu WhatsApp</label>
+                    <input type="tel" id="donor-phone" class="input-field" required placeholder="(65) 99999-9999">
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">WhatsApp</label>
-                    <input type="tel" id="donor-phone" class="form-input" required placeholder="(00) 00000-0000">
+                <div class="input-group">
+                    <label>Mensagem para o aniversariante</label>
+                    <textarea id="donor-msg" class="input-field" rows="2"></textarea>
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Mensagem (Opcional)</label>
-                    <textarea id="donor-msg" class="form-input" rows="2" placeholder="Deixe um recado carinhoso..."></textarea>
-                </div>
-
-                <button type="submit" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top:20px;">
-                    Enviar <i class="ph-bold ph-whatsapp-logo"></i>
-                </button>
+                <button type="submit" class="donate-btn" style="background: var(--primary);">Enviar Pedido</button>
             </form>
         </div>
     </div>
 
-    <!-- ITEMS LIST MODAL (Formatado) -->
-    <div id="items-modal" class="modal-overlay">
-        <div class="modal-box">
-            <button onclick="closeModal('items-modal')" style="position:absolute; top:20px; right:20px; font-size:1.2rem; color:#999;">&times;</button>
-            
-            <h3 class="serif" style="margin-bottom:8px;">Itens da Cesta</h3>
-            <p style="margin-bottom:20px; color:var(--text-muted); font-size:0.9rem;">Produtos de qualidade Dona Antônia</p>
-
-            <div class="items-list-container">
-                <ul class="items-list-ul">
-                  <li><i class="ph-fill ph-check-circle"></i> 5kg Arroz</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 2kg Açúcar Cristal</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1un Óleo de Soja 900ml</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1kg Feijão Dona Dê</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 250g Café</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 400g Macarrão Espaguete</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Trigo</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1kg Farinha de Mandioca</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1kg Sal</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1un Molho de Tomate 300g</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1un Milho (Lata ou Sachê) 250g</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1un Bolacha Recheada</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1un Miojo Apti</li>
-                  <li><i class="ph-fill ph-check-circle"></i> 1un Suco em Pó</li>
-                </ul>
-            </div>
-
-            <button onclick="closeModal('items-modal')" class="btn" style="width:100%; background:var(--primary); color:#fff; margin-top: 24px;">
-                Fechar
-            </button>
-        </div>
-    </div>
-
-    <!-- VIDEO MODAL -->
-    <div id="video-modal" class="modal-overlay">
-        <div class="modal-box video-modal-box">
-            <button onclick="closeVideo()" style="position:absolute; top:10px; right:10px; font-size:2rem; color:#fff; z-index:10; background:none; border:none; cursor:pointer;">&times;</button>
-            <div class="video-container">
-                <iframe id="youtube-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- IMAGE ZOOM MODAL -->
-    <div id="image-modal" class="modal-overlay" onclick="closeImageZoom()">
-        <div class="modal-box image-zoom-box" onclick="event.stopPropagation()">
-            <img id="img-zoom" src="" class="zoom-img">
-            <button onclick="closeImageZoom()" style="position:absolute; top:10px; right:10px; font-size:2rem; color:#fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index:10; background:none; border:none; cursor:pointer;">&times;</button>
-        </div>
-    </div>
-
-    <!-- CONTATO MODAL -->
-    <div id="contact-modal" class="modal-overlay">
-        <div class="modal-box">
-            <button onclick="closeModal('contact-modal')" style="position:absolute; top:20px; right:20px; font-size:1.2rem; color:#999;">&times;</button>
-            
-            <h3 class="serif" style="margin-bottom:8px;">Fale Conosco</h3>
-            <p style="margin-bottom:20px; color:var(--text-muted); font-size:0.9rem;">Estamos prontos para te atender.</p>
-
-            <a href="https://wa.me/5565998150975" target="_blank" class="btn-contact-opt btn-whatsapp-lg">
-                <i class="ph-bold ph-whatsapp-logo"></i> Chamar no WhatsApp
-            </a>
-            
-            <a href="tel:5565998150975" class="btn-contact-opt btn-call-lg">
-                <i class="ph-bold ph-phone"></i> Ligar Agora
-            </a>
-
-            <div style="margin-top:20px; padding-top:20px; border-top:1px solid #eee;">
-                <p style="font-size:0.85rem; margin-bottom:10px;">Siga nosso Instagram</p>
-                <a href="https://instagram.com/cestabasicadonaantonia" target="_blank" class="btn-contact-opt btn-insta-lg">
-                    <i class="ph-bold ph-instagram-logo"></i> @cestabasicadonaantonia
-                </a>
-            </div>
-        </div>
-    </div>
-
     <script>
+        // LÓGICA DE DADOS (Mantida do original para funcionar)
         let eventsData = [];
         let currentEventSlug = null;
-        // let selectedQty = 1; // Removido pois não é mais usado
 
         async function init() {
             try {
-                // Cache busting
+                // Simulação de fetch para arquivo local 'events.json'
                 const response = await fetch(`events.json?v=${new Date().getTime()}`);
-                if(!response.ok) throw new Error("Erro ao carregar JSON");
+                if(!response.ok) throw new Error("Erro JSON");
                 eventsData = await response.json();
                 
-                const container = document.getElementById('events-container');
-                container.innerHTML = '';
-                
-                eventsData.forEach(ev => {
-                    const pct = Math.round((ev.current / ev.goal) * 100);
-                    const statusStr = ev.status ? ev.status.toString().toLowerCase().trim() : '';
-                    const expired = statusStr === 'closed';
-                    
-                    const statusHtml = expired 
-                        ? `<span class="status-badge badge-closed">Encerrado</span>`
-                        : `<span class="status-badge badge-active">Ativo</span>`;
-
-                    const cardClass = expired ? 'event-card expired' : 'event-card';
-
-                    container.innerHTML += `
-                        <div class="${cardClass}" onclick="openPage('${ev.slug}')">
-                            <img src="${ev.photo}" class="event-photo" onerror="this.src='https://placehold.co/70x70?text=Foto'">
-                            <div style="flex:1;">
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                                    <h4 style="font-size:1rem; margin:0;">${ev.title}</h4>
-                                    ${statusHtml}
-                                </div>
-                                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom: 6px;">${ev.current} de ${ev.goal} cestas</div>
-                                <div style="height:5px; background:#f0f0f0; border-radius:6px; overflow:hidden;">
-                                    <div style="width:${pct}%; height:100%; background:var(--success);"></div>
-                                </div>
-                            </div>
-                            <i class="ph-bold ph-caret-right" style="color:#ccc; font-size: 1rem;"></i>
-                        </div>
-                    `;
-                });
-
+                renderEventsList();
                 handleRouting();
 
-                const observer = new IntersectionObserver(entries => {
-                    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-                }, { threshold: 0.1 });
-                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
             } catch (err) {
-                console.error("Falha na inicialização:", err);
-                document.getElementById('events-container').innerHTML = '<p class="text-center">Erro ao carregar eventos.</p>';
+                console.log("Erro ao carregar, usando dados de exemplo se falhar...");
+                document.getElementById('events-container').innerHTML = '<p class="text-center">Nenhuma campanha encontrada no momento.</p>';
             }
         }
 
+        function renderEventsList() {
+            const container = document.getElementById('events-container');
+            container.innerHTML = '';
+            
+            eventsData.forEach(ev => {
+                const isClosed = ev.status && ev.status === 'closed';
+                // Só mostra se não estiver fechado na home, ou mostra com opacidade
+                const opacity = isClosed ? '0.6' : '1';
+                
+                container.innerHTML += `
+                    <div class="event-mini-card" style="opacity: ${opacity}" onclick="openPage('${ev.slug}')">
+                        <img src="${ev.photo}" class="ev-photo" onerror="this.src='https://placehold.co/60x60'">
+                        <div style="flex:1">
+                            <h4 style="margin:0; font-size: 1rem;">${ev.title}</h4>
+                            <span style="font-size:0.8rem; color: var(--primary);">${isClosed ? 'Encerrado' : 'Participar'}</span>
+                        </div>
+                        <i class="ph-bold ph-caret-right"></i>
+                    </div>
+                `;
+            });
+        }
+
+        /* ROTEAMENTO SIMPLES */
         window.addEventListener('hashchange', handleRouting);
+        
         function handleRouting() {
             const slug = window.location.hash.replace('#', '');
-            if (slug && eventsData.length > 0) {
-                // Verificamos se o slug NÃO É a nossa âncora de rolagem
-                if(slug === 'modelos-sites') return;
-
-                const ev = eventsData.find(e => e.slug === slug);
-                if(ev) renderEventView(ev);
-                else renderHomeView();
+            if (slug && eventsData.find(e => e.slug === slug)) {
+                renderEventView(eventsData.find(e => e.slug === slug));
             } else {
                 renderHomeView();
             }
         }
+
         function openPage(slug) { window.location.hash = slug; }
         function goBack() { window.location.hash = ''; }
 
         function renderHomeView() {
-            document.getElementById('event-view').classList.add('hidden');
+            document.getElementById('event-view').classList.remove('active');
             document.getElementById('home-view').classList.remove('hidden');
-            document.body.classList.remove('theme-masculine'); // Volta ao tema padrão
-            window.scrollTo(0, 0);
-            currentEventSlug = null;
+            window.scrollTo(0,0);
         }
 
         function renderEventView(ev) {
             currentEventSlug = ev.slug;
-            
-            // GARANTIR QUE A HOME SUMA
             document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('event-view').classList.add('active');
             
-            // DETECÇÃO AUTOMÁTICA DE TEMA MASCULINO
-            if(ev.title.toLowerCase().includes('osvaldo') || ev.slug.toLowerCase().includes('osvaldo')) {
-                document.body.classList.add('theme-masculine');
-            } else {
-                document.body.classList.remove('theme-masculine');
-            }
-
-            const statusStr = ev.status ? ev.status.toString().toLowerCase().trim() : '';
-            const expired = statusStr === 'closed';
-            
-            document.getElementById('pg-photo').src = ev.photo;
+            // Popula dados
             document.getElementById('pg-title').innerText = ev.title;
-            document.getElementById('pg-subtitle').innerText = ev.subtitle;
-            document.getElementById('pg-date').innerText = `Data do Evento: ${ev.event_date}`;
+            document.getElementById('pg-subtitle').innerText = ev.subtitle || '';
             document.getElementById('pg-story').innerText = ev.story;
+            document.getElementById('pg-photo').src = ev.photo;
             
+            // Barra de progresso
             document.getElementById('pg-current').innerText = ev.current;
             document.getElementById('pg-goal').innerText = ev.goal;
-            document.getElementById('pg-bar').style.width = ((ev.current/ev.goal)*100) + '%';
+            const pct = Math.min(100, (ev.current / ev.goal) * 100);
+            document.getElementById('pg-bar').style.width = pct + '%';
 
-            const btnVideo = document.getElementById('btn-video');
-            if(ev.video_id) {
-                btnVideo.style.display = 'inline-flex';
-                btnVideo.onclick = () => openVideo(ev.video_id);
+            // Verifica status
+            if (ev.status === 'closed') {
+                document.getElementById('donation-area').style.display = 'none';
+                document.getElementById('closed-area').style.display = 'block';
             } else {
-                btnVideo.style.display = 'none';
+                document.getElementById('donation-area').style.display = 'block';
+                document.getElementById('closed-area').style.display = 'none';
             }
-
+            
+            // Mensagens
             const msgList = document.getElementById('messages-list');
             msgList.innerHTML = '';
-            
             if(ev.messages && ev.messages.length > 0) {
                 document.getElementById('messages-container').style.display = 'block';
                 ev.messages.forEach(m => {
                     msgList.innerHTML += `
-                        <div class="message-card">
-                            <div class="msg-author">
-                                <i class="ph-fill ph-heart" style="color:var(--primary); font-size:0.8rem;"></i>
-                                ${m.name}
-                            </div>
-                            <div class="msg-text">"${m.message}"</div>
+                        <div style="background:#f9f9f9; padding:10px; border-radius:8px; font-size:0.9rem;">
+                            <strong>${m.name}:</strong> <i>"${m.message}"</i>
                         </div>
                     `;
                 });
             } else {
                 document.getElementById('messages-container').style.display = 'none';
             }
-
-            const donateSection = document.getElementById('donation-section');
-            const closedSection = document.getElementById('closed-section');
-            const progressText = document.getElementById('pg-progress-text');
-
-            if(expired) {
-                donateSection.style.display = 'none';
-                closedSection.style.display = 'block';
-                progressText.innerText = "Meta finalizada.";
-            } else {
-                donateSection.style.display = 'block';
-                closedSection.style.display = 'none';
-                progressText.innerText = "Cada cesta faz a diferença.";
-            }
-
-            document.getElementById('event-view').classList.remove('hidden');
-            window.scrollTo(0, 0);
+            window.scrollTo(0,0);
         }
 
-        // Gera e baixa um VCF para salvar na agenda
-        function saveContact() {
-            const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Dona Antônia\nTEL;TYPE=CELL:(65) 99815-0975\nEMAIL:contato@donaantonia.com.br\nEND:VCARD";
-            const blob = new Blob([vcard], { type: "text/vcard" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = "contato-dona-antonia.vcf";
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function openContactModal() {
-            document.getElementById('contact-modal').classList.add('active');
-        }
-        function openCheckout() {
-            // selectedQty = 1; // Removido
-            const ev = eventsData.find(e => e.slug === currentEventSlug);
-            if(ev) {
-                document.getElementById('chk-photo').src = ev.photo;
-                document.getElementById('chk-title').innerText = ev.title;
-                document.getElementById('chk-date').innerText = 'Data: ' + ev.event_date;
-            }
-            // updateCheckoutUI(); // Removido pois não há mais UI dinâmica de preço
-            document.getElementById('checkout-modal').classList.add('active');
-        }
-        function openItemsModal() {
-            document.getElementById('items-modal').classList.add('active');
-        }
-        function openImageZoom(src) {
-            document.getElementById('img-zoom').src = src;
-            document.getElementById('image-modal').classList.add('active');
-        }
-        function closeImageZoom() {
-            document.getElementById('image-modal').classList.remove('active');
-        }
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-        }
-
-        function openVideo(videoId) {
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            document.getElementById('youtube-iframe').src = embedUrl;
-            document.getElementById('video-modal').classList.add('active');
-        }
-        function closeVideo() {
-            document.getElementById('video-modal').classList.remove('active');
-            document.getElementById('youtube-iframe').src = "";
-        }
-
-        // Funções setQty e updateCheckoutUI foram removidas pois não são mais necessárias
+        /* UI ACTIONS */
+        function openItemsModal() { document.getElementById('items-modal').classList.add('active'); }
+        function openCheckout() { document.getElementById('checkout-modal').classList.add('active'); }
 
         function submitDonation(e) {
             e.preventDefault();
             const ev = eventsData.find(e => e.slug === currentEventSlug);
-            
             const name = document.getElementById('donor-name').value;
             const phone = document.getElementById('donor-phone').value;
             const msg = document.getElementById('donor-msg').value;
-            // Cálculo de total removido
 
-            let text = `Olá! Quero participar do evento *${ev.title}*\n\n`;
-            text += `*Nome:* ${name}\n`;
-            text += `*Telefone:* ${phone}\n`;
-            text += `Gostaria de fazer a doação de uma Cesta Básica.\n`;
-            
-            if(msg) text += `*Mensagem:* ${msg}`;
+            let text = `Olá! Quero participar do evento *${ev.title}*\n`;
+            text += `Nome: ${name}\nTelefone: ${phone}\n`;
+            text += `Quero doar 1 Cesta Básica (R$ 85,00).\n`;
+            if(msg) text += `Mensagem: ${msg}`;
 
             const url = `https://wa.me/5565998150975?text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
 
-        window.onclick = function(e) {
-            if (e.target.classList.contains('modal-overlay')) {
-                e.target.classList.remove('active');
-                if(e.target.id === 'video-modal') {
-                    document.getElementById('youtube-iframe').src = "";
-                }
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', init);
+        init();
     </script>
 </body>
 </html>
