@@ -233,6 +233,16 @@
         .input-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
         .input-field { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
 
+        /* Icones Sociais */
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.8rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: var(--primary-dark);
+        }
+
     </style>
 </head>
 <body>
@@ -308,7 +318,7 @@
             </section>
 
             <!-- 5. AUTORIDADE / RODAPÉ -->
-            <section class="trust-section" style="background: #fff; border-top: 1px solid #eee;">
+            <section class="trust-section" style="background: #fff; border-top: 1px solid #eee; padding-bottom: 80px;">
                 <div class="container">
                     <img src="img/logo-cesta-basica-dona-antonia.png" 
                          class="logo-img" 
@@ -319,7 +329,32 @@
                     <p style="max-width: 500px; margin: 0 auto 20px;">
                         Estamos há 8 anos montando e entregando Cestas Básicas de qualidade. Temos a logística pronta para receber os pedidos e entregar onde você indicar.
                     </p>
-                    <div style="font-weight: 700; color: var(--primary);">
+                    
+                    <!-- LINKS E REDES SOCIAIS -->
+                    <div style="margin-bottom: 24px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+                        
+                        <!-- Site Oficial -->
+                        <a href="https://donaantonia.com.br" target="_blank" style="color: var(--primary); font-weight: 700; font-size: 1.1rem; text-decoration: underline;">
+                            www.donaantonia.com.br
+                        </a>
+
+                        <!-- Redes Sociais -->
+                        <div class="social-links" style="display: flex; gap: 20px;">
+                            <a href="https://instagram.com/super.cestas.dona.antonia" target="_blank" aria-label="Instagram">
+                                <i class="ph-bold ph-instagram-logo"></i>
+                            </a>
+                            <a href="https://www.facebook.com/supercestasdonaantonia" target="_blank" aria-label="Facebook">
+                                <i class="ph-bold ph-facebook-logo"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Botão WhatsApp -->
+                    <a href="https://wa.me/5565998150975" target="_blank" class="hero-btn" style="background: #25D366; color: #fff; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); margin-bottom: 20px;">
+                        <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
+                    </a>
+
+                    <div style="font-weight: 700; color: var(--text-body); font-size: 0.9rem;">
                         <i class="ph-fill ph-phone"></i> (65) 99815-0975
                     </div>
                 </div>
