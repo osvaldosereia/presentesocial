@@ -7,6 +7,10 @@
     "event_date": "14/12/2025",
     "end_date": "17/12/2025",
     "photo": "img/elisabet.png",
+    
+    "layout": "round",
+    "theme": "female",
+
     "story": "A vida já me presenteou com o que há de mais valioso: minha família, meus filhos, amigos, saúde, paz e alegria. Meu coração transborda gratidão a Deus e a todos vocês que fazem parte da minha história.\n\nComo forma de agradecer por tantas bênçãos, convido vocês a uma missão especial: vamos juntos transformar essa gratidão em solidariedade e quem precisa. Obrigada por estarem comigo nessa!",
     "goal": 30,
     "current": 11,
@@ -55,6 +59,10 @@
     "event_date": "30/01/2026",
     "end_date": "05/02/2026",
     "photo": "img/osvaldo.png",
+
+    "layout": "horizontal",
+    "theme": "male",
+
     "story": "Bem-vindo à nossa missão. Somos uma associação sem fins lucrativos dedicada a levar alimento e esperança para quem mais necessita. De famílias inteiras a jovens e idosos, além do apoio a outras ONGs, nosso trabalho é garantir que a solidariedade chegue à mesa de todos. Mas não fazemos isso sozinhos. Para combater a fome, precisamos de você. Ao doar uma cesta básica, você se torna um Padrinho Mágico: alguém capaz de transformar a realidade de uma família com um simples gesto de amor. Está pronto para aceitar essa missão?",
     "goal": 20,
     "current": 5,
