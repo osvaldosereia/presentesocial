@@ -9,7 +9,7 @@
     "photo": "img/elisabet.png",
     "story": "A vida já me presenteou com o que há de mais valioso: minha família, meus filhos, amigos, saúde, paz e alegria. Meu coração transborda gratidão a Deus e a todos vocês que fazem parte da minha história.\n\nComo forma de agradecer por tantas bênçãos, convido vocês a uma missão especial: vamos juntos transformar essa gratidão em solidariedade e quem precisa. Obrigada por estarem comigo nessa!",
     "goal": 30,
-    "current": 6,
+    "current": 11,
     "beneficiary": {
       "name": "Lar dos Idósos",
       "img": "img/lar-sao-vicente.png"
@@ -40,20 +40,24 @@
       {
         "name": "Fernanda Aguirre",
         "message": "Que Jesus te proteja grandemente! Saúde e muitas felicidades!."
+      },
+        {
+        "name": "Rosina Sereia",
+        "message": "Te desejo muita paz, saúde e muitas alegrias nesse dia tão especial!."
       }
     ]
   },
   {
-    "slug": "osvaldo-47",
+    "slug": "padrinhos-magicos",
     "status": "closed",
-    "title": "47 Anos do Osvaldo",
-    "subtitle": "Celebrando a Vida",
-    "event_date": "10/10/2025",
-    "end_date": "05/11/2025",
+    "title": "Padrinhos Mágicos",
+    "subtitle": "A verdadeira mágica é transformar a vida de quem precisa",
+    "event_date": "30/01/2026",
+    "end_date": "05/02/2026",
     "photo": "img/osvaldo.png",
-    "story": "Chegar aos 47 anos é um marco de maturidade e reflexão. Olho para trás e vejo o quanto fui abençoado com saúde, amigos leais e uma família maravilhosa. A gratidão que sinto hoje é imensa e não caberia apenas em palavras.\n\nPor isso, neste aniversário, decidi fazer algo diferente. Em vez de presentes, gostaria de contar com o apoio de vocês para levar esperança e alimento para quem mais precisa. Escolhi a ONG Fome e Frio para receber todo o nosso carinho em forma de cestas básicas. Conto com vocês para celebrarmos a vida ajudando o próximo!",
-    "goal": 30,
-    "current": 38,
+    "story": "Bem-vindo à nossa missão. Somos uma associação sem fins lucrativos dedicada a levar alimento e esperança para quem mais necessita. De famílias inteiras a jovens e idosos, além do apoio a outras ONGs, nosso trabalho é garantir que a solidariedade chegue à mesa de todos. Mas não fazemos isso sozinhos. Para combater a fome, precisamos de você. Ao doar uma cesta básica, você se torna um Padrinho Mágico: alguém capaz de transformar a realidade de uma família com um simples gesto de amor. Está pronto para aceitar essa missão?",
+    "goal": 20,
+    "current": 5,
     "beneficiary": {
       "name": "ONG Fome e Frio",
       "img": "img/ong-fome-frio.png"
