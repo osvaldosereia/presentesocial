@@ -56,15 +56,15 @@
     "status": "active",
     "title": "Padrinhos Mágicos",
     "subtitle": "A verdadeira mágica é transformar a vida de quem precisa",
-    "event_date": "30/01/2026",
-    "end_date": "05/02/2026",
+    "event_date": "31/12/2025",
+    "end_date": "31/12/2025",
     "photo": "img/padrinho.png",
 
     "layout": "square",
     "theme": "neutral",
 
     "story": "Bem-vindo à nossa missão. Somos uma associação sem fins lucrativos dedicada a levar alimento e esperança para quem mais necessita.\n\nDe famílias inteiras a jovens e idosos, além do apoio a outras ONGs, nosso trabalho é garantir que a solidariedade chegue à mesa de todos. Mas não fazemos isso sozinhos. Para combater a fome, precisamos de você.\n\nAo doar uma cesta básica, você se torna um Padrinho Mágico: alguém capaz de transformar a realidade de uma família com um simples gesto de amor.\n\nEstá pronto para aceitar essa missão?",
-    "goal": 20,
+    "goal": 10,
     "current": 5,
     "beneficiary": {
       "name": "ONG Fome e Frio",
