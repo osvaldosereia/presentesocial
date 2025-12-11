@@ -2,42 +2,79 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Aniversário Solidário. Transforme presentes em cestas básicas.">
+    <!-- Viewport otimizado para mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <!-- SEO Básico -->
+    <meta name="description" content="Aniversário Solidário da Dona Antônia. Transforme presentes em cestas básicas e ajude quem precisa em Cuiabá e Várzea Grande.">
+    <meta name="keywords" content="doação, cesta básica, aniversário solidário, cuiabá, várzea grande, caridade, dona antônia">
+    <meta name="author" content="Presente Social - Dona Antônia">
     <meta name="theme-color" content="#A98467">
-    <title>Presente Social - Dona Antônia</title>
+    
+    <!-- Open Graph / Facebook / WhatsApp (Essencial para compartilhamento) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://donaantonia.com.br/">
+    <meta property="og:title" content="Presente Social - Dona Antônia">
+    <meta property="og:description" content="Transforme seu aniversário em um ato de solidariedade. Doe cestas básicas.">
+    <meta property="og:image" content="img/cesta-basica-cuiaba-varzea-grande-economica.jpg">
 
-    <!-- Fontes e Ícones -->
+    <title>Presente Social - Dona Antônia | Aniversário Solidário</title>
+
+    <!-- Preconnect: Avisa ao navegador para se conectar cedo ao Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fontes com display=swap para evitar texto invisível enquanto carrega -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Script de Ícones com DEFER (Não bloqueia o carregamento da página) -->
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+    <!-- JSON-LD: Dados Estruturados para o Google entender o negócio -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Super Cestas Dona Antônia",
+      "url": "https://donaantonia.com.br",
+      "logo": "img/logo-cesta-basica-dona-antonia.png",
+      "description": "Empresa especializada em montagem e entrega de Cestas Básicas e campanhas solidárias.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Trinta, 200",
+        "addressLocality": "Cuiabá",
+        "addressRegion": "MT",
+        "addressCountry": "BR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-65-99815-0975",
+        "contactType": "customer service"
+      }
+    }
+    </script>
 
     <style>
         /* =========================================
-           ESTILO REFINADO (PROFESSIONAL FEEL)
+           ESTILO CRÍTICO OTIMIZADO
            ========================================= */
         :root {
-            /* Cores Padrão (Neutro/Bege) - Serão sobrescritas via JS */
             --primary: #A98467;
             --primary-light: #C2A58D;
             --primary-dark: #8C6A54;
-            
             --bg-body: #FAFAF9;
-            --bg-white: #FFFFFF;
             --text-main: #24201D;
             --text-body: #595552;
             --success: #6B8E7B;
-            
             --container: 1024px;
             --radius: 16px;
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-            --shadow-md: 0 10px 15px -3px rgba(169, 132, 103, 0.08), 0 4px 6px -2px rgba(169, 132, 103, 0.04);
-            --shadow-hover: 0 20px 25px -5px rgba(169, 132, 103, 0.12), 0 10px 10px -5px rgba(169, 132, 103, 0.04);
-            
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Sombras otimizadas para performance de renderização */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 8px 16px rgba(169, 132, 103, 0.1);
+            --transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
         }
 
+        /* Reset Básico */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body { 
@@ -46,7 +83,9 @@
             color: var(--text-body); 
             line-height: 1.6;
             padding-bottom: 40px;
+            /* Melhoria na renderização de fontes */
             -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
         h1, h2, h3, .serif { 
@@ -56,12 +95,20 @@
             letter-spacing: -0.02em; 
         }
 
+        /* Utilitários de Layout */
         .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
         .text-center { text-align: center; }
-        img { max-width: 100%; display: block; }
+        
+        /* Imagens Responsivas e Fluidas */
+        img { max-width: 100%; height: auto; display: block; }
+        
         button { cursor: pointer; border: none; outline: none; background: none; font-family: inherit; }
 
-        /* Animações Sutis */
+        /* Animações Reduzidas se o usuário preferir (Acessibilidade) */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -73,12 +120,13 @@
         /* HEADER */
         .site-header {
             padding: 16px 0;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95); /* Menos blur para performance */
+            backdrop-filter: blur(8px);
             border-bottom: 1px solid rgba(0,0,0,0.03);
             position: sticky;
             top: 0;
             z-index: 100;
+            will-change: transform; /* Dica para GPU */
         }
         .brand { font-size: 1.3rem; font-weight: 700; color: var(--text-main); }
         .brand span { color: var(--primary); }
@@ -96,9 +144,11 @@
 
         /* HERO */
         .hero {
-            padding: 100px 0 80px;
+            padding: 80px 0 60px;
             text-align: center;
             background: radial-gradient(circle at center top, #ffffff 0%, var(--bg-body) 100%);
+            /* Otimização de pintura (Paint) */
+            content-visibility: auto; 
         }
         
         .hero-tag {
@@ -118,13 +168,11 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.0rem, 4.8vw, 3.3rem);
+            font-size: clamp(2.0rem, 5vw, 3.3rem);
             line-height: 1.1;
             max-width: 860px;
             margin: 0 auto 40px;
-            background: linear-gradient(135deg, var(--text-main) 0%, #594a42 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main); /* Fallback se gradient falhar */
         }
 
         .hero-btn {
@@ -142,7 +190,7 @@
             transition: var(--transition);
         }
         .hero-btn:hover { 
-            transform: translateY(-2px) scale(1.02); 
+            transform: translateY(-2px); 
             box-shadow: 0 15px 30px -5px rgba(0,0,0, 0.15); 
         }
 
@@ -151,20 +199,20 @@
         .solution-box {
             background: #fff;
             border-radius: var(--radius);
-            padding: 60px 40px;
+            padding: 40px 30px;
             text-align: center;
             border: 1px solid rgba(169, 132, 103, 0.1);
             box-shadow: var(--shadow-md);
             max-width: 800px;
             margin: 0 auto;
             position: relative;
-            overflow: hidden;
         }
         .solution-box::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 4px; height: 100%;
             background: var(--primary);
+            border-radius: 4px 0 0 4px;
         }
         .solution-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 16px; }
 
@@ -176,16 +224,16 @@
             overflow: hidden;
             max-width: 420px;
             margin: 0 auto;
-            position: relative;
             transition: var(--transition);
             border: 1px solid rgba(0,0,0,0.03);
         }
-        .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .product-card:hover { transform: translateY(-5px); }
         
         .product-img-wrapper {
             position: relative;
             background: #f8f8f8;
-            height: 280px;
+            height: auto;
+            aspect-ratio: 4/3; /* Define proporção para evitar CLS */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -213,14 +261,13 @@
             color: var(--success);
             font-weight: 600;
             font-size: 0.9rem;
-            padding: 8px 16px;
+            padding: 12px 20px; /* Aumentado área de toque para mobile */
             border-radius: 8px;
             background: rgba(107, 142, 123, 0.1);
             transition: var(--transition);
             display: inline-block;
             margin-bottom: 8px;
         }
-        .items-list-btn:hover { background: rgba(107, 142, 123, 0.2); text-decoration: none; }
 
         /* LISTAGEM DE EVENTOS */
         .events-grid {
@@ -251,31 +298,26 @@
             border-radius: 50%; object-fit: cover; 
             border: 2px solid #fff;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #eee;
         }
-        .status-dot {
-            height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 6px;
-        }
+        .status-dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
 
         /* FOOTER */
         .trust-section {
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
             background: #fff;
             border-top: 1px solid rgba(0,0,0,0.03);
-            position: relative;
+            margin-top: 40px;
         }
         .logo-img { 
-            width: 100px; 
-            height: 100px; 
-            border-radius: 50%; 
-            object-fit: contain;
-            margin: 0 auto 24px;
-            background: #fff;
-            box-shadow: var(--shadow-md);
-            padding: 4px;
+            width: 100px; height: 100px; 
+            border-radius: 50%; object-fit: contain;
+            margin: 0 auto 24px; background: #fff;
+            box-shadow: var(--shadow-md); padding: 4px;
         }
 
-        /* VIEW DE DETALHES (SPA) */
+        /* SPA VIEWS */
         #event-view { padding-top: 20px; display: none; min-height: 100vh; background: var(--bg-body); }
         #event-view.active { display: block; }
         #home-view.hidden { display: none; }
@@ -283,78 +325,68 @@
         .back-btn { 
             margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px; 
             color: var(--text-body); font-weight: 600; font-size: 0.9rem;
-            padding: 8px 16px; background: #fff; border-radius: 50px;
+            padding: 10px 20px; background: #fff; border-radius: 50px;
             box-shadow: var(--shadow-sm); transition: var(--transition);
         }
-        .back-btn:hover { transform: translateX(-4px); color: var(--primary); }
         
         .campaign-header { text-align: center; margin-bottom: 40px; }
         
-        /* BOTÃO DE COMPARTILHAR */
         .share-btn {
             margin-top: 12px;
             background: #fff;
             border: 1px solid rgba(0,0,0,0.08);
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--text-body);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
-        }
-        .share-btn:hover {
-            transform: translateY(-2px);
-            color: var(--primary);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-md);
+            cursor: pointer;
         }
 
-        /* NOVAS CLASSES PARA FORMATO DA FOTO */
         .campaign-img { 
             object-fit: cover;
             border: 4px solid #fff; 
             box-shadow: var(--shadow-md); 
             margin: 0 auto 20px; 
             display: block;
-            transition: all 0.3s ease;
+            transition: border-radius 0.3s ease;
+            background: #eee;
         }
         
         .shape-round { width: 140px; height: 140px; border-radius: 50%; }
         .shape-square { width: 200px; height: 200px; border-radius: 24px; }
         .shape-horizontal { width: 100%; max-width: 500px; aspect-ratio: 16 / 9; height: auto; border-radius: 16px; }
 
-        /* Progress Bar */
         .progress-box { 
-            background: #fff; padding: 32px; border-radius: var(--radius); 
+            background: #fff; padding: 24px; border-radius: var(--radius); 
             margin-bottom: 32px; text-align: center; 
             box-shadow: var(--shadow-md); border: 1px solid rgba(0,0,0,0.03);
         }
         .progress-bar-bg { background: #f0f0f0; height: 12px; border-radius: 12px; margin: 16px 0; overflow: hidden; }
         .progress-fill { background: linear-gradient(90deg, var(--success) 0%, #8BC4A8 100%); height: 100%; width: 0%; transition: width 1s ease-out; }
 
-        /* ESTILO DO CARTÃO DE DOAÇÃO RESPONSIVO */
+        /* CARD DE DOAÇÃO RESPONSIVO */
         .donation-card {
             background: #FAFAF9;
             border-radius: 12px;
             padding: 24px;
             border: 1px solid rgba(0,0,0,0.03);
             display: flex;
-            flex-direction: column; /* Mobile first: Coluna */
+            flex-direction: column; 
             align-items: center;
             text-align: center;
             gap: 20px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.01);
         }
         .donation-img {
             width: 100%;
             max-width: 240px;
+            aspect-ratio: 4/3; /* Evita CLS */
             border-radius: 12px;
             box-shadow: var(--shadow-sm);
-            display: block;
+            object-fit: cover;
         }
         .donation-info { width: 100%; }
 
@@ -372,132 +404,65 @@
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             cursor: pointer;
         }
-        .donate-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 25px -5px rgba(107, 142, 123, 0.5); }
 
-        /* Media Query para Desktop (Tablet Landscape e acima) */
         @media (min-width: 768px) {
             .donation-card {
-                flex-direction: row; /* Vira linha no desktop */
-                text-align: left;
-                align-items: center;
-                padding: 32px;
-                gap: 32px;
+                flex-direction: row; text-align: left; align-items: center; padding: 32px; gap: 32px;
             }
             .donation-img {
-                margin: 0;
-                width: 220px;
-                height: 220px; /* Quadrado fixo para alinhamento */
-                object-fit: cover;
-                flex-shrink: 0;
+                margin: 0; width: 220px; height: 220px; flex-shrink: 0;
             }
             .donation-info {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start; /* Alinha texto à esquerda */
+                flex: 1; display: flex; flex-direction: column; align-items: flex-start;
             }
-            .donate-btn {
-                width: auto; /* Botão não ocupa largura total */
-                margin-top: 24px;
-                font-size: 1.15rem;
-            }
-        }
-
-        /* MENSAGENS */
-        .message-card {
-            background: #fff;
-            padding: 24px;
-            border-radius: var(--radius);
-            margin-bottom: 16px;
-            border: 1px solid rgba(0,0,0,0.03);
-            box-shadow: var(--shadow-sm);
-            position: relative;
-        }
-        .message-card::before {
-            content: '“';
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            color: rgba(0,0,0, 0.05); /* Cor neutra para aspas */
-            line-height: 1;
-        }
-        .msg-author {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .msg-text {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: var(--text-body);
-            font-size: 1.05rem;
-            line-height: 1.6;
+            .donate-btn { width: auto; margin-top: 24px; }
         }
 
         /* MODAIS */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(36, 32, 29, 0.6); 
             display: none; align-items: center; justify-content: center; z-index: 999;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(4px); /* Blur reduzido para mobile */
             opacity: 0; transition: opacity 0.3s ease;
         }
         .modal-overlay.active { display: flex; opacity: 1; }
         
         .modal-box { 
-            background: #fff; padding: 40px; border-radius: 24px; 
+            background: #fff; padding: 32px; border-radius: 24px; 
             max-width: 440px; width: 90%; position: relative; 
             max-height: 90vh; overflow-y: auto;
             box-shadow: var(--shadow-hover);
-            transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(0.95); transition: transform 0.3s ease;
         }
         .modal-overlay.active .modal-box { transform: scale(1); }
 
         .close-modal { 
-            position: absolute; top: 20px; right: 20px; 
-            width: 32px; height: 32px; border-radius: 50%;
+            position: absolute; top: 16px; right: 16px; 
+            width: 36px; height: 36px; border-radius: 50%;
             background: #f5f5f5; display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; color: #777; transition: 0.2s;
+            font-size: 1.2rem; color: #777; cursor: pointer;
         }
-        .close-modal:hover { background: #eee; color: #333; }
         
-        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group { margin-bottom: 16px; text-align: left; }
         .input-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: var(--text-main); }
         .input-field { 
             width: 100%; padding: 14px; border: 1px solid #e0e0e0; border-radius: 12px; 
-            font-family: inherit; font-size: 1rem; transition: 0.3s;
-            background: #FAFAF9;
-        }
-        .input-field:focus { border-color: var(--primary); background: #fff; outline: none; box-shadow: 0 0 0 4px rgba(0,0,0, 0.05); }
-
-        /* Icones Sociais */
-        .social-links a {
-            color: var(--primary);
-            font-size: 1.8rem;
-            transition: transform 0.2s;
-            display: inline-block;
-        }
-        .social-links a:hover {
-            color: var(--primary-dark);
-            transform: scale(1.15);
+            font-family: inherit; font-size: 1rem; background: #FAFAF9;
         }
 
-        .contact-info-row {
-            display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px;
-            text-align: left; font-size: 0.95rem; color: var(--text-body);
-            border-bottom: 1px solid #f5f5f5; padding-bottom: 16px;
+        /* Mensagens */
+        .message-card {
+            background: #fff; padding: 20px; border-radius: var(--radius);
+            margin-bottom: 16px; border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-sm); position: relative;
         }
-        .contact-info-row:last-child { border-bottom: none; }
-        .contact-info-row i {
-            color: var(--primary); font-size: 1.4rem;
-            background: rgba(0,0,0, 0.05); padding: 8px; border-radius: 8px;
-        }
+        .msg-author { font-weight: 700; color: var(--primary); display: flex; gap: 8px; align-items: center;}
+        .msg-text { font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-body); margin-top: 8px; }
+
+        /* Social e Contato */
+        .contact-info-row { display: flex; gap: 16px; margin-bottom: 16px; border-bottom: 1px solid #f5f5f5; padding-bottom: 16px; }
+        .social-links { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
+        .social-links a { color: var(--primary); font-size: 1.8rem; }
 
     </style>
 </head>
@@ -507,7 +472,7 @@
     <header class="site-header">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
             <div class="brand serif">Presente<span>.Social</span></div>
-            <button onclick="openContactModal()" class="btn-outline">
+            <button onclick="openContactModal()" class="btn-outline" aria-label="Abrir contato">
                 Fale Conosco
             </button>
         </div>
@@ -524,7 +489,7 @@
                         <i class="ph-fill ph-cake"></i> Aniversariante
                     </div>
                     <h1>E se, em vez de presentes, o seu aniversário ajudasse famílias com cestas básicas?</h1>
-                    <a href="https://wa.me/5565998150975?text=Quero%20criar%20minha%20campanha" class="hero-btn">
+                    <a href="https://wa.me/5565998150975?text=Quero%20criar%20minha%20campanha" class="hero-btn" aria-label="Criar minha campanha no WhatsApp">
                         <i class="ph-bold ph-plus-circle"></i> Criar Minha Campanha
                     </a>
                 </div>
@@ -551,17 +516,19 @@
 
                 <div class="product-card">
                     <div class="product-img-wrapper">
-                        <!-- IMAGEM DA CESTA MANTIDA AQUI -->
+                        <!-- Imagem com width/height explícitos para evitar CLS e Lazy Loading -->
                         <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" 
                              class="product-img" 
-                             alt="Cesta Básica" 
+                             alt="Foto da Cesta Básica Econômica Dona Antônia" 
+                             width="400" height="300"
+                             loading="lazy"
                              onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+da+Cesta'">
                     </div>
                     <div class="product-info">
                         <h3 class="serif" style="font-size: 1.4rem;">Cesta Econômica</h3>
                         <div class="price-badge">R$ 85,00</div>
                         <div>
-                            <button onclick="openItemsModal()" class="items-list-btn">
+                            <button onclick="openItemsModal()" class="items-list-btn" aria-label="Ver itens da cesta">
                                 <i class="ph-bold ph-list-dashes"></i> Ver composição
                             </button>
                         </div>
@@ -586,6 +553,8 @@
                     <img src="img/logo-cesta-basica-dona-antonia.png" 
                          class="logo-img" 
                          alt="Logo Dona Antonia"
+                         width="100" height="100"
+                         loading="lazy"
                          onerror="this.src='https://placehold.co/100x100?text=DA'">
                     
                     <h2 class="serif" style="font-size: 1.8rem; margin-bottom: 12px;">Super Cestas Dona Antônia</h2>
@@ -594,17 +563,17 @@
                     </p>
                     
                     <div style="margin-bottom: 32px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-                        <a href="https://donaantonia.com.br" target="_blank" style="color: var(--primary); font-weight: 700; font-size: 1.1rem; text-decoration: underline; text-underline-offset: 4px;">
+                        <a href="https://donaantonia.com.br" target="_blank" rel="noopener" style="color: var(--primary); font-weight: 700; font-size: 1.1rem; text-decoration: underline; text-underline-offset: 4px;">
                             www.donaantonia.com.br
                         </a>
 
                         <div class="social-links" style="display: flex; gap: 24px;">
-                            <a href="https://instagram.com/super.cestas.dona.antonia" target="_blank"><i class="ph-bold ph-instagram-logo"></i></a>
-                            <a href="https://www.facebook.com/supercestasdonaantonia" target="_blank"><i class="ph-bold ph-facebook-logo"></i></a>
+                            <a href="https://instagram.com/super.cestas.dona.antonia" target="_blank" rel="noopener" aria-label="Instagram"><i class="ph-bold ph-instagram-logo"></i></a>
+                            <a href="https://www.facebook.com/supercestasdonaantonia" target="_blank" rel="noopener" aria-label="Facebook"><i class="ph-bold ph-facebook-logo"></i></a>
                         </div>
                     </div>
 
-                    <a href="https://wa.me/5565998150975" target="_blank" class="hero-btn" style="background: #25D366; color: #fff; box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.3); margin-bottom: 24px;">
+                    <a href="https://wa.me/5565998150975" target="_blank" rel="noopener" class="hero-btn" style="background: #25D366; color: #fff; box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.3); margin-bottom: 24px;">
                         <i class="ph-bold ph-whatsapp-logo"></i> Falar no WhatsApp
                     </a>
 
@@ -618,18 +587,17 @@
         <!-- ================= EVENT VIEW (DETALHES) ================= -->
         <div id="event-view">
             <div class="container animate-enter">
-                <button onclick="goBack()" class="back-btn">
+                <button onclick="goBack()" class="back-btn" aria-label="Voltar">
                     <i class="ph-bold ph-arrow-left"></i> Voltar para Home
                 </button>
 
                 <div class="campaign-header">
-                    <!-- A classe shape será adicionada via JS -->
-                    <img id="pg-photo" src="" class="campaign-img" onerror="this.src='https://placehold.co/150x150?text=Foto'">
+                    <!-- Placeholder otimizado -->
+                    <img id="pg-photo" src="" class="campaign-img" width="150" height="150" alt="Foto do Aniversariante" onerror="this.src='https://placehold.co/150x150?text=Foto'">
                     <h1 id="pg-title" class="serif" style="font-size:1.8rem; margin-bottom:8px;">...</h1>
                     <p id="pg-subtitle" style="font-style: italic; color: #777; font-size: 1.1rem;">...</p>
 
-                    <!-- NOVO BOTÃO DE COMPARTILHAR -->
-                    <button onclick="shareCampaign()" class="share-btn">
+                    <button onclick="shareCampaign()" class="share-btn" aria-label="Compartilhar">
                         <i class="ph-bold ph-share-network"></i> Compartilhar Campanha
                     </button>
                 </div>
@@ -648,26 +616,26 @@
                         <div id="pg-bar" class="progress-fill"></div>
                     </div>
                     
-                    <!-- AREA DE AÇÃO REESTRUTURADA (RESPONSIVA) -->
                     <div id="donation-area" style="border-top: 1px solid rgba(0,0,0,0.05); margin-top: 24px; padding-top: 24px;">
                         <h3 class="serif" style="margin-bottom: 20px; font-size: 1.4rem; color: var(--text-main);">Sua doação faz a diferença</h3>
                         
-                        <!-- CARD DE DOAÇÃO RESPONSIVO -->
                         <div class="donation-card">
                             <img src="img/cesta-basica-cuiaba-varzea-grande-economica.jpg" 
                                  alt="Cesta Básica" 
                                  class="donation-img"
+                                 width="240" height="240"
+                                 loading="lazy"
                                  onerror="this.src='https://placehold.co/400x300/FDFBF7/A98467?text=Foto+da+Cesta'">
                             
                             <div class="donation-info">
                                 <div style="font-weight: 700; font-size: 1.3rem; color: var(--text-main);">Cesta Econômica</div>
                                 <div style="color: var(--success); font-weight: 700; font-size: 1.5rem; margin: 4px 0 12px;">R$ 85,00</div>
                                 
-                                <button onclick="openItemsModal()" class="items-list-btn" style="background: white; border: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem;">
+                                <button onclick="openItemsModal()" class="items-list-btn" style="background: white; border: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem;" aria-label="Ver composição">
                                     <i class="ph-bold ph-list-dashes"></i> Ver composição da cesta
                                 </button>
 
-                                <button onclick="openCheckout()" class="donate-btn">
+                                <button onclick="openCheckout()" class="donate-btn" aria-label="Presentear agora">
                                     <i class="ph-bold ph-gift"></i> Presentear Agora
                                 </button>
                             </div>
@@ -688,10 +656,10 @@
         </div>
     </main>
 
-    <!-- MODAIS (ITENS, CONTATO, CHECKOUT) -->
+    <!-- MODAIS -->
     <div id="items-modal" class="modal-overlay" onclick="if(event.target === this) this.classList.remove('active')">
         <div class="modal-box text-center">
-            <button class="close-modal" onclick="document.getElementById('items-modal').classList.remove('active')">&times;</button>
+            <button class="close-modal" onclick="document.getElementById('items-modal').classList.remove('active')" aria-label="Fechar">&times;</button>
             <h3 class="serif" style="margin-bottom: 8px;">Itens da Cesta</h3>
             <p style="color: var(--text-body); margin-bottom: 24px; font-size: 0.9rem;">Produtos de qualidade selecionada.</p>
             <ul style="text-align: left; list-style: none; font-size: 0.95rem; line-height: 2; padding-left: 10px;">
@@ -713,32 +681,32 @@
 
     <div id="contact-modal" class="modal-overlay" onclick="if(event.target === this) this.classList.remove('active')">
         <div class="modal-box text-center">
-            <button class="close-modal" onclick="document.getElementById('contact-modal').classList.remove('active')">&times;</button>
-            <img src="img/logo-cesta-basica-dona-antonia.png" class="logo-img" style="width: 80px; height: 80px; border-width: 2px; margin-bottom: 16px; padding: 2px;" alt="Logo" onerror="this.src='https://placehold.co/80x80?text=DA'">
+            <button class="close-modal" onclick="document.getElementById('contact-modal').classList.remove('active')" aria-label="Fechar">&times;</button>
+            <img src="img/logo-cesta-basica-dona-antonia.png" class="logo-img" style="width: 80px; height: 80px; border-width: 2px; margin-bottom: 16px; padding: 2px;" alt="Logo" width="80" height="80" loading="lazy" onerror="this.src='https://placehold.co/80x80?text=DA'">
             <h3 class="serif" style="margin-bottom: 24px;">Fale Conosco</h3>
             <div class="contact-info-row"><i class="ph-fill ph-phone"></i><div><strong>Atendimento</strong><br>(65) 99815-0975</div></div>
             <div class="contact-info-row"><i class="ph-fill ph-briefcase"></i><div><strong>Escritório</strong><br>Edifício The Point Smart Business, Sala 605-A</div></div>
             <div class="contact-info-row"><i class="ph-fill ph-factory"></i><div><strong>Produção</strong><br>Rua Trinta, 200, Bairro N. S. Aparecida</div></div>
             <div style="margin-top: 32px;">
-                <a href="https://wa.me/5565998150975" target="_blank" class="hero-btn" style="background: #25D366; width: 100%; justify-content: center; margin-bottom: 12px; box-shadow: none;"><i class="ph-bold ph-whatsapp-logo"></i> Chamar no WhatsApp</a>
+                <a href="https://wa.me/5565998150975" target="_blank" rel="noopener" class="hero-btn" style="background: #25D366; width: 100%; justify-content: center; margin-bottom: 12px; box-shadow: none;"><i class="ph-bold ph-whatsapp-logo"></i> Chamar no WhatsApp</a>
                 <a href="tel:5565998150975" class="hero-btn" style="background: #f0f0f0; color: var(--text-main); width: 100%; justify-content: center; box-shadow: none;"><i class="ph-bold ph-phone"></i> Ligar Agora</a>
             </div>
-            <div class="social-links" style="margin-top: 24px; justify-content: center; display: flex; gap: 20px;">
-                <a href="https://instagram.com/super.cestas.dona.antonia" target="_blank"><i class="ph-bold ph-instagram-logo"></i></a>
-                <a href="https://www.facebook.com/supercestasdonaantonia" target="_blank"><i class="ph-bold ph-facebook-logo"></i></a>
+            <div class="social-links">
+                <a href="https://instagram.com/super.cestas.dona.antonia" target="_blank" rel="noopener" aria-label="Instagram"><i class="ph-bold ph-instagram-logo"></i></a>
+                <a href="https://www.facebook.com/supercestasdonaantonia" target="_blank" rel="noopener" aria-label="Facebook"><i class="ph-bold ph-facebook-logo"></i></a>
             </div>
         </div>
     </div>
 
     <div id="checkout-modal" class="modal-overlay" onclick="if(event.target === this) this.classList.remove('active')">
         <div class="modal-box">
-            <button class="close-modal" onclick="document.getElementById('checkout-modal').classList.remove('active')">&times;</button>
+            <button class="close-modal" onclick="document.getElementById('checkout-modal').classList.remove('active')" aria-label="Fechar">&times;</button>
             <h3 class="serif text-center" style="margin-bottom: 8px;">Confirmar Doação</h3>
             <p class="text-center" style="font-size: 0.9rem; color: #777; margin-bottom: 24px;">Você finalizará o pagamento seguro via WhatsApp.</p>
             <form onsubmit="submitDonation(event)">
-                <div class="input-group"><label>Seu Nome</label><input type="text" id="donor-name" class="input-field" required placeholder="Ex: Maria Silva"></div>
-                <div class="input-group"><label>Seu WhatsApp</label><input type="tel" id="donor-phone" class="input-field" required placeholder="(65) 99999-9999"></div>
-                <div class="input-group"><label>Mensagem para o aniversariante</label><textarea id="donor-msg" class="input-field" rows="2" placeholder="Escreva algo especial..."></textarea></div>
+                <div class="input-group"><label for="donor-name">Seu Nome</label><input type="text" id="donor-name" class="input-field" required placeholder="Ex: Maria Silva"></div>
+                <div class="input-group"><label for="donor-phone">Seu WhatsApp</label><input type="tel" id="donor-phone" class="input-field" required placeholder="(65) 99999-9999"></div>
+                <div class="input-group"><label for="donor-msg">Mensagem para o aniversariante</label><textarea id="donor-msg" class="input-field" rows="2" placeholder="Escreva algo especial..."></textarea></div>
                 <button type="submit" class="donate-btn">Enviar Pedido <i class="ph-bold ph-paper-plane-right"></i></button>
             </form>
         </div>
@@ -748,34 +716,23 @@
         let eventsData = [];
         let currentEventSlug = null;
 
-        // Configurações de Cores por Tema
         const THEMES = {
-            female: {
-                primary: '#D45D79',      // Rosa Profundo
-                primaryLight: '#EA9AB2', // Rosa Claro
-                primaryDark: '#A0304C'   // Vinho
-            },
-            male: {
-                primary: '#2C5F8A',      // Azul Clássico
-                primaryLight: '#6B9AC4', // Azul Claro
-                primaryDark: '#1A3C59'   // Azul Marinho
-            },
-            neutral: {
-                primary: '#A98467',      // Marrom/Dourado (Original)
-                primaryLight: '#C2A58D',
-                primaryDark: '#8C6A54'
-            }
+            female: { primary: '#D45D79', primaryLight: '#EA9AB2', primaryDark: '#A0304C' },
+            male: { primary: '#2C5F8A', primaryLight: '#6B9AC4', primaryDark: '#1A3C59' },
+            neutral: { primary: '#A98467', primaryLight: '#C2A58D', primaryDark: '#8C6A54' }
         };
 
         async function init() {
             try {
-                const response = await fetch(`events.json?v=${new Date().getTime()}`);
+                // Removemos o cache busting agressivo para produção para permitir cache do navegador
+                // Em desenvolvimento você pode usar ?v=...
+                const response = await fetch('events.json');
                 if(!response.ok) throw new Error("Erro JSON");
                 eventsData = await response.json();
                 renderEventsList();
                 handleRouting();
             } catch (err) {
-                console.log("Erro ao carregar, usando dados de exemplo se falhar...");
+                console.log("Erro ao carregar dados.", err);
                 document.getElementById('events-container').innerHTML = '<p class="text-center">Nenhuma campanha encontrada no momento.</p>';
             }
         }
@@ -784,24 +741,34 @@
             const container = document.getElementById('events-container');
             container.innerHTML = '';
             
+            // DocumentFragment para melhor performance de inserção no DOM
+            const fragment = document.createDocumentFragment();
+
             eventsData.forEach(ev => {
-                const isClosed = ev.status && ev.status === 'closed';
+                const isClosed = ev.status === 'closed';
+                const div = document.createElement('div');
+                div.className = 'event-mini-card';
+                div.style.opacity = isClosed ? '0.7' : '1';
+                div.onclick = () => openPage(ev.slug);
+                div.setAttribute('role', 'button');
+                div.setAttribute('tabindex', '0');
+
+                // HTML interno
                 let statusHtml = isClosed 
                     ? '<span style="font-size:0.75rem; color:#999; display:flex; align-items:center;"><span class="status-dot" style="background:#ccc;"></span> Encerrado</span>'
                     : '<span style="font-size:0.75rem; color:var(--success); display:flex; align-items:center; font-weight:600;"><span class="status-dot" style="background:var(--success);"></span> Participar</span>';
-                const opacity = isClosed ? '0.7' : '1';
-                
-                container.innerHTML += `
-                    <div class="event-mini-card" style="opacity: ${opacity}" onclick="openPage('${ev.slug}')">
-                        <img src="${ev.photo}" class="ev-photo" onerror="this.src='https://placehold.co/60x60'">
-                        <div style="flex:1">
-                            <h4 style="margin:0; font-size: 1.05rem; margin-bottom: 4px;">${ev.title}</h4>
-                            ${statusHtml}
-                        </div>
-                        <i class="ph-bold ph-caret-right" style="color: #ccc;"></i>
+
+                div.innerHTML = `
+                    <img src="${ev.photo}" class="ev-photo" width="64" height="64" loading="lazy" alt="${ev.title}" onerror="this.src='https://placehold.co/60x60'">
+                    <div style="flex:1">
+                        <h4 style="margin:0; font-size: 1.05rem; margin-bottom: 4px;">${ev.title}</h4>
+                        ${statusHtml}
                     </div>
+                    <i class="ph-bold ph-caret-right" style="color: #ccc;"></i>
                 `;
+                fragment.appendChild(div);
             });
+            container.appendChild(fragment);
         }
 
         window.addEventListener('hashchange', handleRouting);
@@ -819,7 +786,6 @@
         
         function goBack() { 
             window.location.hash = ''; 
-            // Reseta para tema neutro ao voltar para Home
             applyTheme('neutral');
         }
 
@@ -827,6 +793,7 @@
             document.getElementById('event-view').classList.remove('active');
             document.getElementById('home-view').classList.remove('hidden');
             window.scrollTo(0,0);
+            document.title = "Presente Social - Dona Antônia"; // Reseta Título
         }
 
         function renderEventView(ev) {
@@ -834,38 +801,29 @@
             document.getElementById('home-view').classList.add('hidden');
             document.getElementById('event-view').classList.add('active');
             
-            // 1. APLICA O TEMA (CORES)
-            // Se não tiver tema no JSON, usa 'neutral'
+            // Atualiza Título da Página (Bom para usabilidade, mas SPA tem limites em SEO)
+            document.title = `${ev.title} - Aniversário Solidário`;
+
             applyTheme(ev.theme || 'neutral');
 
-            // 2. APLICA O LAYOUT DA FOTO (FORMA)
             const imgEl = document.getElementById('pg-photo');
             imgEl.src = ev.photo;
+            imgEl.alt = `Foto de ${ev.title}`;
             
-            // Remove classes antigas de formato
             imgEl.classList.remove('shape-round', 'shape-square', 'shape-horizontal');
-            
-            // Adiciona a nova classe baseada no JSON
-            if(ev.layout === 'square') {
-                imgEl.classList.add('shape-square');
-            } else if(ev.layout === 'horizontal') {
-                imgEl.classList.add('shape-horizontal');
-            } else {
-                imgEl.classList.add('shape-round'); // Padrão
-            }
+            if(ev.layout === 'square') imgEl.classList.add('shape-square');
+            else if(ev.layout === 'horizontal') imgEl.classList.add('shape-horizontal');
+            else imgEl.classList.add('shape-round');
 
-            // Popula textos
             document.getElementById('pg-title').innerText = ev.title;
             document.getElementById('pg-subtitle').innerText = ev.subtitle || '';
             document.getElementById('pg-story').innerText = ev.story;
             
-            // Barra de progresso
             document.getElementById('pg-current').innerText = ev.current;
             document.getElementById('pg-goal').innerText = ev.goal;
             const pct = Math.min(100, (ev.current / ev.goal) * 100);
             document.getElementById('pg-bar').style.width = pct + '%';
 
-            // Status
             if (ev.status === 'closed') {
                 document.getElementById('donation-area').style.display = 'none';
                 document.getElementById('closed-area').style.display = 'block';
@@ -874,7 +832,6 @@
                 document.getElementById('closed-area').style.display = 'none';
             }
             
-            // Mensagens
             const msgList = document.getElementById('messages-list');
             msgList.innerHTML = '';
             if(ev.messages && ev.messages.length > 0) {
@@ -896,17 +853,14 @@
             window.scrollTo(0,0);
         }
 
-        // Função auxiliar para mudar variáveis CSS
         function applyTheme(themeName) {
             const colors = THEMES[themeName] || THEMES['neutral'];
             const root = document.documentElement;
-            
             root.style.setProperty('--primary', colors.primary);
             root.style.setProperty('--primary-light', colors.primaryLight);
             root.style.setProperty('--primary-dark', colors.primaryDark);
         }
 
-        // Função de Compartilhamento (Share API ou WhatsApp fallback)
         function shareCampaign() {
             const ev = eventsData.find(e => e.slug === currentEventSlug);
             if (!ev) return;
@@ -914,7 +868,6 @@
             const url = window.location.href;
             const text = `Participe da campanha solidária: ${ev.title}. Veja mais aqui:`;
 
-            // Tenta usar a API nativa de compartilhamento (Mobile principalmente)
             if (navigator.share) {
                 navigator.share({
                     title: ev.title,
@@ -922,7 +875,6 @@
                     url: url
                 }).catch(err => console.log('Erro ao compartilhar', err));
             } else {
-                // Fallback para WhatsApp Web/Desktop se o navegador não suportar navigator.share
                 const waUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
                 window.open(waUrl, '_blank');
             }
